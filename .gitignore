@@ -1,4 +1,5 @@
 dist
+worker
 .cargo-ok
 wrangler.toml
 
