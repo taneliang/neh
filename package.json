@@ -10,7 +10,7 @@
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "prettier": "^1.18.2"
   }
 }
