@@ -5,11 +5,12 @@ const docstrings = {
   fb: 'does a Facebook search',
   g: 'does a Google search',
   gh: 'navigates to GitHub or does a GitHub search',
-  ghr: 'navigates to a GitHub repo',
   ghp: 'navigates to a GitHub user profile',
+  ghr: 'navigates to a GitHub repo',
   list: 'show the list of methods you can use or search that list',
   lyrics: 'does a Genius lyric search',
   nm: 'does an NUSMods search',
+  rtm: 'navigates to Remember the Milk',
   wk: 'English Wikipedia search',
   yt: 'does a YouTube search',
   yub: 'run a YubNub command',
@@ -32,12 +33,12 @@ export const handlers = {
     return redirect('https://github.com', 'https://github.com/search?q=', tokens);
   },
 
-  ghr(tokens) {
-    return redirect('https://github.com/taneliang/neh', 'https://github.com/', tokens);
-  },
-
   ghp(tokens) {
     return redirect('https://github.com/taneliang', 'https://github.com/', tokens);
+  },
+
+  ghr(tokens) {
+    return redirect('https://github.com/taneliang/neh', 'https://github.com/', tokens);
   },
 
   list() {
@@ -89,6 +90,10 @@ export const handlers = {
       'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4&q=',
       tokens,
     );
+  },
+
+  rtm() {
+    return redirect('https://www.rememberthemilk.com');
   },
 
   wk(tokens) {
