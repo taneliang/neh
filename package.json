@@ -5,12 +5,15 @@
   "description": "A template for kick starting a Cloudflare Workers project",
   "main": "index.js",
   "scripts": {
+    "start": "wrangler preview --watch",
+    "publish": "wrangler publish",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
   "devDependencies": {
+    "@cloudflare/wrangler": "^1.4.0",
     "prettier": "^1.18.2"
   }
 }

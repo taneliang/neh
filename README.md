@@ -54,11 +54,11 @@ To
 neh in development, run:
 
 ```
-wrangler preview --watch
+npm run start
 ```
 
 To publish neh to Cloudflare Workers, run:
 
 ```
-wrangler publish
+npm run publish
 ```
