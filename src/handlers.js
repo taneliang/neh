@@ -1,4 +1,5 @@
 import { redirect } from './util';
+import { openSearchAutodiscoveryLink } from './opensearch';
 
 const docstrings = {
   d: 'does a DuckDuckGo search',
@@ -97,6 +98,7 @@ export const handlers = {
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <title>neh commands</title>
+          ${openSearchAutodiscoveryLink}
         </head>
         <body>
           <h1>neh command list</h1>
