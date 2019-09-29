@@ -7,11 +7,18 @@ const docstrings = {
   gh: 'navigates to GitHub or does a GitHub search',
   ghp: 'navigates to a GitHub user profile',
   ghr: 'navigates to a GitHub repo',
+  ip: 'shows your current public IP address',
   list: 'show the list of methods you can use or search that list',
   lyrics: 'does a Genius lyric search',
   nm: 'does an NUSMods search',
+  npm: 'does an NPM search',
+  npmp: 'navigates to an NPM package',
+  rd: 'does a Reddit search',
+  rdr: 'navigates to a subreddit',
   rtm: 'navigates to Remember the Milk',
   wk: 'English Wikipedia search',
+  yarn: 'does a Yarn package search',
+  yarnp: 'navigates to a Yarn package',
   yt: 'does a YouTube search',
   yub: 'run a YubNub command',
 };
@@ -39,6 +46,10 @@ export const handlers = {
 
   ghr(tokens) {
     return redirect('https://github.com/taneliang/neh', 'https://github.com/', tokens);
+  },
+
+  ip() {
+    return redirect('https://icanhazip.com');
   },
 
   list() {
@@ -92,6 +103,22 @@ export const handlers = {
     );
   },
 
+  npm(tokens) {
+    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/search?q=', tokens);
+  },
+
+  npmp(tokens) {
+    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/package/', tokens);
+  },
+
+  rd(tokens) {
+    return redirect('https://www.reddit.com', 'https://www.reddit.com/search?q=', tokens);
+  },
+
+  rdr(tokens) {
+    return redirect('https://www.reddit.com', 'https://www.reddit.com/r/', tokens);
+  },
+
   rtm() {
     return redirect('https://www.rememberthemilk.com');
   },
@@ -102,6 +129,14 @@ export const handlers = {
       'https://en.wikipedia.org/w/index.php?search=',
       tokens,
     );
+  },
+
+  yarn(tokens) {
+    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/packages?q=', tokens);
+  },
+
+  yarnp(tokens) {
+    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/package/', tokens);
   },
 
   yt(tokens) {
