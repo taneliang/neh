@@ -105,6 +105,7 @@ export const handlers = {
           <ul>
             ${docrows}
           </ul>
+          <p>Source code available on <a href="/?=ghr">GitHub</a>.</p>
         </body>
       </html>
     `,
