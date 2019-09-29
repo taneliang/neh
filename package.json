@@ -7,13 +7,16 @@
   "scripts": {
     "start": "wrangler preview --watch",
     "publish": "wrangler publish",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-env": "^7.6.2",
     "@cloudflare/wrangler": "^1.4.0",
+    "jest": "^24.9.0",
     "prettier": "^1.18.2"
   }
 }
