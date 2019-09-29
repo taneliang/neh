@@ -104,11 +104,15 @@ export const handlers = {
   },
 
   npm(tokens) {
-    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/search?q=', tokens);
+    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/search?q=', tokens, [
+      'https://yarnpkg.com/en/packages?q=',
+    ]);
   },
 
   npmp(tokens) {
-    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/package/', tokens);
+    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/package/', tokens, [
+      'https://yarnpkg.com/en/package/',
+    ]);
   },
 
   rd(tokens) {
@@ -132,11 +136,15 @@ export const handlers = {
   },
 
   yarn(tokens) {
-    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/packages?q=', tokens);
+    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/packages?q=', tokens, [
+      'https://www.npmjs.com/search?q=',
+    ]);
   },
 
   yarnp(tokens) {
-    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/package/', tokens);
+    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/package/', tokens, [
+      'https://www.npmjs.com/package/',
+    ]);
   },
 
   yt(tokens) {

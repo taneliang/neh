@@ -23,6 +23,7 @@ Here are some examples:
 * Go to a GitHub repository: [ghr nusmodifications/nusmods](https://neh.child.workers.dev?=ghr%20nusmodifications/nusmods)
 * Perform a DuckDuckGo search: [d duckduckgo privacy](https://neh.child.workers.dev?=d%20duckduckgo%20privacy)
 * Fallback to a Google search: [not a command](https://neh.child.workers.dev?=not%20a%20command)
+* Find the Yarnpkg.com package which corresponds to an NPM package: [npmp https://yarnpkg.com/en/package/react](https://neh.child.workers.dev?=npmp%20https://yarnpkg.com/en/package/react)
 
 Neh! Liddat only. Easy.
 
