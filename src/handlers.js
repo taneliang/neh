@@ -23,21 +23,40 @@ const docstrings = {
   yub: 'run a YubNub command',
 };
 
+const baseUrls = {
+  d: 'https://duckduckgo.com/?q=',
+  fb: 'https://www.facebook.com/search/top/?q=',
+  g: 'https://www.google.com/search?q=',
+  gh: 'https://github.com/search?q=',
+  lyrics: 'https://genius.com/search?q=',
+  nm: 'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4&q=',
+  npm: 'https://www.npmjs.com/search?q=',
+  npmp: 'https://www.npmjs.com/package/',
+  rd: 'https://www.reddit.com/search?q=',
+  wk: 'https://en.wikipedia.org/w/index.php?search=',
+  yarn: 'https://yarnpkg.com/en/packages?q=',
+  yarnp: 'https://yarnpkg.com/en/package/',
+  yt: 'https://www.youtube.com/results?search_query=',
+  yub: 'https://yubnub.org/parser/parse?command=',
+};
+
+const allBaseUrls = Object.values(baseUrls);
+
 export const handlers = {
   d(tokens) {
-    return redirect('https://duckduckgo.com', 'https://duckduckgo.com/?q=', tokens);
+    return redirect('https://duckduckgo.com', baseUrls.d, tokens, allBaseUrls);
   },
 
   fb(tokens) {
-    return redirect('https://www.facebook.com', 'https://www.facebook.com/search/top/?q=', tokens);
+    return redirect('https://www.facebook.com', baseUrls.fb, tokens, allBaseUrls);
   },
 
   g(tokens) {
-    return redirect('https://google.com', 'https://google.com/search?q=', tokens);
+    return redirect('https://google.com', baseUrls.g, tokens, allBaseUrls);
   },
 
   gh(tokens) {
-    return redirect('https://github.com', 'https://github.com/search?q=', tokens);
+    return redirect('https://github.com', baseUrls.gh, tokens, allBaseUrls);
   },
 
   ghp(tokens) {
@@ -92,31 +111,23 @@ export const handlers = {
   },
 
   lyrics(tokens) {
-    return redirect('https://genius.com', 'https://genius.com/search?q=', tokens);
+    return redirect('https://genius.com', baseUrls.lyrics, tokens, allBaseUrls);
   },
 
   nm(tokens) {
-    return redirect(
-      'https://nusmods.com',
-      'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4&q=',
-      tokens,
-    );
+    return redirect('https://nusmods.com', baseUrls.nm, tokens, allBaseUrls);
   },
 
   npm(tokens) {
-    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/search?q=', tokens, [
-      'https://yarnpkg.com/en/packages?q=',
-    ]);
+    return redirect('https://www.npmjs.com', baseUrls.npm, tokens, allBaseUrls);
   },
 
   npmp(tokens) {
-    return redirect('https://www.npmjs.com', 'https://www.npmjs.com/package/', tokens, [
-      'https://yarnpkg.com/en/package/',
-    ]);
+    return redirect('https://www.npmjs.com', baseUrls.npmp, tokens, allBaseUrls);
   },
 
   rd(tokens) {
-    return redirect('https://www.reddit.com', 'https://www.reddit.com/search?q=', tokens);
+    return redirect('https://www.reddit.com', baseUrls.rd, tokens, allBaseUrls);
   },
 
   rdr(tokens) {
@@ -128,34 +139,22 @@ export const handlers = {
   },
 
   wk(tokens) {
-    return redirect(
-      'https://en.wikipedia.org',
-      'https://en.wikipedia.org/w/index.php?search=',
-      tokens,
-    );
+    return redirect('https://en.wikipedia.org', baseUrls.wk, tokens, allBaseUrls);
   },
 
   yarn(tokens) {
-    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/packages?q=', tokens, [
-      'https://www.npmjs.com/search?q=',
-    ]);
+    return redirect('https://www.yarnpkg.com/en/', baseUrls.yarn, tokens, allBaseUrls);
   },
 
   yarnp(tokens) {
-    return redirect('https://www.yarnpkg.com/en/', 'https://yarnpkg.com/en/package/', tokens, [
-      'https://www.npmjs.com/package/',
-    ]);
+    return redirect('https://www.yarnpkg.com/en/', baseUrls.yarnp, tokens, allBaseUrls);
   },
 
   yt(tokens) {
-    return redirect(
-      'https://www.youtube.com',
-      'https://www.youtube.com/results?search_query=',
-      tokens,
-    );
+    return redirect('https://www.youtube.com', baseUrls.yt, tokens, allBaseUrls);
   },
 
   yub(tokens) {
-    return redirect('https://yubnub.org', 'https://yubnub.org/parser/parse?command=', tokens);
+    return redirect('https://yubnub.org', baseUrls.yub, tokens, allBaseUrls);
   },
 };
