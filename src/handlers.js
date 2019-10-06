@@ -2,21 +2,30 @@ import { redirect } from './util';
 import { openSearchAutodiscoveryLink } from './opensearch';
 
 const docstrings = {
+  cf: 'navigates to Cloudflare',
   d: 'does a DuckDuckGo search',
+  do: 'navigates to DigitalOcean',
   fb: 'does a Facebook search',
   g: 'does a Google search',
   gh: 'navigates to GitHub or does a GitHub search',
   ghp: 'navigates to a GitHub user profile',
   ghr: 'navigates to a GitHub repo',
+  gl: 'navigates to GitLab or does a GitLab search',
+  glp: 'navigates to a GitLab user profile',
+  glr: 'navigates to a GitLab repo',
   ip: 'shows your current public IP address',
   list: 'show the list of methods you can use or search that list',
+  lum: 'navigates to LumiNUS',
   lyrics: 'does a Genius lyric search',
+  nixo: 'does a NixOS option search',
+  nixp: 'does a NixOS package search',
   nm: 'does an NUSMods search',
   npm: 'does an NPM search',
   npmp: 'navigates to an NPM package',
   rd: 'does a Reddit search',
   rdr: 'navigates to a subreddit',
   rtm: 'navigates to Remember the Milk',
+  so: 'does a StackOverflow search',
   wk: 'English Wikipedia search',
   yarn: 'does a Yarn package search',
   yarnp: 'navigates to a Yarn package',
@@ -29,11 +38,15 @@ const baseUrls = {
   fb: 'https://www.facebook.com/search/top/?q=',
   g: 'https://www.google.com/search?q=',
   gh: 'https://github.com/search?q=',
+  gl: 'https://gitlab.com/search?utf8=✓&search=',
   lyrics: 'https://genius.com/search?q=',
+  nixo: 'https://nixos.org/nixos/options.html#',
+  nixp: 'https://nixos.org/nixos/packages.html?channel=nixos-unstable&query=',
   nm: 'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4&q=',
   npm: 'https://www.npmjs.com/search?q=',
   npmp: 'https://www.npmjs.com/package/',
   rd: 'https://www.reddit.com/search?q=',
+  so: 'https://stackoverflow.com/search?q=',
   wk: 'https://en.wikipedia.org/w/index.php?search=',
   yarn: 'https://yarnpkg.com/en/packages?q=',
   yarnp: 'https://yarnpkg.com/en/package/',
@@ -44,8 +57,16 @@ const baseUrls = {
 const allBaseUrls = Object.values(baseUrls);
 
 export const handlers = {
+  cf() {
+    return redirect('https://dash.cloudflare.com');
+  },
+
   d(tokens) {
     return redirect('https://duckduckgo.com', baseUrls.d, tokens, allBaseUrls);
+  },
+
+  do() {
+    return redirect('https://cloud.digitalocean.com');
   },
 
   fb(tokens) {
@@ -66,6 +87,18 @@ export const handlers = {
 
   ghr(tokens) {
     return redirect('https://github.com/taneliang/neh', 'https://github.com/', tokens);
+  },
+
+  gl(tokens) {
+    return redirect('https://gitlab.com', baseUrls.gl, tokens, allBaseUrls);
+  },
+
+  glp(tokens) {
+    return redirect('https://gitlab.com/elg', 'https://gitlab.com/', tokens);
+  },
+
+  glr(tokens) {
+    return redirect('https://gitlab.com', 'https://gitlab.com/', tokens);
   },
 
   ip() {
@@ -113,8 +146,20 @@ export const handlers = {
     );
   },
 
+  lum() {
+    return redirect('https://luminus.nus.edu.sg/dashboard');
+  },
+
   lyrics(tokens) {
     return redirect('https://genius.com', baseUrls.lyrics, tokens, allBaseUrls);
+  },
+
+  nixo(tokens) {
+    return redirect(baseUrls.nixo, baseUrls.nixo, tokens, allBaseUrls);
+  },
+
+  nixp(tokens) {
+    return redirect(baseUrls.nixp, baseUrls.nixp, tokens, allBaseUrls);
   },
 
   nm(tokens) {
@@ -139,6 +184,10 @@ export const handlers = {
 
   rtm() {
     return redirect('https://www.rememberthemilk.com');
+  },
+
+  so(tokens) {
+    return redirect('https://stackoverflow.com', baseUrls.so, tokens, allBaseUrls);
   },
 
   wk(tokens) {
