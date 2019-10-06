@@ -1,8 +1,10 @@
 import { redirect } from './util';
+import { getClosestModule } from './nus';
 import { openSearchAutodiscoveryLink } from './opensearch';
 
 const docstrings = {
   cf: 'navigates to Cloudflare',
+  coursem: 'navigates to Coursemology',
   d: 'does a DuckDuckGo search',
   do: 'navigates to DigitalOcean',
   fb: 'does a Facebook search',
@@ -26,6 +28,7 @@ const docstrings = {
   rdr: 'navigates to a subreddit',
   rtm: 'navigates to Remember the Milk',
   so: 'does a StackOverflow search',
+  webcast: 'navigates to an NUS module&apos;s Panopto webcasts',
   wk: 'English Wikipedia search',
   yarn: 'does a Yarn package search',
   yarnp: 'navigates to a Yarn package',
@@ -59,6 +62,19 @@ const allBaseUrls = Object.values(baseUrls);
 export const handlers = {
   cf() {
     return redirect('https://dash.cloudflare.com');
+  },
+
+  coursem(tokens) {
+    if (tokens && tokens.length > 0) {
+      const [fuzzyModcode, ...otherTokens] = tokens;
+      const module = getClosestModule(fuzzyModcode);
+      if (module && module.coursemology) {
+        return redirect(
+          `https://coursemology.org/courses/${module.coursemology}/${otherTokens.join('/')}`,
+        );
+      }
+    }
+    return redirect('https://coursemology.org');
   },
 
   d(tokens) {
@@ -146,7 +162,16 @@ export const handlers = {
     );
   },
 
-  lum() {
+  lum(tokens) {
+    if (tokens && tokens.length > 0) {
+      const [fuzzyModcode, ...otherTokens] = tokens;
+      const module = getClosestModule(fuzzyModcode);
+      if (module && module.luminus) {
+        return redirect(
+          `https://luminus.nus.edu.sg/modules/${module.luminus}/${otherTokens.join('/')}`,
+        );
+      }
+    }
     return redirect('https://luminus.nus.edu.sg/dashboard');
   },
 
@@ -188,6 +213,19 @@ export const handlers = {
 
   so(tokens) {
     return redirect('https://stackoverflow.com', baseUrls.so, tokens, allBaseUrls);
+  },
+
+  webcast(tokens) {
+    if (tokens && tokens.length > 0) {
+      const [fuzzyModcode] = tokens;
+      const module = getClosestModule(fuzzyModcode);
+      if (module && module.panopto) {
+        return redirect(
+          `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${module.panopto}"`,
+        );
+      }
+    }
+    return redirect('https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx');
   },
 
   wk(tokens) {
