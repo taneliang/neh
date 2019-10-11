@@ -137,9 +137,9 @@ export const handlers = {
     const docrows = commands
       .map((c) => {
         if (c in docstrings) {
-          return `<li><strong>${c}</strong>: ${docstrings[c]}</li>`;
+          return `<tr><td><strong>${c}</strong></td><td>${docstrings[c]}</td></tr>`;
         }
-        return `<li><strong>${c}</strong>: <i>I also don't know what this does tbh</i></li>`;
+        return `<tr><td><strong>${c}</strong></td><td><i>I also don't know what this does tbh</i></td></tr>`;
       })
       .join('');
 
@@ -158,12 +158,35 @@ export const handlers = {
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <title>neh commands</title>
           ${openSearchAutodiscoveryLink}
+          <style>
+          body {
+            font-family: sans-serif;
+          }
+
+          table {
+            border-collapse: collapse;
+          }
+
+          th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+          }
+
+          tr:hover {
+            background-color: #f5f5f5;
+          }
+          </style>
         </head>
         <body>
           <h1>neh command list</h1>
-          <ul>
+          <table>
+            <tr>
+              <th>Command</th>
+              <th>Description</th>
+            </tr>
             ${docrows}
-          </ul>
+          </table>
           <p>Source code available on <a href="/?=ghr">GitHub</a>.</p>
         </body>
       </html>
