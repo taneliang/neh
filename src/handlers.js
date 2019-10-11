@@ -42,7 +42,6 @@ const baseUrls = {
   g: 'https://www.google.com/search?q=',
   gh: 'https://github.com/search?q=',
   gl: 'https://gitlab.com/search?utf8=✓&search=',
-  lyrics: 'https://genius.com/search?q=',
   nixo: 'https://nixos.org/nixos/options.html#',
   nixp: 'https://nixos.org/nixos/packages.html?channel=nixos-unstable&query=',
   nm: 'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4&q=',
@@ -176,7 +175,12 @@ export const handlers = {
   },
 
   lyrics(tokens) {
-    return redirect('https://genius.com', baseUrls.lyrics, tokens, allBaseUrls);
+    return redirect(
+      'https://genius.com',
+      `${baseUrls.d}%5Csite:genius.com%20`,
+      tokens,
+      allBaseUrls,
+    );
   },
 
   nixo(tokens) {
