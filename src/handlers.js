@@ -7,6 +7,7 @@ const docstrings = {
   coursem: 'navigates to Coursemology',
   d: 'does a DuckDuckGo search',
   do: 'navigates to DigitalOcean',
+  drive: 'navigates to Google Drive',
   fb: 'does a Facebook search',
   g: 'does a Google search',
   gh: 'navigates to GitHub or does a GitHub search',
@@ -18,7 +19,7 @@ const docstrings = {
   ip: 'shows your current public IP address',
   list: 'show the list of methods you can use or search that list',
   lum: 'navigates to LumiNUS',
-  lyrics: 'does a Genius lyric search',
+  lyrics: "navigates to a song's lyrics on Genius",
   nixo: 'does a NixOS option search',
   nixp: 'does a NixOS package search',
   nm: 'does an NUSMods search',
@@ -28,6 +29,8 @@ const docstrings = {
   rdr: 'navigates to a subreddit',
   rtm: 'navigates to Remember the Milk',
   so: 'does a StackOverflow search',
+  tren: 'translate text to English using Google Translate',
+  trzh: 'translate text to/from Chinese using 百度翻译',
   webcast: 'navigates to an NUS module&apos;s Panopto webcasts',
   wk: 'English Wikipedia search',
   yarn: 'does a Yarn package search',
@@ -82,6 +85,14 @@ export const handlers = {
 
   do() {
     return redirect('https://cloud.digitalocean.com');
+  },
+
+  drive(tokens) {
+    if (tokens && tokens.length > 0) {
+      const [accountIndex] = tokens;
+      return redirect(`https://drive.google.com/drive/u/${accountIndex}/`);
+    }
+    return redirect('https://drive.google.com');
   },
 
   fb(tokens) {
@@ -217,6 +228,24 @@ export const handlers = {
 
   so(tokens) {
     return redirect('https://stackoverflow.com', baseUrls.so, tokens, allBaseUrls);
+  },
+
+  tren(tokens) {
+    return redirect(
+      'https://translate.google.com',
+      'https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=',
+      tokens,
+      allBaseUrls,
+    );
+  },
+
+  trzh(tokens) {
+    return redirect(
+      'https://fanyi.baidu.com',
+      'https://fanyi.baidu.com/#en/zh/',
+      tokens,
+      allBaseUrls,
+    );
   },
 
   webcast(tokens) {
