@@ -5,6 +5,7 @@ import FuzzySet from 'fuzzyset.js';
 export const modules = {
   CS3219: {
     luminus: '42f051f9-44d2-4393-8ed5-e79d4a97b8de',
+    panopto: 'a37a4fec-408e-4e1e-9a89-aabc000a5ce8',
   },
   CS3230: {
     luminus: 'b85e28eb-bab3-4375-b03e-16f0ce45a591',
