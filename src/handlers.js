@@ -29,6 +29,7 @@ const docstrings = {
   rdr: 'navigates to a subreddit',
   rtm: 'navigates to Remember the Milk',
   so: 'does a StackOverflow search',
+  speedtest: "navigates to fast.com; Netflix's Internet speedtest service",
   tren: 'translate text to English using Google Translate',
   trzh: 'translate text to/from Chinese using 百度翻译',
   webcast: 'navigates to an NUS module&apos;s Panopto webcasts',
@@ -251,6 +252,10 @@ export const handlers = {
 
   so(tokens) {
     return redirect('https://stackoverflow.com', baseUrls.so, tokens, allBaseUrls);
+  },
+
+  speedtest() {
+    return redirect('https://fast.com/');
   },
 
   tren(tokens) {
