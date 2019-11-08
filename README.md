@@ -15,14 +15,14 @@ Workers on Cloudflare's edge servers located close to you. TL;DR it fast.
 The easiest way to use neh is to set <https://neh.eltan.net?=> as your
 browser's default search engine. Then, run commands by typing their command
 names followed by your query. If no command is detected, neh will just redirect
-you to Google.
+you to DuckDuckGo.
 
 Here are some examples:
 
 * Search YouTube: [yt rickroll](https://neh.eltan.net?=yt%20rickroll)
 * Go to a GitHub repository: [ghr nusmodifications/nusmods](https://neh.eltan.net?=ghr%20nusmodifications/nusmods)
-* Perform a DuckDuckGo search: [d duckduckgo privacy](https://neh.eltan.net?=d%20duckduckgo%20privacy)
-* Fallback to a Google search: [not a command](https://neh.eltan.net?=not%20a%20command)
+* Perform a Google search: [g neh](https://neh.eltan.net?=g%20neh)
+* Fallback to a DuckDuckGo search: [not a command](https://neh.eltan.net?=not%20a%20command)
 
 Neh also does some basic query detection and is able to convert between
 different search engines. It's not completely reliable but works in most cases.

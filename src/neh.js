@@ -12,5 +12,5 @@ export async function handleQueryString(queryString) {
   if (lowerCommand in handlers) {
     return await handlers[lowerCommand](otherTokens);
   }
-  return await handlers.g(tokens);
+  return await handlers.d(tokens);
 }
