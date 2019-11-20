@@ -15,7 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.7.1",
-    "@cloudflare/wrangler": "^1.5.0",
+    "@cloudflare/wrangler": "^1.6.0",
     "jest": "^24.9.0",
     "prettier": "^1.18.2"
   },
