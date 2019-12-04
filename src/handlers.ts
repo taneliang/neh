@@ -1,6 +1,5 @@
 import { redirect } from './util';
 import { getClosestModule } from './nus';
-import { openSearchAutodiscoveryLink } from './opensearch';
 
 const docstrings: { [command: string]: string } = {
   cf: 'navigates to Cloudflare',
@@ -158,7 +157,10 @@ export const handlers: { [command: string]: (tokens?: string[]) => Response } = 
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <title>neh commands</title>
-          ${openSearchAutodiscoveryLink}
+          <link rel="search"
+                type="application/opensearchdescription+xml"
+                title="Neh"
+                href="/_opensearch">
           <style>
           body {
             font-family: sans-serif;

@@ -1,7 +1,7 @@
 import {} from '@cloudflare/workers-types';
 
 import { handleQueryString } from './neh';
-import { openSearchPath, respondToOpenSearchQuery } from './opensearch';
+import openSearchDescription from './resources/_opensearch.xml';
 
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request));
@@ -13,8 +13,12 @@ addEventListener('fetch', (event) => {
 async function handleRequest(request: Request): Promise<Response> {
   const requestURL = new URL(request.url);
 
-  if (requestURL.pathname === openSearchPath) {
-    return respondToOpenSearchQuery();
+  if (requestURL.pathname === '/_opensearch') {
+    return new Response(openSearchDescription, {
+      headers: {
+        'content-type': 'application/xml',
+      },
+    });
   }
 
   const queryString = requestURL.searchParams.get('');

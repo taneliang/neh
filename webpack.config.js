@@ -24,6 +24,10 @@ module.exports = {
         },
       },
       { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+      {
+        test: /\.(txt|xml)$/i,
+        use: 'raw-loader',
+      },
     ],
   },
 };
