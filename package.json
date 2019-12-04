@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "format": "prettier --write '**/*.{ts,css,json,md}'"
+    "format": "prettier --write '*.{js,ts,json,md}' 'src/*.{ts}'"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
@@ -18,9 +18,11 @@
     "@cloudflare/workers-types": "^1.0.6",
     "@cloudflare/wrangler": "^1.6.0",
     "@types/fuzzyset.js": "0.0.2",
+    "@types/jest": "^24.0.23",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "source-map-loader": "^0.2.4",
+    "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
