@@ -1,4 +1,6 @@
-const tokensToQuery = (tokens: string[]) => tokens.join('%20');
+export const tokensToQuery = (tokens: string[]) => tokens.join('%20');
+
+export const simpleRedirect = (url: string) => Response.redirect(url, 302);
 
 export const redirect = (
   noSearchUrl: string,
