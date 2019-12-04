@@ -1,7 +1,12 @@
-const tokensToQuery = (tokens) => tokens.join('%20');
+const tokensToQuery = (tokens: string[]) => tokens.join('%20');
 
-export const redirect = (noSearchUrl, baseUrl, searchTokens, altSearchBaseUrls) => {
-  if (searchTokens && searchTokens.length > 0) {
+export const redirect = (
+  noSearchUrl: string,
+  baseUrl?: string,
+  searchTokens?: string[],
+  altSearchBaseUrls?: string[],
+) => {
+  if (baseUrl && searchTokens && searchTokens.length > 0) {
     // Construct URL from alternative search engine URLs if possible
     if (altSearchBaseUrls && altSearchBaseUrls.length > 0) {
       const queryFromAltEngine = searchEngineTransform(searchTokens[0], altSearchBaseUrls, baseUrl);
@@ -17,9 +22,9 @@ export const redirect = (noSearchUrl, baseUrl, searchTokens, altSearchBaseUrls) 
 };
 
 export const searchEngineTransform = (
-  originalUrl,
-  altEngineQueryBaseUrls,
-  intendedQueryBaseUrl,
+  originalUrl: string,
+  altEngineQueryBaseUrls: string[],
+  intendedQueryBaseUrl: string,
 ) => {
   const altBaseUrl = altEngineQueryBaseUrls.find((u) => originalUrl.startsWith(u));
   if (!altBaseUrl) {

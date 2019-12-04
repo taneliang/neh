@@ -1,6 +1,6 @@
 import { handlers } from './handlers';
 
-export async function handleQueryString(queryString) {
+export async function handleQueryString(queryString: string | null): Promise<Response> {
   if (!queryString) {
     return await handlers.list();
   }
