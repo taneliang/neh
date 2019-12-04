@@ -70,5 +70,5 @@ yarn start
 To publish neh to Cloudflare Workers, run:
 
 ```
-yarn publish
+yarn run publish
 ```

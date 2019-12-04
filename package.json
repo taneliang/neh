@@ -2,7 +2,7 @@
   "private": true,
   "name": "neh",
   "version": "1.0.0",
-  "description": "A template for kick starting a Cloudflare Workers project",
+  "description": "A tool that redirects you; intended to be an Alfred for your browser.",
   "scripts": {
     "start": "wrangler preview --watch",
     "publish": "wrangler publish",
