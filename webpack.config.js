@@ -28,6 +28,10 @@ module.exports = {
         test: /\.(txt|xml)$/i,
         use: 'raw-loader',
       },
+      {
+        test: /\.pug$/i,
+        use: 'pug-loader',
+      },
     ],
   },
 };
