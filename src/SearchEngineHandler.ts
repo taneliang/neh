@@ -22,7 +22,7 @@ export function makeParamBasedSearchEngine(
 
     generateSearchUrl(tokens) {
       const url = new URL(nonNullBaseUrl);
-      url.searchParams.set(queryParamName, tokensToQuery(tokens));
+      url.searchParams.set(queryParamName, tokens.join(' '));
       return url.toString();
     },
 
@@ -32,8 +32,9 @@ export function makeParamBasedSearchEngine(
       }
       try {
         const searchUrl = new URL(url);
-        if (searchUrl.searchParams.has(queryParamName)) {
-          return searchUrl.searchParams.get(queryParamName);
+        const query = searchUrl.searchParams.get(queryParamName);
+        if (query && query.length > 0) {
+          return query;
         }
       } catch {}
       return null;
@@ -51,7 +52,7 @@ export function makeHashBasedSearchEngine(
 
     generateSearchUrl(tokens) {
       const url = new URL(nonNullBaseUrl);
-      url.hash = tokensToQuery(tokens);
+      url.hash = tokens.join(' ');
       return url.toString();
     },
 
@@ -63,7 +64,7 @@ export function makeHashBasedSearchEngine(
         const searchUrl = new URL(url);
         const query = searchUrl.hash;
         if (searchUrl.hash.length > 0) {
-          return query;
+          return decodeURIComponent(query.substring(1, query.length));
         }
       } catch {}
       return null;
