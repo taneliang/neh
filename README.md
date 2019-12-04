@@ -53,10 +53,10 @@ route = ""
 workers_dev = true
 ```
 
-Install dependencies with NPM.
+Install dependencies with Yarn.
 
 ```
-npm install
+yarn
 ```
 
 To
@@ -64,11 +64,11 @@ To
 neh in development, run:
 
 ```
-npm run start
+yarn start
 ```
 
 To publish neh to Cloudflare Workers, run:
 
 ```
-npm run publish
+yarn publish
 ```
