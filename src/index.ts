@@ -1,5 +1,7 @@
-import { handleQueryString } from './src/neh';
-import { openSearchPath, respondToOpenSearchQuery } from './src/opensearch';
+import {} from '@cloudflare/workers-types';
+
+import { handleQueryString } from './neh';
+import { openSearchPath, respondToOpenSearchQuery } from './opensearch';
 
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request));
@@ -7,9 +9,8 @@ addEventListener('fetch', (event) => {
 
 /**
  * Fetch and log a request
- * @param {Request} request
  */
-async function handleRequest(request) {
+async function handleRequest(request: Request): Promise<Response> {
   const requestURL = new URL(request.url);
 
   if (requestURL.pathname === openSearchPath) {

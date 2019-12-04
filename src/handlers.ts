@@ -2,7 +2,7 @@ import { redirect } from './util';
 import { getClosestModule } from './nus';
 import { openSearchAutodiscoveryLink } from './opensearch';
 
-const docstrings = {
+const docstrings: { [command: string]: string } = {
   cf: 'navigates to Cloudflare',
   coursem: 'navigates to Coursemology',
   d: 'does a DuckDuckGo search',
@@ -40,7 +40,7 @@ const docstrings = {
   yub: 'run a YubNub command',
 };
 
-const baseUrls = {
+const baseUrls: { [command: string]: string } = {
   d: 'https://duckduckgo.com/?q=',
   fb: 'https://www.facebook.com/search/top/?q=',
   g: 'https://www.google.com/search?q=',
@@ -62,7 +62,7 @@ const baseUrls = {
 
 const allBaseUrls = Object.values(baseUrls);
 
-export const handlers = {
+export const handlers: { [command: string]: (tokens?: string[]) => Response } = {
   cf() {
     return redirect('https://dash.cloudflare.com');
   },

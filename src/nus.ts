@@ -2,7 +2,13 @@
 
 import FuzzySet from 'fuzzyset.js';
 
-export const modules = {
+type NUSMod = {
+  coursemology?: string;
+  luminus?: string;
+  panopto?: string;
+};
+
+export const modules: { [modcode: string]: NUSMod } = {
   CS3219: {
     luminus: '42f051f9-44d2-4393-8ed5-e79d4a97b8de',
     panopto: 'a37a4fec-408e-4e1e-9a89-aabc000a5ce8',
@@ -25,15 +31,15 @@ export const modules = {
   },
 };
 
-const modcodes = new FuzzySet(Object.keys(modules));
+const modcodes = FuzzySet(Object.keys(modules));
 
-export function getClosestModcode(fuzzyModcode) {
+export function getClosestModcode(fuzzyModcode: string): string | undefined {
   const hypotheses = modcodes.get(fuzzyModcode, null, 0.5);
   if (!hypotheses) return;
   return hypotheses[0][1];
 }
 
-export function getClosestModule(fuzzyModcode) {
+export function getClosestModule(fuzzyModcode: string) {
   const modcode = getClosestModcode(fuzzyModcode);
   if (!modcode) return;
   return modules[modcode];
