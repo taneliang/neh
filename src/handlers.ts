@@ -1,4 +1,11 @@
-import { Handler, CommandHandler, FunctionHandler, RedirectHandler } from './Handler';
+import {
+  Handler,
+  CommandHandler,
+  FunctionHandler,
+  RedirectHandler,
+  DocObject,
+  DocType,
+} from './Handler';
 import {
   SearchEngine,
   SearchEngineHandler,
@@ -144,8 +151,18 @@ neh.addHandler(
 const listHandler = new FunctionHandler(
   'show the list of methods you can use or search that list',
   () => {
-    // const commands = Object.keys(handlers);
-    const html = listTemplate({ commands: [], docstrings: {} });
+    const mapToPugFriendly = (doc: DocObject): any[] => {
+      return Object.keys(doc).map((command) => ({
+        command,
+        doc:
+          typeof doc[command] === 'string'
+            ? doc[command]
+            : mapToPugFriendly(doc[command] as DocObject),
+      }));
+    };
+
+    const displayableDoc = mapToPugFriendly(neh.doc);
+    const html = listTemplate({ doc: displayableDoc });
     return new Response(html, {
       headers: {
         'content-type': 'text/html;charset=UTF-8',

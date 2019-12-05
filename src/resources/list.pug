@@ -1,3 +1,18 @@
+mixin docTable(doc)
+  table
+    tr
+      th Command
+        th Description
+      each c in doc
+        tr
+          td
+            strong= c.command
+          if typeof c.doc === 'object'
+            td
+              +docTable(c.doc)
+          else
+            td= c.doc
+
 doctype html
 html(lang='en')
   head
@@ -22,19 +37,7 @@ html(lang='en')
       }
   body
     h1 neh command list
-    table
-      tr
-        th Command
-        th Description
-      each c in commands
-        tr
-          td
-            strong= c
-          if c in docstrings
-            td= docstrings[c]
-          else
-            td
-              i= "I also don't know what this does tbh"
+    +docTable(doc)
     p
       | Source code available on
       |
