@@ -3,6 +3,8 @@ import {
   CommandHandler,
   FunctionHandler,
   RedirectHandler,
+  HandlerFn,
+  Token,
   DocObject,
   DocType,
   DEFAULT_HANDLER_KEY,
@@ -17,7 +19,7 @@ import {
   makePathBasedSearchEngine,
 } from './SearchEngineHandler';
 import { redirect } from './util';
-import { getClosestModule } from './nus';
+import { getClosestModule, NUSMod } from './nus';
 import listTemplate from './resources/list.pug';
 
 const neh = new CommandHandler();
@@ -240,52 +242,61 @@ neh.addHandler(
   (() => {
     const nusHandler = new CommandHandler();
 
-    nusHandler.addHandler(
-      'coursem',
-      new FunctionHandler('navigates to Coursemology', (tokens) => {
-        if (tokens && tokens.length > 0) {
-          const [fuzzyModcode, ...otherTokens] = tokens;
-          const module = getClosestModule(fuzzyModcode);
-          if (module && module.coursemology) {
-            return redirect(
-              `https://coursemology.org/courses/${module.coursemology}/${otherTokens.join('/')}`,
-            );
+    const makeModRedirector = (
+      defaultUrl: string,
+      modFieldName: keyof NUSMod,
+      modUrlTransformer: (fieldValue: string, otherTokens: Token[]) => string,
+    ): HandlerFn => (tokens) => {
+      if (tokens && tokens.length > 0) {
+        const [fuzzyModcode, ...otherTokens] = tokens;
+        const module = getClosestModule(fuzzyModcode);
+        if (module && module[modFieldName]) {
+          const fieldValue = module[modFieldName];
+          if (fieldValue) {
+            return redirect(modUrlTransformer(fieldValue, otherTokens));
           }
         }
-        return redirect('https://coursemology.org');
-      }),
+      }
+      return redirect(defaultUrl);
+    };
+
+    nusHandler.addHandler(
+      'coursem',
+      new FunctionHandler(
+        'navigates to Coursemology',
+        makeModRedirector(
+          'https://coursemology.org',
+          'coursemology',
+          (fieldValue, otherTokens) =>
+            `https://coursemology.org/courses/${fieldValue}/${otherTokens.join('/')}`,
+        ),
+      ),
     );
 
     nusHandler.addHandler(
       'lum',
-      new FunctionHandler('navigates to LumiNUS', (tokens) => {
-        if (tokens && tokens.length > 0) {
-          const [fuzzyModcode, ...otherTokens] = tokens;
-          const module = getClosestModule(fuzzyModcode);
-          if (module && module.luminus) {
-            return redirect(
-              `https://luminus.nus.edu.sg/modules/${module.luminus}/${otherTokens.join('/')}`,
-            );
-          }
-        }
-        return redirect('https://luminus.nus.edu.sg/dashboard');
-      }),
+      new FunctionHandler(
+        'navigates to LumiNUS',
+        makeModRedirector(
+          'https://luminus.nus.edu.sg/dashboard',
+          'luminus',
+          (fieldValue, otherTokens) =>
+            `https://luminus.nus.edu.sg/modules/${fieldValue}/${otherTokens.join('/')}`,
+        ),
+      ),
     );
 
     nusHandler.addHandler(
       'webcast',
-      new FunctionHandler('navigates to an NUS module&apos;s Panopto webcasts', (tokens) => {
-        if (tokens && tokens.length > 0) {
-          const [fuzzyModcode] = tokens;
-          const module = getClosestModule(fuzzyModcode);
-          if (module && module.panopto) {
-            return redirect(
-              `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${module.panopto}"`,
-            );
-          }
-        }
-        return redirect('https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx');
-      }),
+      new FunctionHandler(
+        "navigates to an NUS module's Panopto webcasts",
+        makeModRedirector(
+          'https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx',
+          'panopto',
+          (fieldValue) =>
+            `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${fieldValue}"`,
+        ),
+      ),
     );
 
     return nusHandler;

@@ -2,7 +2,7 @@
 
 import FuzzySet from 'fuzzyset.js';
 
-type NUSMod = {
+export type NUSMod = {
   coursemology?: string;
   luminus?: string;
   panopto?: string;
