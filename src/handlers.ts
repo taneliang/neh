@@ -163,8 +163,12 @@ neh.setNothingHandler(listHandler);
 
 neh.addHandler(
   'lyrics',
-  new FunctionHandler("navigates to a song's lyrics on Genius", (tokens) =>
-    redirect('https://genius.com', `https://duckduckgo.com/q=%5Csite:genius.com%20`, tokens),
+  new SearchEngineHandler(
+    "navigates to a song's lyrics on Genius",
+    makeAppendBasedSearchEngine(
+      'https://genius.com',
+      'https://duckduckgo.com/q=%5Csite:genius.com%20',
+    ),
   ),
 );
 

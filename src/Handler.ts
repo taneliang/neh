@@ -1,4 +1,4 @@
-import { simpleRedirect } from './util';
+import { redirect } from './util';
 
 export type DocString = string;
 export type DocObject = { [command: string]: DocType };
@@ -33,7 +33,7 @@ export class FunctionHandler extends Handler {
 
 export class RedirectHandler extends FunctionHandler {
   constructor(docstring: DocString, targetUrl: string) {
-    super(docstring, () => simpleRedirect(targetUrl));
+    super(docstring, () => redirect(targetUrl));
   }
 }
 
@@ -47,7 +47,6 @@ export class CommandHandler extends Handler {
   }
 
   get doc(): DocObject {
-    // TODO: Fix
     const docObject: DocObject = Object.fromEntries(
       Object.entries(this.handlers).map(([command, handler]) => [command, handler.doc]),
     );
@@ -89,7 +88,12 @@ export class CommandHandler extends Handler {
     }
 
     return new Response(
-      "Huh what? I'm told I have nothing to do lol. Am I supposed to do something? Send help pls. What's happening? Why am I not doing anything? Should I be doing something? Pretty sure I'm supposed to. I'm so confused. Aaaaaaaaaaa",
+      'Idk what to do with your command. Try checking <a href="/list">list</a>?',
+      {
+        headers: {
+          'content-type': 'text/html;charset=UTF-8',
+        },
+      },
     );
   }
 }
