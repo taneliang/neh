@@ -1,5 +1,9 @@
 # neh
 
+[![CircleCI](https://circleci.com/gh/taneliang/neh.svg?style=svg)](https://circleci.com/gh/taneliang/neh)
+[![codecov](https://codecov.io/gh/taneliang/neh/branch/master/graph/badge.svg)](https://codecov.io/gh/taneliang/neh)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a17d9aa41c5fe1ee3dfb/maintainability)](https://codeclimate.com/github/taneliang/neh/maintainability)
+
 <https://neh.eltan.net>
 
 A tool that redirects you; intended to be an Alfred for your browser.
