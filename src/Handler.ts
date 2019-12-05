@@ -1,22 +1,28 @@
 import { simpleRedirect } from './util';
 
+export type DocString = string;
+export type DocObject = { [command: string]: DocType };
+export type DocType = DocString | DocObject;
+export const DEFAULT_HANDLER_KEY = '$$$default_handler$$$';
+export const NOTHING_HANDLER_KEY = '$$$nothing_handler$$$';
+
 export type Token = string;
 
 export type HandlerFn = (tokens: Token[]) => Response;
 
 export abstract class Handler {
-  abstract readonly docstring: string;
+  abstract readonly doc: DocType;
   abstract async handle(tokens: Token[]): Promise<Response>;
 }
 
 export class FunctionHandler extends Handler {
-  docstring: string;
+  doc: DocString;
 
   private handlerFn: HandlerFn;
 
-  constructor(docstring: string, handlerFn: HandlerFn) {
+  constructor(docstring: DocString, handlerFn: HandlerFn) {
     super();
-    this.docstring = docstring;
+    this.doc = docstring;
     this.handlerFn = handlerFn;
   }
 
@@ -26,26 +32,32 @@ export class FunctionHandler extends Handler {
 }
 
 export class RedirectHandler extends FunctionHandler {
-  constructor(docstring: string, targetUrl: string) {
+  constructor(docstring: DocString, targetUrl: string) {
     super(docstring, () => simpleRedirect(targetUrl));
   }
 }
 
 export class CommandHandler extends Handler {
-  // docstring: string;
   private handlers: { [command: string]: Handler } = {};
   private defaultHandler?: Handler;
   private nothingHandler?: Handler;
 
-  constructor(docstring: string) {
+  constructor() {
     super();
-    // this.docstring = docstring;
   }
 
-  get docstring() {
+  get doc(): DocObject {
     // TODO: Fix
-    return 'hi';
-    // return Object.keys(this.docstrings);
+    const docObject: DocObject = Object.fromEntries(
+      Object.entries(this.handlers).map(([command, handler]) => [command, handler.doc]),
+    );
+    if (this.defaultHandler) {
+      docObject[DEFAULT_HANDLER_KEY] = this.defaultHandler.doc;
+    }
+    if (this.nothingHandler) {
+      docObject[NOTHING_HANDLER_KEY] = this.nothingHandler.doc;
+    }
+    return docObject;
   }
 
   addHandler(command: string, handler: Handler) {
