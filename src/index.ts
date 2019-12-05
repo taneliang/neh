@@ -1,7 +1,7 @@
 import {} from '@cloudflare/workers-types';
 
 import handler from './handlers';
-import { extractQueryFromUrl, tokenizeQuery, handleQueryString } from './util';
+import { extractQueryFromUrl, tokenizeQuery } from './util';
 import openSearchDescription from './resources/_opensearch.xml';
 
 addEventListener('fetch', (event) => {

@@ -16,7 +16,7 @@ import { redirect } from './util';
 import { getClosestModule } from './nus';
 import listTemplate from './resources/list.pug';
 
-const neh = new CommandHandler('neh');
+const neh = new CommandHandler();
 
 neh.addHandler('cf', new RedirectHandler('navigates to Cloudflare', 'https://dash.cloudflare.com'));
 
