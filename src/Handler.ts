@@ -42,10 +42,6 @@ export class CommandHandler extends Handler {
   private defaultHandler?: Handler;
   private nothingHandler?: Handler;
 
-  constructor() {
-    super();
-  }
-
   get doc(): DocObject {
     const docObject: DocObject = Object.fromEntries(
       Object.entries(this.handlers).map(([command, handler]) => [command, handler.doc]),
