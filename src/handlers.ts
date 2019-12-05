@@ -11,6 +11,7 @@ import {
   SearchEngineHandler,
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
+  makePathBasedSearchEngine,
 } from './SearchEngineHandler';
 import { redirect } from './util';
 import { getClosestModule } from './nus';
@@ -198,23 +199,34 @@ neh.addHandler(
 
 neh.addHandler(
   'npm',
-  new SearchEngineHandler(
-    'does an NPM search',
-    makeParamBasedSearchEngine('https://www.npmjs.com', 'https://www.npmjs.com/search', 'q'),
-  ),
-);
+  (() => {
+    const npmHandler = new CommandHandler();
+    const npmHomeUrl = 'https://www.npmjs.com';
 
-// neh.addHandler(
-//   'npmp',
-//   new SearchEngineHandler(
-//     'navigates to an NPM package',
-//     makeParamBasedSearchEngine(
-//       'https://www.npmjs.com',
-//       'https://www.npmjs.com/package/',
-//       'q',
-//     ),
-//   ),
-// );
+    npmHandler.setNothingHandler(new RedirectHandler('navigates to NPM', npmHomeUrl));
+
+    npmHandler.setDefaultHandler(
+      new SearchEngineHandler(
+        'does an NPM search',
+        makeParamBasedSearchEngine('https://www.npmjs.com', npmHomeUrl, 'q'),
+      ),
+    );
+
+    npmHandler.addHandler(
+      'p',
+      new SearchEngineHandler(
+        'navigates to an NPM package',
+        makePathBasedSearchEngine(
+          npmHomeUrl,
+          'https://www.npmjs.com/package/',
+          [1, 2], // Account for @org/pkg-format package names
+        ),
+      ),
+    );
+
+    return npmHandler;
+  })(),
+);
 
 neh.addHandler(
   'nus',
@@ -357,26 +369,34 @@ neh.addHandler(
 
 neh.addHandler(
   'yarn',
-  new SearchEngineHandler(
-    'does a Yarn package search',
-    makeParamBasedSearchEngine(
-      'https://www.yarnpkg.com/en/',
-      'https://yarnpkg.com/en/packages',
-      'q',
-    ),
-  ),
-);
+  (() => {
+    const yarnHandler = new CommandHandler();
+    const yarnHomeUrl = 'https://www.yarnpkg.com/en/';
 
-// neh.addHandler(
-//   'yarnp',
-//   new SearchEngineHandler(
-//     'navigates to a Yarn package',
-//     makeParamBasedSearchEngine(
-//       'https://www.yarnpkg.com/en/',
-//       'https://yarnpkg.com/en/package/',
-//     ),
-//   ),
-// );
+    yarnHandler.setNothingHandler(new RedirectHandler('navigates to Yarn', yarnHomeUrl));
+
+    yarnHandler.setDefaultHandler(
+      new SearchEngineHandler(
+        'does a Yarn package search',
+        makeParamBasedSearchEngine(yarnHomeUrl, 'https://yarnpkg.com/en/packages', 'q'),
+      ),
+    );
+
+    yarnHandler.addHandler(
+      'p',
+      new SearchEngineHandler(
+        'navigates to a Yarn package',
+        makePathBasedSearchEngine(
+          yarnHomeUrl,
+          'https://yarnpkg.com/en/package/',
+          [2, 3], // Account for @org/pkg-format package names
+        ),
+      ),
+    );
+
+    return yarnHandler;
+  })(),
+);
 
 neh.addHandler(
   'yt',
