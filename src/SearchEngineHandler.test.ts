@@ -1,4 +1,5 @@
 import {
+  makeAppendBasedSearchEngine,
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
   makePathBasedSearchEngine,
@@ -8,6 +9,47 @@ import {
 const defaultUrl = 'https://fancy.search/';
 const baseUrl = 'https://fancy.search/search/';
 const queryTokens = ['query', 'string'];
+
+describe(makeAppendBasedSearchEngine, () => {
+  const complexBaseUrl = 'https://fancy.search/s?q=a#b=c&d=';
+
+  describe('defaultUrl', () => {
+    test('should passthrough defaultUrl', () => {
+      const engine = makeAppendBasedSearchEngine(defaultUrl, null);
+      expect(engine.defaultUrl).toEqual(defaultUrl);
+    });
+  });
+
+  describe('generateSearchUrl', () => {
+    test('should use baseURL', () => {
+      const engine = makeAppendBasedSearchEngine(defaultUrl, baseUrl);
+      expect(engine.generateSearchUrl(queryTokens)).toEqual(
+        'https://fancy.search/search/query%20string',
+      );
+    });
+
+    test('should use defaultUrl if baseURL is null', () => {
+      const engine = makeAppendBasedSearchEngine(complexBaseUrl, null);
+      expect(engine.generateSearchUrl(queryTokens)).toEqual(
+        'https://fancy.search/s?q=a#b=c&d=query%20string',
+      );
+    });
+  });
+
+  describe('parseSearchUrl', () => {
+    test('should return null if search URL is not prefixed with base URL', () => {
+      const engine = makeAppendBasedSearchEngine(complexBaseUrl, null);
+      expect(engine.parseSearchUrl?.('https://fancy.search/s?q=a#d=query%20string')).toBeNull();
+    });
+
+    test('should extract query if present', () => {
+      const engine = makeAppendBasedSearchEngine(complexBaseUrl, null);
+      expect(engine.parseSearchUrl?.('https://fancy.search/s?q=a#b=c&d=query%20string')).toEqual(
+        'query string',
+      );
+    });
+  });
+});
 
 describe(makeHashBasedSearchEngine, () => {
   describe('defaultUrl', () => {
@@ -146,6 +188,11 @@ describe(makePathBasedSearchEngine, () => {
     test('should return null if no interesting path segment is present', () => {
       const engine = makePathBasedSearchEngine(defaultUrl, baseUrl, [1]);
       expect(engine.parseSearchUrl?.('https://fancy.search/search/')).toBeNull();
+    });
+
+    test('should extract null if no interested path segments', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, []);
+      expect(engine.parseSearchUrl?.('https://fancy.search/search/query/string')).toBeNull();
     });
 
     test('should extract only specified path segments', () => {

@@ -12,6 +12,31 @@ export type SearchEngine = {
   parseSearchUrl?: SearchUrlParser;
 };
 
+export function makeAppendBasedSearchEngine(
+  defaultUrl: string,
+  baseUrl: string | null,
+): SearchEngine {
+  const nonNullBaseUrl = baseUrl ?? defaultUrl;
+  return {
+    defaultUrl,
+
+    generateSearchUrl(tokens) {
+      return nonNullBaseUrl + tokens.join('%20');
+    },
+
+    parseSearchUrl(url) {
+      if (!url.startsWith(nonNullBaseUrl)) {
+        return null;
+      }
+      const query = url.substring(nonNullBaseUrl.length);
+      if (query.length === 0) {
+        return null;
+      }
+      return decodeURIComponent(query);
+    },
+  };
+}
+
 export function makeHashBasedSearchEngine(
   defaultUrl: string,
   baseUrl: string | null,

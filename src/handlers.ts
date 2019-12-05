@@ -9,6 +9,7 @@ import {
 import {
   SearchEngine,
   SearchEngineHandler,
+  makeAppendBasedSearchEngine,
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
   makePathBasedSearchEngine,
@@ -66,67 +67,67 @@ neh.addHandler(
 
 neh.addHandler(
   'gh',
-  new SearchEngineHandler(
-    'navigates to GitHub or does a GitHub search',
-    makeParamBasedSearchEngine('https://github.com/', 'https://github.com/search', 'q'),
-  ),
+  (() => {
+    const ghHandler = new CommandHandler();
+    const ghHomeUrl = 'https://github.com/';
+
+    ghHandler.setNothingHandler(new RedirectHandler('navigates to GitHub', ghHomeUrl));
+
+    ghHandler.setDefaultHandler(
+      new SearchEngineHandler(
+        'does a GitHub search',
+        makeParamBasedSearchEngine(ghHomeUrl, 'https://github.com/search', 'q'),
+      ),
+    );
+
+    const ghPathEngine = makePathBasedSearchEngine(
+      ghHomeUrl,
+      null,
+      [0, 1], // username/repo
+    );
+
+    ghHandler.addHandler(
+      'p',
+      new SearchEngineHandler('navigates to a GitHub user profile', ghPathEngine),
+    );
+
+    ghHandler.addHandler('r', new SearchEngineHandler('navigates to a GitHub repo', ghPathEngine));
+
+    return ghHandler;
+  })(),
 );
-
-// neh.addHandler(
-//   'ghp',
-//   new SearchEngineHandler(
-//     'navigates to a GitHub user profile',
-//     makeParamBasedSearchEngine(
-//       'https://www.google.com/',
-//       'https://www.google.com/search',
-//       'q',
-//     ),
-//   ),
-// );
-
-// neh.addHandler(
-//   'ghr',
-//   new SearchEngineHandler(
-//     'navigates to a GitHub repo',
-//     makeParamBasedSearchEngine(
-//       'https://www.google.com/',
-//       'https://www.google.com/search',
-//       'q',
-//     ),
-//   ),
-// );
 
 neh.addHandler(
   'gl',
-  new SearchEngineHandler(
-    'navigates to GitLab or does a GitLab search',
-    makeParamBasedSearchEngine('https://gitlab.com/', 'https://gitlab.com/search?utf8=✓', 'search'),
-  ),
+  (() => {
+    const glHandler = new CommandHandler();
+    const glHomeUrl = 'https://gitlab.com/';
+
+    glHandler.setNothingHandler(new RedirectHandler('navigates to GitLab', glHomeUrl));
+
+    glHandler.setDefaultHandler(
+      new SearchEngineHandler(
+        'does a GitLab search',
+        makeParamBasedSearchEngine(glHomeUrl, 'https://github.com/search', 'q'),
+      ),
+    );
+
+    const glPathEngine = makePathBasedSearchEngine(
+      glHomeUrl,
+      null,
+      [0, 1, 2, 3, 4, 5, 6, 7], // GitLab supports nesting, so we'll just have to whack a bunch of indices
+    );
+
+    glHandler.addHandler(
+      'p',
+      new SearchEngineHandler('navigates to a GitLab user profile', glPathEngine),
+    );
+
+    glHandler.addHandler('r', new SearchEngineHandler('navigates to a GitLab repo', glPathEngine));
+
+    return glHandler;
+  })(),
 );
-
-// neh.addHandler(
-//   'glp',
-//   new SearchEngineHandler(
-//     'navigates to a GitLab user profile',
-//     makeParamBasedSearchEngine(
-//       'https://www.google.com/',
-//       'https://www.google.com/search',
-//       'q',
-//     ),
-//   ),
-// );
-
-// neh.addHandler(
-//   'glr',
-//   new SearchEngineHandler(
-//     'navigates to a GitLab repo',
-//     makeParamBasedSearchEngine(
-//       'https://www.google.com/',
-//       'https://www.google.com/search',
-//       'q',
-//     ),
-//   ),
-// );
 
 neh.addHandler(
   'ip',
@@ -208,7 +209,7 @@ neh.addHandler(
     npmHandler.setDefaultHandler(
       new SearchEngineHandler(
         'does an NPM search',
-        makeParamBasedSearchEngine('https://www.npmjs.com', npmHomeUrl, 'q'),
+        makeParamBasedSearchEngine(npmHomeUrl, 'https://www.npmjs.com/search', 'q'),
       ),
     );
 
@@ -287,23 +288,30 @@ neh.addHandler(
 
 neh.addHandler(
   'rd',
-  new SearchEngineHandler(
-    'does a Reddit search',
-    makeParamBasedSearchEngine('https://www.reddit.com', 'https://www.reddit.com/search', 'q'),
-  ),
-);
+  (() => {
+    const redditHandler = new CommandHandler();
+    const redditHomeUrl = 'https://www.reddit.com';
 
-// neh.addHandler(
-//   'rdr',
-//   new SearchEngineHandler(
-//     'navigates to a subreddit',
-//     makeParamBasedSearchEngine(
-//       'https://www.reddit.com',
-//       'https://www.reddit.com/r/',
-//       'q',
-//     ),
-//   ),
-// );
+    redditHandler.setNothingHandler(new RedirectHandler('navigates to Reddit', redditHomeUrl));
+
+    redditHandler.setDefaultHandler(
+      new SearchEngineHandler(
+        'does a Reddit search',
+        makeParamBasedSearchEngine(redditHomeUrl, 'https://www.reddit.com/search', 'q'),
+      ),
+    );
+
+    redditHandler.addHandler(
+      'r',
+      new SearchEngineHandler(
+        'navigates to a subreddit',
+        makePathBasedSearchEngine(redditHomeUrl, 'https://www.reddit.com/r/', [1]),
+      ),
+    );
+
+    return redditHandler;
+  })(),
+);
 
 neh.addHandler(
   'rtm',
@@ -334,26 +342,20 @@ neh.addHandler(
   'tren',
   new SearchEngineHandler(
     'translate text to English using Google Translate',
-    // NB: This won't be able to translate back correctly, as text is supposed
-    // to be a param in the URL's hash.
-    makeParamBasedSearchEngine(
+    makeAppendBasedSearchEngine(
       'https://translate.google.com',
-      'https://translate.google.com/#view=home&op=translate&sl=auto&tl=en',
-      'text',
+      'https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=',
     ),
   ),
 );
 
-// neh.addHandler(
-//   'trzh',
-//   new SearchEngineHandler(
-//     'translate text to/from Chinese using 百度翻译',
-//     makeParamBasedSearchEngine(
-//       'https://fanyi.baidu.com',
-//       'https://fanyi.baidu.com/#en/zh/',
-//     ),
-//   ),
-// );
+neh.addHandler(
+  'trzh',
+  new SearchEngineHandler(
+    'translate text to/from Chinese using 百度翻译',
+    makeAppendBasedSearchEngine('https://fanyi.baidu.com', 'https://fanyi.baidu.com/#en/zh/'),
+  ),
+);
 
 neh.addHandler(
   'wk',
