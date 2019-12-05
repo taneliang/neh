@@ -108,18 +108,3 @@ describe(makeParamBasedSearchEngine, () => {
     });
   });
 });
-
-const defaultUrl2 = 'https://captain.us';
-const baseUrl2 = 'https://captain.us/results';
-
-describe(SearchEngineHandler, () => {
-  const handler1 = new SearchEngineHandler('1', makeParamBasedSearchEngine(defaultUrl, null, 'q'));
-  const handler2 = new SearchEngineHandler('1', makeHashBasedSearchEngine(defaultUrl2, baseUrl2));
-
-  test('should transform query', async () => {
-    const response = await handler1.handle(queryTokens);
-    console.log('hi', response);
-    expect(true).toBe(false);
-    // await handler1.handle
-  });
-});
