@@ -1,4 +1,4 @@
-import { extractQueryFromUrl, tokenizeQuery, searchEngineTransform } from './util';
+import { extractQueryFromUrl, tokenizeQuery } from './util';
 
 describe(extractQueryFromUrl, () => {
   test('should return empty string if no query', () => {
