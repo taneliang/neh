@@ -72,17 +72,13 @@ neh.addHandler(
   ),
 );
 
-// neh.addHandler(
-//   'gh',
-//   new SearchEngineHandler(
-//     'navigates to GitHub or does a GitHub search',
-//     makeParamBasedSearchEngine(
-//       'https://www.google.com/',
-//       'https://www.google.com/search',
-//       'q',
-//     ),
-//   ),
-// );
+neh.addHandler(
+  'gh',
+  new SearchEngineHandler(
+    'navigates to GitHub or does a GitHub search',
+    makeParamBasedSearchEngine('https://github.com/', 'https://github.com/search', 'q'),
+  ),
+);
 
 // neh.addHandler(
 //   'ghp',
@@ -108,17 +104,13 @@ neh.addHandler(
 //   ),
 // );
 
-// neh.addHandler(
-//   'gl',
-//   new SearchEngineHandler(
-//     'navigates to GitLab or does a GitLab search',
-//     makeParamBasedSearchEngine(
-//       'https://www.google.com/',
-//       'https://www.google.com/search',
-//       'q',
-//     ),
-//   ),
-// );
+neh.addHandler(
+  'gl',
+  new SearchEngineHandler(
+    'navigates to GitLab or does a GitLab search',
+    makeParamBasedSearchEngine('https://gitlab.com/', 'https://gitlab.com/search?utf8=✓', 'search'),
+  ),
+);
 
 // neh.addHandler(
 //   'glp',
@@ -207,129 +199,177 @@ neh.addHandler(
   ),
 );
 
-export default neh;
+neh.addHandler(
+  'nm',
+  new SearchEngineHandler(
+    'does an NUSMods search',
+    makeParamBasedSearchEngine(
+      'https://nusmods.com/',
+      'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4',
+      'q',
+    ),
+  ),
+);
 
-// const docstrings: { [command: string]: string } = {
-//   nm: 'does an NUSMods search',
-//   npm: 'does an NPM search',
-//   npmp: 'navigates to an NPM package',
-//   rd: 'does a Reddit search',
-//   rdr: 'navigates to a subreddit',
-//   rtm: 'navigates to Remember the Milk',
-//   so: 'does a StackOverflow search',
-//   speedtest: "navigates to fast.com; Netflix's Internet speedtest service",
-//   tren: 'translate text to English using Google Translate',
-//   trzh: 'translate text to/from Chinese using 百度翻译',
-//   webcast: 'navigates to an NUS module&apos;s Panopto webcasts',
-//   wk: 'English Wikipedia search',
-//   yarn: 'does a Yarn package search',
-//   yarnp: 'navigates to a Yarn package',
-//   yt: 'does a YouTube search',
-//   yub: 'run a YubNub command',
-// };
+neh.addHandler(
+  'npm',
+  new SearchEngineHandler(
+    'does an NPM search',
+    makeParamBasedSearchEngine('https://www.npmjs.com', 'https://www.npmjs.com/search', 'q'),
+  ),
+);
 
-// const baseUrls: { [command: string]: string } = {
-//   nm: 'https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4&q=',
-//   npm: 'https://www.npmjs.com/search?q=',
-//   npmp: 'https://www.npmjs.com/package/',
-//   rd: 'https://www.reddit.com/search?q=',
-//   so: 'https://stackoverflow.com/search?q=',
-//   wk: 'https://en.wikipedia.org/w/index.php?search=',
-//   yarn: 'https://yarnpkg.com/en/packages?q=',
-//   yarnp: 'https://yarnpkg.com/en/package/',
-//   yt: 'https://www.youtube.com/results?search_query=',
-//   yub: 'https://yubnub.org/parser/parse?command=',
-// };
+// neh.addHandler(
+//   'npmp',
+//   new SearchEngineHandler(
+//     'navigates to an NPM package',
+//     makeParamBasedSearchEngine(
+//       'https://www.npmjs.com',
+//       'https://www.npmjs.com/package/',
+//       'q',
+//     ),
+//   ),
+// );
 
-//   lyrics(tokens) {
-//     return redirect(
-//       'https://genius.com',
-//       `${baseUrls.d}%5Csite:genius.com%20`,
-//       tokens,
-//       allBaseUrls,
-//     );
-//   },
+neh.addHandler(
+  'rd',
+  new SearchEngineHandler(
+    'does a Reddit search',
+    makeParamBasedSearchEngine('https://www.reddit.com', 'https://www.reddit.com/search', 'q'),
+  ),
+);
 
-//   nm(tokens) {
-//     return redirect('https://nusmods.com', baseUrls.nm, tokens, allBaseUrls);
-//   },
+// neh.addHandler(
+//   'rdr',
+//   new SearchEngineHandler(
+//     'navigates to a subreddit',
+//     makeParamBasedSearchEngine(
+//       'https://www.reddit.com',
+//       'https://www.reddit.com/r/',
+//       'q',
+//     ),
+//   ),
+// );
 
-//   npm(tokens) {
-//     return redirect('https://www.npmjs.com', baseUrls.npm, tokens, allBaseUrls);
-//   },
+neh.addHandler(
+  'rtm',
+  new RedirectHandler('navigates to Remember the Milk', 'https://www.rememberthemilk.com'),
+);
 
-//   npmp(tokens) {
-//     return redirect('https://www.npmjs.com', baseUrls.npmp, tokens, allBaseUrls);
-//   },
+neh.addHandler(
+  'so',
+  new SearchEngineHandler(
+    'does a StackOverflow search',
+    makeParamBasedSearchEngine(
+      'https://stackoverflow.com',
+      'https://stackoverflow.com/search',
+      'q',
+    ),
+  ),
+);
 
-//   rd(tokens) {
-//     return redirect('https://www.reddit.com', baseUrls.rd, tokens, allBaseUrls);
-//   },
+neh.addHandler(
+  'speedtest',
+  new RedirectHandler(
+    "navigates to fast.com; Netflix's Internet speedtest service",
+    'https://fast.com/',
+  ),
+);
 
-//   rdr(tokens) {
-//     return redirect('https://www.reddit.com', 'https://www.reddit.com/r/', tokens);
-//   },
+neh.addHandler(
+  'tren',
+  new SearchEngineHandler(
+    'translate text to English using Google Translate',
+    // NB: This won't be able to translate back correctly, as text is supposed
+    // to be a param in the URL's hash.
+    makeParamBasedSearchEngine(
+      'https://translate.google.com',
+      'https://translate.google.com/#view=home&op=translate&sl=auto&tl=en',
+      'text',
+    ),
+  ),
+);
 
-//   rtm() {
-//     return redirect('https://www.rememberthemilk.com');
-//   },
-
-//   so(tokens) {
-//     return redirect('https://stackoverflow.com', baseUrls.so, tokens, allBaseUrls);
-//   },
-
-//   speedtest() {
-//     return redirect('https://fast.com/');
-//   },
-
-//   tren(tokens) {
-//     return redirect(
-//       'https://translate.google.com',
-//       'https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=',
-//       tokens,
-//       allBaseUrls,
-//     );
-//   },
-
-//   trzh(tokens) {
-//     return redirect(
+// neh.addHandler(
+//   'trzh',
+//   new SearchEngineHandler(
+//     'translate text to/from Chinese using 百度翻译',
+//     makeParamBasedSearchEngine(
 //       'https://fanyi.baidu.com',
 //       'https://fanyi.baidu.com/#en/zh/',
-//       tokens,
-//       allBaseUrls,
-//     );
-//   },
+//     ),
+//   ),
+// );
 
-//   webcast(tokens) {
-//     if (tokens && tokens.length > 0) {
-//       const [fuzzyModcode] = tokens;
-//       const module = getClosestModule(fuzzyModcode);
-//       if (module && module.panopto) {
-//         return redirect(
-//           `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${module.panopto}"`,
-//         );
-//       }
-//     }
-//     return redirect('https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx');
-//   },
+neh.addHandler(
+  'webcast',
+  new FunctionHandler('navigates to an NUS module&apos;s Panopto webcasts', (tokens) => {
+    if (tokens && tokens.length > 0) {
+      const [fuzzyModcode] = tokens;
+      const module = getClosestModule(fuzzyModcode);
+      if (module && module.panopto) {
+        return redirect(
+          `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${module.panopto}"`,
+        );
+      }
+    }
+    return redirect('https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx');
+  }),
+);
 
-//   wk(tokens) {
-//     return redirect('https://en.wikipedia.org', baseUrls.wk, tokens, allBaseUrls);
-//   },
+neh.addHandler(
+  'wk',
+  new SearchEngineHandler(
+    'English Wikipedia search',
+    makeParamBasedSearchEngine(
+      'https://en.wikipedia.org',
+      'https://en.wikipedia.org/w/index.php',
+      'search',
+    ),
+  ),
+);
 
-//   yarn(tokens) {
-//     return redirect('https://www.yarnpkg.com/en/', baseUrls.yarn, tokens, allBaseUrls);
-//   },
+neh.addHandler(
+  'yarn',
+  new SearchEngineHandler(
+    'does a Yarn package search',
+    makeParamBasedSearchEngine(
+      'https://www.yarnpkg.com/en/',
+      'https://yarnpkg.com/en/packages',
+      'q',
+    ),
+  ),
+);
 
-//   yarnp(tokens) {
-//     return redirect('https://www.yarnpkg.com/en/', baseUrls.yarnp, tokens, allBaseUrls);
-//   },
+// neh.addHandler(
+//   'yarnp',
+//   new SearchEngineHandler(
+//     'navigates to a Yarn package',
+//     makeParamBasedSearchEngine(
+//       'https://www.yarnpkg.com/en/',
+//       'https://yarnpkg.com/en/package/',
+//     ),
+//   ),
+// );
 
-//   yt(tokens) {
-//     return redirect('https://www.youtube.com', baseUrls.yt, tokens, allBaseUrls);
-//   },
+neh.addHandler(
+  'yt',
+  new SearchEngineHandler(
+    'does a YouTube search',
+    makeParamBasedSearchEngine(
+      'https://www.youtube.com',
+      'https://www.youtube.com/results',
+      'search_query',
+    ),
+  ),
+);
 
-//   yub(tokens) {
-//     return redirect('https://yubnub.org', baseUrls.yub, tokens, allBaseUrls);
-//   },
-// };
+neh.addHandler(
+  'yub',
+  new SearchEngineHandler(
+    'run a YubNub command',
+    makeParamBasedSearchEngine('https://yubnub.org', 'https://yubnub.org/parser/parse', 'command'),
+  ),
+);
+
+export default neh;
