@@ -1,5 +1,5 @@
 import { FunctionHandler } from './Handler';
-import { redirect, tokensToQuery } from './util';
+import { redirect } from './util';
 
 type SearchUrlGenerator = (tokens: string[]) => string;
 type SearchUrlParser = (url: string) => string | null;
@@ -72,6 +72,7 @@ export function makeHashBasedSearchEngine(
   };
 }
 
+// TODO: Make this more testable
 const searchEngines: SearchEngine[] = [];
 
 function parseSearchQuery(searchUrl: string): string | null {

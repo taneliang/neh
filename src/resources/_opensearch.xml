@@ -3,5 +3,5 @@
   <ShortName>Neh</ShortName>
 	<Description>A tool that smartly redirects you around the Interwebs</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Url type="text/html" template="https://neh.eltan.net?={searchTerms}"/>
+  <Url type="text/html" template="https://neh.eltan.net/{searchTerms}"/>
 </OpenSearchDescription>

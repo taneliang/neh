@@ -33,6 +33,8 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "fuzzyset.js": "0.0.8"
+    "@types/url-parse": "^1.4.3",
+    "fuzzyset.js": "0.0.8",
+    "url-parse": "^1.4.7"
   }
 }

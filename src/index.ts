@@ -1,6 +1,7 @@
 import {} from '@cloudflare/workers-types';
 
-import { handleQueryString } from './neh';
+import handler from './handlers';
+import { extractQueryFromUrl, tokenizeQuery, handleQueryString } from './util';
 import openSearchDescription from './resources/_opensearch.xml';
 
 addEventListener('fetch', (event) => {
@@ -12,7 +13,6 @@ addEventListener('fetch', (event) => {
  */
 async function handleRequest(request: Request): Promise<Response> {
   const requestURL = new URL(request.url);
-
   if (requestURL.pathname === '/_opensearch') {
     return new Response(openSearchDescription, {
       headers: {
@@ -21,6 +21,7 @@ async function handleRequest(request: Request): Promise<Response> {
     });
   }
 
-  const queryString = requestURL.searchParams.get('');
-  return await handleQueryString(queryString);
+  const query = extractQueryFromUrl(request.url);
+  const tokens = tokenizeQuery(query);
+  return await handler.handle(tokens);
 }
