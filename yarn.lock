@@ -2012,7 +2012,7 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-fuzzyset.js@0.0.8:
+fuzzyset.js@^0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/fuzzyset.js/-/fuzzyset.js-0.0.8.tgz#398311fb54a5f84221db2cb143ac8cf1e523ae50"
   integrity sha512-wymI6DYJgCBDFUrIyA/M2gIjJPEWj40pnCf04+Dma0PaprQRrTRh9/Cmz1wl9jCJxA+iqrCqNrGYuq7lVOtzXQ==

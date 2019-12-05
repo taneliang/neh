@@ -20,6 +20,8 @@
     "@types/fuzzyset.js": "^0.0.2",
     "@types/jest": "^24.0.23",
     "@types/pug": "^2.0.4",
+    "@types/url-parse": "^1.4.3",
+    "fuzzyset.js": "^0.0.8",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "pug": "^2.0.4",
@@ -29,12 +31,8 @@
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
+    "url-parse": "^1.4.7",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
-  },
-  "dependencies": {
-    "@types/url-parse": "^1.4.3",
-    "fuzzyset.js": "0.0.8",
-    "url-parse": "^1.4.7"
   }
 }
