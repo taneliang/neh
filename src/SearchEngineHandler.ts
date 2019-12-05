@@ -1,3 +1,4 @@
+import parse from 'url-parse';
 import { FunctionHandler } from './Handler';
 import { redirect } from './util';
 
@@ -10,6 +11,36 @@ export type SearchEngine = {
   generateSearchUrl: SearchUrlGenerator;
   parseSearchUrl?: SearchUrlParser;
 };
+
+export function makeHashBasedSearchEngine(
+  defaultUrl: string,
+  baseUrl: string | null,
+): SearchEngine {
+  const nonNullBaseUrl = baseUrl ?? defaultUrl;
+  return {
+    defaultUrl,
+
+    generateSearchUrl(tokens) {
+      const url = new URL(nonNullBaseUrl);
+      url.hash = tokens.join(' ');
+      return url.toString();
+    },
+
+    parseSearchUrl(url) {
+      if (!url.startsWith(nonNullBaseUrl)) {
+        return null;
+      }
+      try {
+        const searchUrl = new URL(url);
+        const query = searchUrl.hash;
+        if (searchUrl.hash.length > 0) {
+          return decodeURIComponent(query.substring(1, query.length));
+        }
+      } catch {}
+      return null;
+    },
+  };
+}
 
 export function makeParamBasedSearchEngine(
   defaultUrl: string,
@@ -42,32 +73,42 @@ export function makeParamBasedSearchEngine(
   };
 }
 
-export function makeHashBasedSearchEngine(
+export function makePathBasedSearchEngine(
   defaultUrl: string,
   baseUrl: string | null,
+  pathIndicesToParse: number[],
 ): SearchEngine {
   const nonNullBaseUrl = baseUrl ?? defaultUrl;
   return {
     defaultUrl,
 
     generateSearchUrl(tokens) {
-      const url = new URL(nonNullBaseUrl);
-      url.hash = tokens.join(' ');
-      return url.toString();
+      return nonNullBaseUrl + tokens.join('/');
     },
 
     parseSearchUrl(url) {
       if (!url.startsWith(nonNullBaseUrl)) {
         return null;
       }
-      try {
-        const searchUrl = new URL(url);
-        const query = searchUrl.hash;
-        if (searchUrl.hash.length > 0) {
-          return decodeURIComponent(query.substring(1, query.length));
-        }
-      } catch {}
-      return null;
+
+      const searchUrl = parse(url, true);
+      let query = searchUrl.pathname;
+      if (query.charAt(0) === '/') {
+        query = query.substring(1);
+      }
+      if (query.length === 0) {
+        return null;
+      }
+
+      let querySegments = query.split('/').map((s) => s.trim());
+      let interestingSegments = pathIndicesToParse
+        .map((i) => querySegments[i])
+        .filter((s) => typeof s !== 'undefined' && s.length > 0);
+
+      if (interestingSegments.length === 0) {
+        return null;
+      }
+      return interestingSegments.join('/');
     },
   };
 }

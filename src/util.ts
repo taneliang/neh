@@ -1,5 +1,5 @@
-import { Token } from './Handler';
 import parse from 'url-parse';
+import { Token } from './Handler';
 
 export function extractQueryFromUrl(urlStr: string): string {
   // Use url-parse instead of URL for pathname as double slashes will be

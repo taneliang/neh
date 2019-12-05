@@ -1,11 +1,12 @@
 import {
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
+  makePathBasedSearchEngine,
   SearchEngineHandler,
 } from './SearchEngineHandler';
 
-const defaultUrl = 'https://fancy.search';
-const baseUrl = 'https://fancy.search/search';
+const defaultUrl = 'https://fancy.search/';
+const baseUrl = 'https://fancy.search/search/';
 const queryTokens = ['query', 'string'];
 
 describe(makeHashBasedSearchEngine, () => {
@@ -20,7 +21,7 @@ describe(makeHashBasedSearchEngine, () => {
     test('should use baseURL', () => {
       const engine = makeHashBasedSearchEngine(defaultUrl, baseUrl);
       expect(engine.generateSearchUrl(queryTokens)).toEqual(
-        'https://fancy.search/search#query%20string',
+        'https://fancy.search/search/#query%20string',
       );
     });
 
@@ -33,7 +34,7 @@ describe(makeHashBasedSearchEngine, () => {
   describe('parseSearchUrl', () => {
     test('should return null if search URL does not belong to this engine', () => {
       const engine = makeHashBasedSearchEngine(defaultUrl, null);
-      expect(engine.parseSearchUrl?.('https://despicable.search#query%20string')).toBeNull();
+      expect(engine.parseSearchUrl?.('https://despicable.search/#query%20string')).toBeNull();
     });
 
     test('should return null if no hash is present', () => {
@@ -67,7 +68,7 @@ describe(makeParamBasedSearchEngine, () => {
     test('should use baseURL', () => {
       const engine = makeParamBasedSearchEngine(defaultUrl, baseUrl, 'q');
       expect(engine.generateSearchUrl(queryTokens)).toEqual(
-        'https://fancy.search/search?q=query+string',
+        'https://fancy.search/search/?q=query+string',
       );
     });
 
@@ -105,6 +106,70 @@ describe(makeParamBasedSearchEngine, () => {
       expect(engine.parseSearchUrl?.('https://fancy.search/?fee=fi&q=query+string&fo=fum')).toEqual(
         'query string',
       );
+    });
+  });
+});
+
+describe(makePathBasedSearchEngine, () => {
+  describe('defaultUrl', () => {
+    test('should passthrough defaultUrl', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, []);
+      expect(engine.defaultUrl).toEqual(defaultUrl);
+    });
+  });
+
+  describe('generateSearchUrl', () => {
+    test('should use baseURL', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, baseUrl, []);
+      expect(engine.generateSearchUrl(queryTokens)).toEqual(
+        'https://fancy.search/search/query/string',
+      );
+    });
+
+    test('should use defaultUrl if baseURL is null', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, []);
+      expect(engine.generateSearchUrl(queryTokens)).toEqual('https://fancy.search/query/string');
+    });
+  });
+
+  describe('parseSearchUrl', () => {
+    test('should return null if search URL does not belong to this engine', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, [0]);
+      expect(engine.parseSearchUrl?.('https://despicable.search/query/string')).toBeNull();
+    });
+
+    test('should return null if no path is present', () => {
+      const engine = makePathBasedSearchEngine('https://fancy.search/', null, [0]);
+      expect(engine.parseSearchUrl?.('https://fancy.search/')).toBeNull();
+    });
+
+    test('should return null if no interesting path segment is present', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, baseUrl, [1]);
+      expect(engine.parseSearchUrl?.('https://fancy.search/search/')).toBeNull();
+    });
+
+    test('should extract only specified path segments', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, [1]);
+      expect(engine.parseSearchUrl?.('https://fancy.search/search/query/string')).toEqual('query');
+    });
+
+    test('should extract >1 path segments if present', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, [1, 2]);
+      expect(engine.parseSearchUrl?.('https://fancy.search/search/query/string')).toEqual(
+        'query/string',
+      );
+    });
+
+    test('should extract >1 path segments in order of indices', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, [2, 1]);
+      expect(engine.parseSearchUrl?.('https://fancy.search/search/query/string')).toEqual(
+        'string/query',
+      );
+    });
+
+    test('should extract path segments even if some are not present', () => {
+      const engine = makePathBasedSearchEngine(defaultUrl, null, [1, 9000]);
+      expect(engine.parseSearchUrl?.('https://fancy.search/search/query/string')).toEqual('query');
     });
   });
 });
