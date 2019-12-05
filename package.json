@@ -7,7 +7,7 @@
     "start": "wrangler preview --watch",
     "publish": "wrangler publish",
     "typecheck": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
     "format": "prettier --write '*.{js,ts,json,md}' 'src/**/*.{ts,pug}'"
   },
