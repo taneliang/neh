@@ -22,15 +22,3 @@ const tokensToQuery = (tokens: string[]) => tokens.join('%20');
 export const redirect = (noSearchUrl: string) => {
   return Response.redirect(noSearchUrl, 302);
 };
-
-export const searchEngineTransform = (
-  originalUrl: string,
-  altEngineQueryBaseUrls: string[],
-  intendedQueryBaseUrl: string,
-) => {
-  const altBaseUrl = altEngineQueryBaseUrls.find((u) => originalUrl.startsWith(u));
-  if (!altBaseUrl) {
-    return null;
-  }
-  return originalUrl.replace(altBaseUrl, intendedQueryBaseUrl);
-};
