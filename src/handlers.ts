@@ -20,22 +20,6 @@ const neh = new CommandHandler();
 
 neh.addHandler('cf', new RedirectHandler('navigates to Cloudflare', 'https://dash.cloudflare.com'));
 
-neh.addHandler(
-  'coursem',
-  new FunctionHandler('navigates to Coursemology', (tokens) => {
-    if (tokens && tokens.length > 0) {
-      const [fuzzyModcode, ...otherTokens] = tokens;
-      const module = getClosestModule(fuzzyModcode);
-      if (module && module.coursemology) {
-        return redirect(
-          `https://coursemology.org/courses/${module.coursemology}/${otherTokens.join('/')}`,
-        );
-      }
-    }
-    return redirect('https://coursemology.org');
-  }),
-);
-
 const dHandler = new SearchEngineHandler(
   'does a DuckDuckGo search',
   makeParamBasedSearchEngine('https://duckduckgo.com/', null, 'q'),
@@ -174,22 +158,6 @@ neh.addHandler('list', listHandler);
 neh.setNothingHandler(listHandler);
 
 neh.addHandler(
-  'lum',
-  new FunctionHandler('navigates to LumiNUS', (tokens) => {
-    if (tokens && tokens.length > 0) {
-      const [fuzzyModcode, ...otherTokens] = tokens;
-      const module = getClosestModule(fuzzyModcode);
-      if (module && module.luminus) {
-        return redirect(
-          `https://luminus.nus.edu.sg/modules/${module.luminus}/${otherTokens.join('/')}`,
-        );
-      }
-    }
-    return redirect('https://luminus.nus.edu.sg/dashboard');
-  }),
-);
-
-neh.addHandler(
   'lyrics',
   new FunctionHandler("navigates to a song's lyrics on Genius", (tokens) =>
     redirect('https://genius.com', `https://duckduckgo.com/q=%5Csite:genius.com%20`, tokens),
@@ -247,6 +215,63 @@ neh.addHandler(
 //     ),
 //   ),
 // );
+
+neh.addHandler(
+  'nus',
+  (() => {
+    const nusHandler = new CommandHandler();
+
+    nusHandler.addHandler(
+      'coursem',
+      new FunctionHandler('navigates to Coursemology', (tokens) => {
+        if (tokens && tokens.length > 0) {
+          const [fuzzyModcode, ...otherTokens] = tokens;
+          const module = getClosestModule(fuzzyModcode);
+          if (module && module.coursemology) {
+            return redirect(
+              `https://coursemology.org/courses/${module.coursemology}/${otherTokens.join('/')}`,
+            );
+          }
+        }
+        return redirect('https://coursemology.org');
+      }),
+    );
+
+    nusHandler.addHandler(
+      'lum',
+      new FunctionHandler('navigates to LumiNUS', (tokens) => {
+        if (tokens && tokens.length > 0) {
+          const [fuzzyModcode, ...otherTokens] = tokens;
+          const module = getClosestModule(fuzzyModcode);
+          if (module && module.luminus) {
+            return redirect(
+              `https://luminus.nus.edu.sg/modules/${module.luminus}/${otherTokens.join('/')}`,
+            );
+          }
+        }
+        return redirect('https://luminus.nus.edu.sg/dashboard');
+      }),
+    );
+
+    nusHandler.addHandler(
+      'webcast',
+      new FunctionHandler('navigates to an NUS module&apos;s Panopto webcasts', (tokens) => {
+        if (tokens && tokens.length > 0) {
+          const [fuzzyModcode] = tokens;
+          const module = getClosestModule(fuzzyModcode);
+          if (module && module.panopto) {
+            return redirect(
+              `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${module.panopto}"`,
+            );
+          }
+        }
+        return redirect('https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx');
+      }),
+    );
+
+    return nusHandler;
+  })(),
+);
 
 neh.addHandler(
   'rd',
@@ -317,22 +342,6 @@ neh.addHandler(
 //     ),
 //   ),
 // );
-
-neh.addHandler(
-  'webcast',
-  new FunctionHandler('navigates to an NUS module&apos;s Panopto webcasts', (tokens) => {
-    if (tokens && tokens.length > 0) {
-      const [fuzzyModcode] = tokens;
-      const module = getClosestModule(fuzzyModcode);
-      if (module && module.panopto) {
-        return redirect(
-          `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${module.panopto}"`,
-        );
-      }
-    }
-    return redirect('https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx');
-  }),
-);
 
 neh.addHandler(
   'wk',
