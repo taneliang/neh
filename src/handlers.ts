@@ -5,6 +5,8 @@ import {
   RedirectHandler,
   DocObject,
   DocType,
+  DEFAULT_HANDLER_KEY,
+  NOTHING_HANDLER_KEY,
 } from './Handler';
 import {
   SearchEngine,
@@ -148,7 +150,7 @@ const listHandler = new FunctionHandler(
     };
 
     const displayableDoc = mapToPugFriendly(neh.doc);
-    const html = listTemplate({ doc: displayableDoc });
+    const html = listTemplate({ doc: displayableDoc, DEFAULT_HANDLER_KEY, NOTHING_HANDLER_KEY });
     return new Response(html, {
       headers: {
         'content-type': 'text/html;charset=UTF-8',
