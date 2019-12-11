@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
+    "lint": "eslint --ext .ts src",
     "format": "prettier --write '*.{js,ts,json,md}' 'src/**/*.{ts,pug}'"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
@@ -21,7 +22,10 @@
     "@types/jest": "^24.0.23",
     "@types/pug": "^2.0.4",
     "@types/url-parse": "^1.4.3",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "codecov": "^3.6.1",
+    "eslint": "^6.7.2",
     "fuzzyset.js": "^0.0.8",
     "jest": "^24.9.0",
     "jest-junit": "^10.0.0",
