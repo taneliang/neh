@@ -89,7 +89,7 @@ describe(CommandHandler, () => {
   });
 
   describe('handle', () => {
-    function expectHandlingByOnly(handler: MockHandlerWrapper, tokens: Token[]) {
+    function expectHandlingByOnly(handler: MockHandlerWrapper, tokens: Token[]): void {
       handlers.forEach((h) => {
         if (h === handler) {
           expect(h.mockHandlerFn).toBeCalledWith(tokens);

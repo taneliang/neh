@@ -39,7 +39,7 @@ export function getClosestModcode(fuzzyModcode: string): string | undefined {
   return hypotheses[0][1];
 }
 
-export function getClosestModule(fuzzyModcode: string) {
+export function getClosestModule(fuzzyModcode: string): NUSMod | undefined {
   const modcode = getClosestModcode(fuzzyModcode);
   if (!modcode) return;
   return modules[modcode];

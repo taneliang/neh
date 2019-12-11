@@ -6,12 +6,10 @@ import {
   HandlerFn,
   Token,
   DocObject,
-  DocType,
   DEFAULT_HANDLER_KEY,
   NOTHING_HANDLER_KEY,
 } from './Handler';
 import {
-  SearchEngine,
   SearchEngineHandler,
   makeAppendBasedSearchEngine,
   makeHashBasedSearchEngine,
@@ -71,7 +69,7 @@ neh.addHandler(
 
 neh.addHandler(
   'gh',
-  (() => {
+  ((): Handler => {
     const ghHandler = new CommandHandler();
     const ghHomeUrl = 'https://github.com/';
 
@@ -103,7 +101,7 @@ neh.addHandler(
 
 neh.addHandler(
   'gl',
-  (() => {
+  ((): Handler => {
     const glHandler = new CommandHandler();
     const glHomeUrl = 'https://gitlab.com/';
 
@@ -141,12 +139,16 @@ neh.addHandler(
 const listHandler = new FunctionHandler(
   'show the list of methods you can use or search that list',
   () => {
-    const mapToPugFriendly = (doc: DocObject): any[] => {
+    type PugFriendlyObj = {
+      command: string;
+      doc: string | PugFriendlyObj[];
+    };
+    const mapToPugFriendly = (doc: DocObject): PugFriendlyObj[] => {
       return Object.keys(doc).map((command) => ({
         command,
         doc:
           typeof doc[command] === 'string'
-            ? doc[command]
+            ? (doc[command] as string)
             : mapToPugFriendly(doc[command] as DocObject),
       }));
     };
@@ -208,7 +210,7 @@ neh.addHandler(
 
 neh.addHandler(
   'npm',
-  (() => {
+  ((): Handler => {
     const npmHandler = new CommandHandler();
     const npmHomeUrl = 'https://www.npmjs.com';
 
@@ -239,14 +241,14 @@ neh.addHandler(
 
 neh.addHandler(
   'nus',
-  (() => {
+  ((): Handler => {
     const nusHandler = new CommandHandler();
 
     const makeModRedirector = (
       defaultUrl: string,
       modFieldName: keyof NUSMod,
       modUrlTransformer: (fieldValue: string, otherTokens: Token[]) => string,
-    ): HandlerFn => (tokens) => {
+    ): HandlerFn => (tokens): Response => {
       if (tokens && tokens.length > 0) {
         const [fuzzyModcode, ...otherTokens] = tokens;
         const module = getClosestModule(fuzzyModcode);
@@ -305,7 +307,7 @@ neh.addHandler(
 
 neh.addHandler(
   'rd',
-  (() => {
+  ((): Handler => {
     const redditHandler = new CommandHandler();
     const redditHomeUrl = 'https://www.reddit.com';
 
@@ -388,7 +390,7 @@ neh.addHandler(
 
 neh.addHandler(
   'yarn',
-  (() => {
+  ((): Handler => {
     const yarnHandler = new CommandHandler();
     const yarnHomeUrl = 'https://www.yarnpkg.com/en/';
 

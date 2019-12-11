@@ -20,11 +20,11 @@ export function makeAppendBasedSearchEngine(
   return {
     defaultUrl,
 
-    generateSearchUrl(tokens) {
+    generateSearchUrl(tokens): string {
       return nonNullBaseUrl + tokens.join('%20');
     },
 
-    parseSearchUrl(url) {
+    parseSearchUrl(url): string | null {
       if (!url.startsWith(nonNullBaseUrl)) {
         return null;
       }
@@ -45,13 +45,13 @@ export function makeHashBasedSearchEngine(
   return {
     defaultUrl,
 
-    generateSearchUrl(tokens) {
+    generateSearchUrl(tokens): string {
       const url = new URL(nonNullBaseUrl);
       url.hash = tokens.join(' ');
       return url.toString();
     },
 
-    parseSearchUrl(url) {
+    parseSearchUrl(url): string | null {
       if (!url.startsWith(nonNullBaseUrl)) {
         return null;
       }
@@ -76,13 +76,13 @@ export function makeParamBasedSearchEngine(
   return {
     defaultUrl,
 
-    generateSearchUrl(tokens) {
+    generateSearchUrl(tokens): string {
       const url = new URL(nonNullBaseUrl);
       url.searchParams.set(queryParamName, tokens.join(' '));
       return url.toString();
     },
 
-    parseSearchUrl(url) {
+    parseSearchUrl(url): string | null {
       if (!url.startsWith(nonNullBaseUrl)) {
         return null;
       }
@@ -107,11 +107,11 @@ export function makePathBasedSearchEngine(
   return {
     defaultUrl,
 
-    generateSearchUrl(tokens) {
+    generateSearchUrl(tokens): string {
       return nonNullBaseUrl + tokens.join('/');
     },
 
-    parseSearchUrl(url) {
+    parseSearchUrl(url): string | null {
       if (!url.startsWith(nonNullBaseUrl)) {
         return null;
       }

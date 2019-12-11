@@ -4,10 +4,6 @@ import handler from './handlers';
 import { extractQueryFromUrl, tokenizeQuery } from './util';
 import openSearchDescription from './resources/_opensearch.xml';
 
-addEventListener('fetch', (event) => {
-  event.respondWith(handleRequest(event.request));
-});
-
 /**
  * Fetch and log a request
  */
@@ -25,3 +21,7 @@ async function handleRequest(request: Request): Promise<Response> {
   const tokens = tokenizeQuery(query);
   return await handler.handle(tokens);
 }
+
+addEventListener('fetch', (event) => {
+  event.respondWith(handleRequest(event.request));
+});
