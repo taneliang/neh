@@ -9,8 +9,12 @@
     "typecheck": "tsc --noEmit",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "lint": "eslint --ext .ts src",
-    "format": "prettier --write '*.{js,ts,json,md}' 'src/**/*.{ts,pug}'"
+    "lint": "yarn lint:code && yarn lint:misc",
+    "lint:fix": "yarn lint:code:fix && yarn lint:misc:fix",
+    "lint:code": "eslint --ext .ts,.js .",
+    "lint:code:fix": "yarn lint:code --fix",
+    "lint:misc": "prettier --check src/**/*.{json,md,pug}",
+    "lint:misc:fix": "yarn lint:misc --write"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
@@ -26,6 +30,8 @@
     "@typescript-eslint/parser": "^2.11.0",
     "codecov": "^3.6.1",
     "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "fuzzyset.js": "^0.0.8",
     "jest": "^24.9.0",
     "jest-junit": "^10.0.0",
