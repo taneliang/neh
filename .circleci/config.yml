@@ -30,6 +30,9 @@ jobs:
           name: Typecheck Code
           command: yarn typecheck
       - run:
+          name: Run Linters
+          command: yarn lint
+      - run:
           name: Test code
           environment:
             NODE_ENV: test

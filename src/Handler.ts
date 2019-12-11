@@ -55,15 +55,15 @@ export class CommandHandler extends Handler {
     return docObject;
   }
 
-  addHandler(command: string, handler: Handler) {
+  addHandler(command: string, handler: Handler): void {
     this.handlers[command] = handler;
   }
 
-  setDefaultHandler(handler: Handler) {
+  setDefaultHandler(handler: Handler): void {
     this.defaultHandler = handler;
   }
 
-  setNothingHandler(handler: Handler) {
+  setNothingHandler(handler: Handler): void {
     this.nothingHandler = handler;
   }
 

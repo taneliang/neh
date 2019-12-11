@@ -17,8 +17,6 @@ export function tokenizeQuery(query: string): Token[] {
   return query.split(' ').filter((c) => c);
 }
 
-const tokensToQuery = (tokens: string[]) => tokens.join('%20');
-
-export const redirect = (noSearchUrl: string) => {
+export const redirect = (noSearchUrl: string): Response => {
   return Response.redirect(noSearchUrl, 302);
 };

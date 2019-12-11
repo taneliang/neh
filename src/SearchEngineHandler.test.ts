@@ -3,7 +3,6 @@ import {
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
   makePathBasedSearchEngine,
-  SearchEngineHandler,
 } from './SearchEngineHandler';
 
 const defaultUrl = 'https://fancy.search/';
