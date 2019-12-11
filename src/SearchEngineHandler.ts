@@ -125,8 +125,8 @@ export function makePathBasedSearchEngine(
         return null;
       }
 
-      let querySegments = query.split('/').map((s) => s.trim());
-      let interestingSegments = pathIndicesToParse
+      const querySegments = query.split('/').map((s) => s.trim());
+      const interestingSegments = pathIndicesToParse
         .map((i) => querySegments[i])
         .filter((s) => typeof s !== 'undefined' && s.length > 0);
 
@@ -142,7 +142,7 @@ export function makePathBasedSearchEngine(
 const searchEngines: SearchEngine[] = [];
 
 function parseSearchQuery(searchUrl: string): string | null {
-  for (let engine of searchEngines) {
+  for (const engine of searchEngines) {
     const query = engine.parseSearchUrl?.(searchUrl);
     if (query) {
       return query;
