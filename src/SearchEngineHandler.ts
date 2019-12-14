@@ -117,10 +117,7 @@ export function makePathBasedSearchEngine(
       }
 
       const searchUrl = parse(url, true);
-      let query = searchUrl.pathname;
-      if (query.charAt(0) === '/') {
-        query = query.substring(1);
-      }
+      const query = searchUrl.pathname.substring(1);
       if (query.length === 0) {
         return null;
       }
