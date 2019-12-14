@@ -14,7 +14,8 @@
     "lint:code": "eslint --ext .ts,.js .",
     "lint:code:fix": "yarn lint:code --fix",
     "lint:misc": "prettier --check **/*.{json,md,pug} --ignore-path '{node_modules,worker,dist}'",
-    "lint:misc:fix": "yarn lint:misc --write"
+    "lint:misc:fix": "yarn lint:misc --write",
+    "ci": "yarn typecheck && yarn lint"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
