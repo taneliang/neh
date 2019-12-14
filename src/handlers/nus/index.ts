@@ -1,6 +1,6 @@
-import { CommandHandler, FunctionHandler, HandlerFn, Token } from '../Handler';
-import { redirect } from '../util';
-import { getClosestModule, NUSMod } from '../nus';
+import { CommandHandler, FunctionHandler, HandlerFn, Token } from '../../Handler';
+import { redirect } from '../../util';
+import { getClosestModule, NUSMod } from './nus';
 
 const nus = new CommandHandler();
 
