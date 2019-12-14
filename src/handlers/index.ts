@@ -24,6 +24,16 @@ import yarnHandler from './yarn';
 
 const neh = new CommandHandler();
 
+// Handlers with their own files
+neh.addHandler('gh', ghHandler);
+neh.addHandler('gl', glHandler);
+neh.addHandler('npm', npmHandler);
+neh.addHandler('nus', nusHandler);
+neh.addHandler('rd', rdHandler);
+neh.addHandler('yarn', yarnHandler);
+
+// Remaining handlers
+
 neh.addHandler('cf', new RedirectHandler('navigates to Cloudflare', 'https://dash.cloudflare.com'));
 
 const dHandler = new SearchEngineHandler(
@@ -68,10 +78,6 @@ neh.addHandler(
     makeParamBasedSearchEngine('https://www.google.com/', 'https://www.google.com/search', 'q'),
   ),
 );
-
-neh.addHandler('gh', ghHandler);
-
-neh.addHandler('gl', glHandler);
 
 neh.addHandler(
   'ip',
@@ -150,12 +156,6 @@ neh.addHandler(
   ),
 );
 
-neh.addHandler('npm', npmHandler);
-
-neh.addHandler('nus', nusHandler);
-
-neh.addHandler('rd', rdHandler);
-
 neh.addHandler(
   'rtm',
   new RedirectHandler('navigates to Remember the Milk', 'https://www.rememberthemilk.com'),
@@ -211,8 +211,6 @@ neh.addHandler(
     ),
   ),
 );
-
-neh.addHandler('yarn', yarnHandler);
 
 neh.addHandler(
   'yt',
