@@ -1,6 +1,7 @@
 import {
   Handler,
   FunctionHandler,
+  RedirectHandler,
   CommandHandler,
   Token,
   DEFAULT_HANDLER_KEY,
@@ -23,6 +24,22 @@ describe(FunctionHandler, () => {
     const handler = new FunctionHandler(docstring, mockHandlerFn);
     await handler.handle(tokens);
     expect(mockHandlerFn).toBeCalledWith(tokens);
+  });
+});
+
+describe(RedirectHandler, () => {
+  const targetUrl = 'https://eliangtan.com';
+
+  test('should passthrough docstring', () => {
+    const handler = new RedirectHandler(docstring, targetUrl);
+    expect(handler.doc).toEqual(docstring);
+  });
+
+  test('should return a redirection when handle is called', async () => {
+    const handler = new RedirectHandler(docstring, targetUrl);
+    const response = await handler.handle(tokens);
+    expect(response.status).toBe(302);
+    expect(response.headers.get('location')).toBe(targetUrl);
   });
 });
 
@@ -131,6 +148,14 @@ describe(CommandHandler, () => {
       expectHandlingByOnly(defaultHandler, tokens);
     });
 
-    test.todo('should return generic response if no applicable handler');
+    test('should return generic response if no applicable handler', async () => {
+      const handler = new CommandHandler();
+      handler.setNothingHandler(nothingHandler.handler);
+
+      const response = await handler.handle(tokens);
+      expect(response.status).toBe(200);
+      expect(response.body).toBeDefined();
+      expect(response.headers.get('content-type')?.startsWith('text/html')).toBeTruthy();
+    });
   });
 });
