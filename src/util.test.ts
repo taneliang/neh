@@ -1,4 +1,18 @@
-import { extractQueryFromUrl, tokenizeQuery } from './util';
+import { emptyArray, extractQueryFromUrl, tokenizeQuery } from './util';
+
+describe(emptyArray, () => {
+  test('should empty array in place', () => {
+    const a = [1, 2, 3];
+    emptyArray(a);
+    expect(a).toEqual([]);
+  });
+
+  test('should do nothing if array is empty', () => {
+    const a: string[] = [];
+    emptyArray(a);
+    expect(a).toEqual([]);
+  });
+});
 
 describe(extractQueryFromUrl, () => {
   test('should return empty string if no query', () => {

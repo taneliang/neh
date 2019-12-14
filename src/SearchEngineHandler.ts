@@ -117,10 +117,7 @@ export function makePathBasedSearchEngine(
       }
 
       const searchUrl = parse(url, true);
-      let query = searchUrl.pathname;
-      if (query.charAt(0) === '/') {
-        query = query.substring(1);
-      }
+      const query = searchUrl.pathname.substring(1);
       if (query.length === 0) {
         return null;
       }
@@ -138,8 +135,8 @@ export function makePathBasedSearchEngine(
   };
 }
 
-// TODO: Make this more testable
-const searchEngines: SearchEngine[] = [];
+// Exported for tests
+export const searchEngines: SearchEngine[] = [];
 
 function parseSearchQuery(searchUrl: string): string | null {
   for (const engine of searchEngines) {
