@@ -48,6 +48,14 @@ neh.addHandler('d', dHandler);
 neh.setDefaultHandler(dHandler);
 
 neh.addHandler(
+  'bundlephobia',
+  new SearchEngineHandler(
+    'does a Bundlephobia bundle size search',
+    makeParamBasedSearchEngine('https://bundlephobia.com/', 'https://bundlephobia.com/result', 'p'),
+  ),
+);
+
+neh.addHandler(
   'do',
   new RedirectHandler('navigates to DigitalOcean', 'https://cloud.digitalocean.com'),
 );
