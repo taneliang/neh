@@ -117,6 +117,16 @@ describe(CommandHandler, () => {
       });
     }
 
+    async function expectGenericResponse(
+      commandHandler: CommandHandler,
+      tokens: Token[],
+    ): Promise<void> {
+      const response = await commandHandler.handle(tokens);
+      expect(response.status).toBe(200);
+      expect(response.body).toBeDefined();
+      expect(response.headers.get('content-type')?.startsWith('text/html')).toBeTruthy();
+    }
+
     test('should execute function with tokens when handle is called', async () => {
       const handler = new CommandHandler();
       handler.addHandler(handler1.command, handler1.handler);
@@ -138,6 +148,13 @@ describe(CommandHandler, () => {
       expectHandlingByOnly(nothingHandler, []);
     });
 
+    test('should return generic response if no tokens and no nothing handler', async () => {
+      const handler = new CommandHandler();
+      handler.addHandler(handler1.command, handler1.handler);
+      handler.setDefaultHandler(defaultHandler.handler);
+      await expectGenericResponse(handler, []);
+    });
+
     test('should call default handler if no handler assigned to command', async () => {
       const handler = new CommandHandler();
       handler.addHandler(handler1.command, handler1.handler);
@@ -148,14 +165,10 @@ describe(CommandHandler, () => {
       expectHandlingByOnly(defaultHandler, tokens);
     });
 
-    test('should return generic response if no applicable handler', async () => {
+    test('should return generic response if tokens present but no applicable handler', async () => {
       const handler = new CommandHandler();
       handler.setNothingHandler(nothingHandler.handler);
-
-      const response = await handler.handle(tokens);
-      expect(response.status).toBe(200);
-      expect(response.body).toBeDefined();
-      expect(response.headers.get('content-type')?.startsWith('text/html')).toBeTruthy();
+      await expectGenericResponse(handler, tokens);
     });
   });
 });
