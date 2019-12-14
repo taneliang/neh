@@ -38,6 +38,14 @@ neh.addHandler('yarn', yarnHandler);
 
 // Remaining handlers
 
+neh.addHandler(
+  'bundlephobia',
+  new SearchEngineHandler(
+    'does a Bundlephobia bundle size search',
+    makeParamBasedSearchEngine('https://bundlephobia.com/', 'https://bundlephobia.com/result', 'p'),
+  ),
+);
+
 neh.addHandler('cf', new RedirectHandler('navigates to Cloudflare', 'https://dash.cloudflare.com'));
 
 const dHandler = new SearchEngineHandler(
@@ -46,14 +54,6 @@ const dHandler = new SearchEngineHandler(
 );
 neh.addHandler('d', dHandler);
 neh.setDefaultHandler(dHandler);
-
-neh.addHandler(
-  'bundlephobia',
-  new SearchEngineHandler(
-    'does a Bundlephobia bundle size search',
-    makeParamBasedSearchEngine('https://bundlephobia.com/', 'https://bundlephobia.com/result', 'p'),
-  ),
-);
 
 neh.addHandler(
   'do',

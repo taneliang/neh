@@ -44,7 +44,9 @@ export class CommandHandler extends Handler {
 
   get doc(): DocObject {
     const docObject: DocObject = Object.fromEntries(
-      Object.entries(this.handlers).map(([command, handler]) => [command, handler.doc]),
+      Object.entries(this.handlers)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([command, handler]) => [command, handler.doc]),
     );
     if (this.defaultHandler) {
       docObject[DEFAULT_HANDLER_KEY] = this.defaultHandler.doc;
