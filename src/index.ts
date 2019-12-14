@@ -1,4 +1,5 @@
-import {} from '@cloudflare/workers-types';
+import CloudflareWorkerGlobalScope from 'types-cloudflare-worker';
+declare const self: CloudflareWorkerGlobalScope;
 
 import handler from './handlers';
 import { extractQueryFromUrl, tokenizeQuery } from './util';
@@ -22,6 +23,6 @@ async function handleRequest(request: Request): Promise<Response> {
   return await handler.handle(tokens);
 }
 
-addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request));
 });
