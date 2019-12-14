@@ -9,14 +9,11 @@ const makeModRedirector = (
   modFieldName: keyof NUSMod,
   modUrlTransformer: (fieldValue: string, otherTokens: Token[]) => string,
 ): HandlerFn => (tokens): Response => {
-  if (tokens && tokens.length > 0) {
+  if (tokens.length > 0) {
     const [fuzzyModcode, ...otherTokens] = tokens;
-    const module = getClosestModule(fuzzyModcode);
-    if (module && module[modFieldName]) {
-      const fieldValue = module[modFieldName];
-      if (fieldValue) {
-        return redirect(modUrlTransformer(fieldValue, otherTokens));
-      }
+    const fieldValue = getClosestModule(fuzzyModcode)?.[modFieldName];
+    if (fieldValue) {
+      return redirect(modUrlTransformer(fieldValue, otherTokens));
     }
   }
   return redirect(defaultUrl);
