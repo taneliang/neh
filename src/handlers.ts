@@ -171,7 +171,7 @@ neh.addHandler(
     "navigates to a song's lyrics on Genius",
     makeAppendBasedSearchEngine(
       'https://genius.com',
-      'https://duckduckgo.com/q=%5Csite:genius.com%20',
+      'https://duckduckgo.com/?q=%5Csite:genius.com%20',
     ),
   ),
 );
