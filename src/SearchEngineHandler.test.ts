@@ -45,6 +45,11 @@ describe(makeAppendBasedSearchEngine, () => {
       expect(engine.parseSearchUrl?.('https://fancy.search/s?q=a#d=query%20string')).toBeNull();
     });
 
+    test('should return null if search URL has no query', () => {
+      const engine = makeAppendBasedSearchEngine(complexBaseUrl, null);
+      expect(engine.parseSearchUrl?.(complexBaseUrl)).toBeNull();
+    });
+
     test('should extract query if present', () => {
       const engine = makeAppendBasedSearchEngine(complexBaseUrl, null);
       expect(engine.parseSearchUrl?.('https://fancy.search/s?q=a#b=c&d=query%20string')).toEqual(
