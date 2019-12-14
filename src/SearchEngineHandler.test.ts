@@ -1,9 +1,13 @@
 import {
+  SearchEngine,
+  SearchEngineHandler,
   makeAppendBasedSearchEngine,
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
   makePathBasedSearchEngine,
+  searchEngines,
 } from './SearchEngineHandler';
+import { emptyArray } from './util';
 
 const defaultUrl = 'https://fancy.search/';
 const baseUrl = 'https://fancy.search/search/';
@@ -216,6 +220,93 @@ describe(makePathBasedSearchEngine, () => {
     test('should extract path segments even if some are not present', () => {
       const engine = makePathBasedSearchEngine(defaultUrl, null, [1, 9000]);
       expect(engine.parseSearchUrl?.('https://fancy.search/search/query/string')).toEqual('query');
+    });
+  });
+});
+
+describe(SearchEngineHandler, () => {
+  beforeEach(() => {
+    emptyArray(searchEngines);
+  });
+
+  describe('constructor', () => {
+    const simpleEngine: SearchEngine = {
+      defaultUrl,
+      generateSearchUrl: () => '',
+    };
+
+    test('should passthrough docstring', () => {
+      const docstring = "Don't be evil";
+      const handler = new SearchEngineHandler(docstring, simpleEngine);
+      expect(handler.doc).toEqual(docstring);
+    });
+
+    test('should register search engine', () => {
+      expect(searchEngines).toEqual([]);
+      new SearchEngineHandler('', simpleEngine);
+      expect(searchEngines).toEqual([simpleEngine]);
+    });
+  });
+
+  describe(SearchEngineHandler.prototype.handle, () => {
+    type MockSearchEngine = SearchEngine & {
+      generateSearchUrl: jest.Mock;
+      parseSearchUrl?: jest.Mock;
+    };
+
+    let noParseEngine: MockSearchEngine;
+    let parsableEngine1: MockSearchEngine;
+    let parsableEngine2: MockSearchEngine;
+
+    beforeEach(() => {
+      noParseEngine = {
+        defaultUrl,
+        generateSearchUrl: jest.fn(),
+      };
+      parsableEngine1 = {
+        defaultUrl,
+        generateSearchUrl: jest.fn(),
+        parseSearchUrl: jest.fn(),
+      };
+      parsableEngine2 = {
+        defaultUrl,
+        generateSearchUrl: jest.fn(),
+        parseSearchUrl: jest.fn(),
+      };
+    });
+
+    test('should redirect to defaultUrl if no tokens', async () => {
+      const handler = new SearchEngineHandler('', noParseEngine);
+      const response = await handler.handle([]);
+      expect(response.status).toEqual(302);
+      expect(response.headers.get('location')).toBe(defaultUrl);
+    });
+
+    test('should call generateSearchUrl with all search tokens if not transformable', async () => {
+      // Register other engines
+      new SearchEngineHandler('', noParseEngine);
+      new SearchEngineHandler('', parsableEngine1);
+
+      const handler = new SearchEngineHandler('', parsableEngine2);
+      const response = await handler.handle(queryTokens);
+      expect(response.status).toEqual(302);
+      expect(parsableEngine1.parseSearchUrl).toBeCalledWith('query string');
+      expect(parsableEngine2.parseSearchUrl).toBeCalledWith('query string');
+      expect(parsableEngine2.generateSearchUrl).toBeCalledWith(queryTokens);
+    });
+
+    test('should call generateSearchUrl with all transformed query if transformable', async () => {
+      // Register other engines
+      new SearchEngineHandler('', noParseEngine);
+      new SearchEngineHandler('', parsableEngine1);
+
+      const transformedQuery = 'transformed query';
+      parsableEngine1.parseSearchUrl?.mockReturnValue(transformedQuery);
+
+      const handler = new SearchEngineHandler('', parsableEngine2);
+      const response = await handler.handle(queryTokens);
+      expect(response.status).toEqual(302);
+      expect(parsableEngine2.generateSearchUrl).toBeCalledWith([transformedQuery]);
     });
   });
 });

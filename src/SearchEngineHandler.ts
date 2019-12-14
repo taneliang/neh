@@ -138,8 +138,8 @@ export function makePathBasedSearchEngine(
   };
 }
 
-// TODO: Make this more testable
-const searchEngines: SearchEngine[] = [];
+// Exported for tests
+export const searchEngines: SearchEngine[] = [];
 
 function parseSearchQuery(searchUrl: string): string | null {
   for (const engine of searchEngines) {

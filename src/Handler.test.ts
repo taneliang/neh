@@ -105,7 +105,7 @@ describe(CommandHandler, () => {
     });
   });
 
-  describe('handle', () => {
+  describe(CommandHandler.prototype.handle, () => {
     function expectHandlingByOnly(handler: MockHandlerWrapper, tokens: Token[]): void {
       handlers.forEach((h) => {
         if (h === handler) {
