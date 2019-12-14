@@ -1,7 +1,7 @@
 import { CloudflareWorkerGlobalScope } from 'types-cloudflare-worker';
 declare const self: CloudflareWorkerGlobalScope;
 
-import makeCloudflareWorkerEnv, { makeCloudflareWorkerRequest } from 'cloudflare-worker-mock';
+import { makeCloudflareWorkerRequest } from 'cloudflare-worker-mock';
 
 async function getResponse(path: string): Promise<Response> {
   const request = makeCloudflareWorkerRequest(path);
@@ -11,10 +11,6 @@ async function getResponse(path: string): Promise<Response> {
 
 describe('neh', () => {
   beforeEach(() => {
-    // Merge the Cloudflare Worker Environment into the global scope.
-    Object.assign(global, makeCloudflareWorkerEnv());
-    // Clear all module imports.
-    jest.resetModules();
     // Import and init the Worker.
     jest.requireActual('.');
   });
