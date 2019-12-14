@@ -17,6 +17,7 @@ import listTemplate from '../resources/list.pug';
 
 import ghHandler from './gh';
 import glHandler from './gl';
+import ibankHandler from './ibank';
 import npmHandler from './npm';
 import nusHandler from './nus';
 import rdHandler from './rd';
@@ -27,6 +28,7 @@ const neh = new CommandHandler();
 // Handlers with their own files
 neh.addHandler('gh', ghHandler);
 neh.addHandler('gl', glHandler);
+neh.addHandler('ibank', ibankHandler);
 neh.addHandler('npm', npmHandler);
 neh.addHandler('nus', nusHandler);
 neh.addHandler('rd', rdHandler);
