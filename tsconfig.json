@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "commonjs",
-    "target": "es2020",
-    "lib": ["esnext", "webworker", "es2015.promise"],
     "alwaysStrict": true,
-    "strict": true,
-    "preserveConstEnums": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "webworker", "es2015.promise"],
+    "module": "commonjs",
     "moduleResolution": "node",
+    "outDir": "./dist",
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
-    "esModuleInterop": true
+    "strict": true,
+    "target": "es2020"
   },
   "include": [
     "node_modules/@cloudflare/workers-types/index.d.ts",

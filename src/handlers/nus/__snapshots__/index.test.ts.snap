@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`nus handler coursem should redirect to appropriate path for mod if can be found 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://coursemology.org",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler coursem should redirect to appropriate path for mod if can be found 2`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://coursemology.org/courses/1677/",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler coursem should redirect to homepage if no mod provided 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://coursemology.org",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler lum should redirect to appropriate path for mod if can be found 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://luminus.nus.edu.sg/modules/42f051f9-44d2-4393-8ed5-e79d4a97b8de/",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler lum should redirect to appropriate path for mod if can be found 2`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://luminus.nus.edu.sg/modules/783480f2-d3be-4587-843d-d73140337bec/",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler lum should redirect to homepage if no mod provided 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://luminus.nus.edu.sg/dashboard",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler webcast should redirect to appropriate path for mod if can be found 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=\\"a37a4fec-408e-4e1e-9a89-aabc000a5ce8\\"",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler webcast should redirect to appropriate path for mod if can be found 2`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`nus handler webcast should redirect to homepage if no mod provided 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
