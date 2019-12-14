@@ -28,20 +28,6 @@ describe('neh', () => {
     expect(responseBody).toContain('OpenSearchDescription');
   });
 
-  // TODO: Move to handler tests
-  test('should respond to root with list', async () => {
-    const rootResponse = await getResponse('/');
-    const listResponse = await getResponse('/list');
-    expect(rootResponse).toEqual(listResponse);
-  });
-
-  // TODO: Move to handler tests
-  test('should default to DuckDuckGo', async () => {
-    const noCommandResponse = await getResponse('search query');
-    const withCommandResponse = await getResponse('d search query');
-    expect(noCommandResponse).toEqual(withCommandResponse);
-  });
-
   // Some test input
   const testCases = [
     '1+1',
