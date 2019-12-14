@@ -17,6 +17,7 @@ export function tokenizeQuery(query: string): Token[] {
   return query.split(' ').filter((c) => c);
 }
 
-export const redirect = (noSearchUrl: string): Response => {
-  return Response.redirect(noSearchUrl, 302);
+export const redirect = (location: string): Response => {
+  // Don't use Response.redirect due to poor mock support
+  return new Response(null, { status: 302, headers: { location } });
 };

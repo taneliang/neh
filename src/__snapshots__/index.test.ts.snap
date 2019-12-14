@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`neh should handle "1+1" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://duckduckgo.com/?q=1%2B1",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "drive 2" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://drive.google.com/drive/u/2/",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "drive" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://drive.google.com",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "gh r taneliang/neh" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://github.com/taneliang/neh",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "ip" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://icanhazip.com",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "lyrics here's to never growing up" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://duckduckgo.com/?q=%5Csite:genius.com%20here's%20to%20never%20growing%20up",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "npm p @babel/core" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://www.npmjs.com/package/@babel/core",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "search query" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://duckduckgo.com/?q=search+query",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh should handle "trzh hong kong" correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://fanyi.baidu.com/#en/zh/hong%20kong",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
