@@ -15,6 +15,7 @@ import {
 import { redirect } from '../util';
 import listTemplate from '../resources/list.pug';
 
+import docsHandler from './docs';
 import ghHandler from './gh';
 import glHandler from './gl';
 import ibankHandler from './ibank';
@@ -26,6 +27,7 @@ import yarnHandler from './yarn';
 const neh = new CommandHandler();
 
 // Handlers with their own files
+neh.addHandler('docs', docsHandler);
 neh.addHandler('gh', ghHandler);
 neh.addHandler('gl', glHandler);
 neh.addHandler('ibank', ibankHandler);
