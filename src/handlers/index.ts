@@ -45,7 +45,7 @@ neh.setNothingHandler(listHandler);
 // Remaining handlers
 
 neh.addHandler(
-  'bundlephobia',
+  'bp',
   new SearchEngineHandler(
     'does a Bundlephobia bundle size search',
     makeParamBasedSearchEngine('https://bundlephobia.com/', 'https://bundlephobia.com/result', 'p'),

@@ -1,7 +1,7 @@
 module.exports = {
   prefix: '',
   important: false,
-  separator: ':',
+  separator: '_',
   theme: {
     screens: {
       sm: '640px',
@@ -412,7 +412,7 @@ module.exports = {
     alignSelf: ['responsive'],
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundColor: ['responsive', 'hover', 'focus'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'odd'],
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],

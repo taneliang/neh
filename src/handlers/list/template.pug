@@ -1,22 +1,24 @@
-mixin docTable(doc)
-  table
-    tr
-      th Command
-        th Description
+mixin docTable(doc, nested)
+  table.text-left.w-full.sm_px-4
+    thead.uppercase.text-xs.text-gray-700.tracking-wide
+      tr
+        th.p-3 Command
+        th.p-3 Description
+    tbody
       each c in doc
-        tr
-          td
+        tr(class= nested ? 'hover_bg-gray-200' : 'odd_bg-gray-100')
+          td.px-3.align-text-top
             if c.command === DEFAULT_HANDLER_KEY
-              em No Matching Command
+              em.py-3.sticky.top-0 No Matching Command
             else if c.command === NOTHING_HANDLER_KEY
-              em No Input
+              em.py-3.sticky.top-0 No Input
             else
-              strong= c.command
+              strong.py-3.sticky.top-0= c.command
           if typeof c.doc === 'object'
-            td
-              +docTable(c.doc)
+            td.align-text-top
+              +docTable(c.doc, true)
           else
-            td= c.doc
+            td.p-3.align-text-top= c.doc
 
 doctype html
 html(lang='en')
@@ -28,10 +30,12 @@ html(lang='en')
     style
       #{css}
   body
-    h1.text-blue-500 neh command list
-    +docTable(doc)
-    p
-      | Source code available on
-      |
-      a(href='/?=ghr') GitHub
-      | .
+    div.py-10.max-w-3xl.mx-auto
+      h1.px-3.font-black.leading-none.text-6xl.mt-10 NEH
+      hr.px-3.my-6
+      +docTable(doc, false)
+      p.px-3.mt-10.text-gray-500.text-sm
+        | Source code available on
+        |
+        a(href='/?=ghr') GitHub
+        | .
