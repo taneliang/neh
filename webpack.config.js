@@ -20,11 +20,12 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
-        options: {
-          transpileOnly: true,
-        },
       },
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader',
+      },
       {
         test: /\.(txt|xml)$/i,
         use: 'raw-loader',
