@@ -1,4 +1,4 @@
-import { CommandHandler, RedirectHandler } from '../Handler';
+import { CommandHandler } from '../Handler';
 import {
   SearchEngineHandler,
   makeAppendBasedSearchEngine,
@@ -56,7 +56,7 @@ docs.addHandler(
 );
 
 docs.addHandler(
-  'numpy',
+  'np',
   new SearchEngineHandler(
     'does a NumPy docs search',
     makeParamBasedSearchEngine(
@@ -92,7 +92,7 @@ docs.addHandler(
 );
 
 docs.addHandler(
-  'tensorflow',
+  'tf',
   new SearchEngineHandler(
     'does a Tensorflow docs search',
     makeParamBasedSearchEngine(

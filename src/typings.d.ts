@@ -1,3 +1,5 @@
+declare module '*.css';
+
 declare module '*.pug' {
   const contents: import('pug').compileTemplate;
   export = contents;

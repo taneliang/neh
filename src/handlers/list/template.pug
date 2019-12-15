@@ -1,22 +1,26 @@
-mixin docTable(doc)
-  table
-    tr
-      th Command
-        th Description
+mixin docTable(doc, nested)
+  table.text-left.w-full.h-full.sm_px-4
+    thead.uppercase.text-xs.text-gray-700.tracking-wide
+      tr
+        th.p-3 Command
+        th.p-3 Description
+    tbody
       each c in doc
-        tr
-          td
+        - var hasNestedTable = typeof c.doc === "object";
+        tr(class=nested ? "hover_bg-gray-200" : "odd_bg-gray-100")
+          td.px-3.h-full.align-text-top
             if c.command === DEFAULT_HANDLER_KEY
-              em No Matching Command
+              em.py-3 No Matching Command
             else if c.command === NOTHING_HANDLER_KEY
-              em No Input
+              em.py-3 No Input
             else
-              strong= c.command
-          if typeof c.doc === 'object'
-            td
-              +docTable(c.doc)
+              .block.h-full
+                strong.py-3.my-3(class=hasNestedTable ? "sticky top-0" : "")= c.command
+          if hasNestedTable
+            td.align-text-top
+              +docTable(c.doc, true)
           else
-            td= c.doc
+            td.p-3.align-text-top= c.doc
 
 doctype html
 html(lang='en')
@@ -25,27 +29,14 @@ html(lang='en')
     meta(name='viewport', content='width=device-width,initial-scale=1')
     title= "neh commands"
     link(rel='search', type='application/opensearchdescription+xml', title='Neh', href='/_opensearch')
-    style.
-      body {
-        font-family: sans-serif;
-      }
-      table {
-        border-collapse: collapse;
-      }
-      th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-      tr:hover {
-        background-color: #f5f5f5;
-      }
+    style
+      #{css}
   body
-    h1 neh command list
-    +docTable(doc)
-    p
-      | Source code available on
-      |
-      a(href='/?=ghr') GitHub
-      |
-      | .
+    .py-10.max-w-3xl.mx-auto
+      h1.px-3.font-black.leading-none.text-6xl.mt-10.mb-8 👇 NEH!
+      +docTable(doc, false)
+      p.px-3.mt-10.text-gray-500.text-sm
+        | Source code available on
+        |
+        a(href='/?=ghr') GitHub
+        | .

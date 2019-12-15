@@ -6,6 +6,9 @@ module.exports = {
     '\\.pug$': 'awesome-pug-jest',
     '\\.xml$': 'jest-raw-loader',
   },
+  moduleNameMapper: {
+    '\\.(?:css|scss)$': 'jest-transform-stub',
+  },
 
   collectCoverageFrom: ['src/**/!(*.d).{js,jsx,ts,tsx}'],
   // Only write lcov files in CIs
