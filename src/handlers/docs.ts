@@ -1,4 +1,4 @@
-import { CommandHandler, RedirectHandler } from '../Handler';
+import { CommandHandler } from '../Handler';
 import {
   SearchEngineHandler,
   makeAppendBasedSearchEngine,

@@ -6,7 +6,7 @@ mixin docTable(doc, nested)
         th.p-3 Description
     tbody
       each c in doc
-        tr(class= nested ? 'hover_bg-gray-200' : 'odd_bg-gray-100')
+        tr(class=nested ? "hover_bg-gray-200" : "odd_bg-gray-100")
           td.px-3.align-text-top
             if c.command === DEFAULT_HANDLER_KEY
               em.py-3.sticky.top-0 No Matching Command
@@ -30,7 +30,7 @@ html(lang='en')
     style
       #{css}
   body
-    div.py-10.max-w-3xl.mx-auto
+    .py-10.max-w-3xl.mx-auto
       h1.px-3.font-black.leading-none.text-6xl.mt-10 NEH
       hr.px-3.my-6
       +docTable(doc, false)

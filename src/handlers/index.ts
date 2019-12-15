@@ -1,11 +1,4 @@
-import {
-  CommandHandler,
-  FunctionHandler,
-  RedirectHandler,
-  DocObject,
-  DEFAULT_HANDLER_KEY,
-  NOTHING_HANDLER_KEY,
-} from '../Handler';
+import { CommandHandler, FunctionHandler, RedirectHandler } from '../Handler';
 import {
   SearchEngineHandler,
   makeAppendBasedSearchEngine,
