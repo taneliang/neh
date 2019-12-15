@@ -12,12 +12,6 @@
     "strict": true,
     "target": "es2020"
   },
-  "include": [
-    "node_modules/@cloudflare/workers-types/index.d.ts",
-    "./src/*.ts",
-    "./test/*.ts",
-    "./src/**/*.ts",
-    "./test/**/*.ts"
-  ],
+  "include": ["./src/typings.d.ts", "./src/*.ts", "./src/**/*.ts"],
   "exclude": ["node_modules/", "dist/"]
 }

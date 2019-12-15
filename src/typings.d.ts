@@ -3,12 +3,12 @@ declare module '*.pug' {
   export = contents;
 }
 
-declare module '*.xml' {
+declare module '*.txt' {
   const contents: string;
   export = contents;
 }
 
-declare module '*.txt' {
+declare module '*.xml' {
   const contents: string;
   export = contents;
 }

@@ -14,7 +14,6 @@ import {
   makePathBasedSearchEngine,
 } from '../SearchEngineHandler';
 import { redirect } from '../util';
-import listTemplate from '../resources/list.pug';
 
 import docsHandler from './docs';
 import ghHandler from './gh';
@@ -24,6 +23,8 @@ import npmHandler from './npm';
 import nusHandler from './nus';
 import rdHandler from './rd';
 import yarnHandler from './yarn';
+
+import makeListHandler from './list';
 
 const neh = new CommandHandler();
 
@@ -36,6 +37,10 @@ neh.addHandler('npm', npmHandler);
 neh.addHandler('nus', nusHandler);
 neh.addHandler('rd', rdHandler);
 neh.addHandler('yarn', yarnHandler);
+
+const listHandler = makeListHandler(neh);
+neh.addHandler('list', listHandler);
+neh.setNothingHandler(listHandler);
 
 // Remaining handlers
 
@@ -96,35 +101,6 @@ neh.addHandler(
   'ip',
   new RedirectHandler('shows your current public IP address', 'https://icanhazip.com'),
 );
-
-const listHandler = new FunctionHandler(
-  'show the list of methods you can use or search that list',
-  () => {
-    type PugFriendlyObj = {
-      command: string;
-      doc: string | PugFriendlyObj[];
-    };
-    const mapToPugFriendly = (doc: DocObject): PugFriendlyObj[] => {
-      return Object.keys(doc).map((command) => ({
-        command,
-        doc:
-          typeof doc[command] === 'string'
-            ? (doc[command] as string)
-            : mapToPugFriendly(doc[command] as DocObject),
-      }));
-    };
-
-    const displayableDoc = mapToPugFriendly(neh.doc);
-    const html = listTemplate({ doc: displayableDoc, DEFAULT_HANDLER_KEY, NOTHING_HANDLER_KEY });
-    return new Response(html, {
-      headers: {
-        'content-type': 'text/html;charset=UTF-8',
-      },
-    });
-  },
-);
-neh.addHandler('list', listHandler);
-neh.setNothingHandler(listHandler);
 
 neh.addHandler(
   'lyrics',
