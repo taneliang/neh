@@ -34,6 +34,14 @@ module.exports = {
         test: /\.pug$/i,
         use: 'pug-loader',
       },
+      {
+        test: /\.css$/,
+        use: [
+          'to-string-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+        ],
+      },
     ],
   },
 };

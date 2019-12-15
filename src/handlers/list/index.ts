@@ -6,6 +6,7 @@ import {
   DEFAULT_HANDLER_KEY,
   NOTHING_HANDLER_KEY,
 } from '../../Handler';
+import css from '../../resources/tailwind.css';
 import listTemplate from './template.pug';
 
 export default (neh: CommandHandler): Handler => {
@@ -25,7 +26,12 @@ export default (neh: CommandHandler): Handler => {
     };
 
     const displayableDoc = mapToPugFriendly(neh.doc);
-    const html = listTemplate({ doc: displayableDoc, DEFAULT_HANDLER_KEY, NOTHING_HANDLER_KEY });
+    const html = listTemplate({
+      doc: displayableDoc,
+      DEFAULT_HANDLER_KEY,
+      NOTHING_HANDLER_KEY,
+      css,
+    });
     return new Response(html, {
       headers: {
         'content-type': 'text/html;charset=UTF-8',
