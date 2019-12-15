@@ -11,6 +11,7 @@ import {
   makeAppendBasedSearchEngine,
   makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
+  makePathBasedSearchEngine,
 } from '../SearchEngineHandler';
 import { redirect } from '../util';
 import listTemplate from '../resources/list.pug';
@@ -190,6 +191,14 @@ neh.addHandler(
   new RedirectHandler(
     "navigates to fast.com; Netflix's Internet speedtest service",
     'https://fast.com/',
+  ),
+);
+
+neh.addHandler(
+  'tld',
+  new SearchEngineHandler(
+    'navigates to a top-level domain price list on TLD List',
+    makePathBasedSearchEngine('https://tld-list.com/', 'https://tld-list.com/tld/', [1]),
   ),
 );
 
