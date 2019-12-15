@@ -1,20 +1,22 @@
 mixin docTable(doc, nested)
-  table.text-left.w-full.sm_px-4
+  table.text-left.w-full.h-full.sm_px-4
     thead.uppercase.text-xs.text-gray-700.tracking-wide
       tr
         th.p-3 Command
         th.p-3 Description
     tbody
       each c in doc
+        - var hasNestedTable = typeof c.doc === "object";
         tr(class=nested ? "hover_bg-gray-200" : "odd_bg-gray-100")
-          td.px-3.align-text-top
+          td.px-3.h-full.align-text-top
             if c.command === DEFAULT_HANDLER_KEY
-              em.py-3.sticky.top-0 No Matching Command
+              em.py-3 No Matching Command
             else if c.command === NOTHING_HANDLER_KEY
-              em.py-3.sticky.top-0 No Input
+              em.py-3 No Input
             else
-              strong.py-3.sticky.top-0= c.command
-          if typeof c.doc === 'object'
+              .block.h-full
+                strong.py-3.my-3(class=hasNestedTable ? "sticky top-0" : "")= c.command
+          if hasNestedTable
             td.align-text-top
               +docTable(c.doc, true)
           else
