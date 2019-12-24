@@ -303,10 +303,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@prettier/plugin-pug@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.1.0.tgz#2e6d72da88047732642a52cfcd54787d0120ceae"
-  integrity sha512-RN8mk+tWQicy2Padwgf9vJ6yeGce0ekZKnrWLK/mK0UuQFKsl+D80sNcnFszrYgvAdYizVgYkPfT4UvdJrIQtg==
+"@prettier/plugin-pug@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.1.1.tgz#6bae5ae8026490b74856fd9a28bea1d8d48af6e9"
+  integrity sha512-0NRl+BksY7BhR3JsCxHIthUHLHL83X6XJINkMjVbo2vrEC7YEF4/A8/NWK79ltUf8/uje2Tr/ou/vH09YZolRA==
   dependencies:
     pug-lexer "~4.1.0"
 
