@@ -8,7 +8,7 @@
 
 A tool that redirects you; intended to be an Alfred for your browser.
 
-![neh meme by Mothership](https://mothership.sg/wp-content/uploads/2015/08/Neh.jpg)
+![neh meme by Mothership](https://i0.wp.com/cdn.mothership.sg/1/2015/08/Neh.jpg?ssl=1)
 
 Inspired by Facebook's open source [bunny](http://www.bunny1.org) tool, but
 rewritten for the cloud serverless edge computing age – neh runs in Cloudflare
