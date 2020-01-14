@@ -18,5 +18,18 @@
   "CS4246": {
     "luminus": "b864e4ca-c625-475b-931e-e48dcd746058",
     "panopto": "c00ebc7d-88e6-443f-9528-aaa90034c033"
+  },
+  "ES2660": {
+    "luminus": "ea39a802-3aa8-412b-a5b1-5d606612db9e"
+  },
+  "GET1036": {
+    "luminus": "cca6d37b-76e4-4658-a62b-5bbd90f919d3"
+  },
+  "GET1042": {
+    "luminus": "6f630b59-1d59-44f8-a70c-1f1023857453"
+  },
+  "LSM1301": {
+    "luminus": "cd4b5dae-e8b6-4bda-b8ea-ac739559e606",
+    "panopto": "6312f688-0769-4672-82cb-ab3c005e2302"
   }
 }
