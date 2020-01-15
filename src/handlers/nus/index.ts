@@ -1,12 +1,12 @@
-import { CommandHandler, FunctionHandler, HandlerFn, Token } from '../../Handler';
+import { CommandHandler, FunctionHandler, HandlerFn, RedirectHandler, Token } from '../../Handler';
 import { redirect } from '../../util';
-import { getClosestModule, NUSMod } from './nus';
+import { getClosestModule, modules, NUSModBookmarks, NUSModOnlyStringValues } from './nus';
 
 const nus = new CommandHandler();
 
 const makeModRedirector = (
   defaultUrl: string,
-  modFieldName: keyof NUSMod,
+  modFieldName: keyof NUSModOnlyStringValues,
   modUrlTransformer: (fieldValue: string, otherTokens: Token[]) => string,
 ): HandlerFn => (tokens): Response => {
   if (tokens.length > 0) {
@@ -56,6 +56,24 @@ nus.addHandler(
         `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${fieldValue}"`,
     ),
   ),
+);
+
+// Bookmarks
+function makeModBookmarkHandler(modcode: string, bookmarks: NUSModBookmarks): CommandHandler {
+  const bookmarksHandler = new CommandHandler();
+  Object.entries(bookmarks).forEach(([name, url]) => {
+    bookmarksHandler.addHandler(
+      name,
+      new RedirectHandler(`navigates to ${modcode}'s ${name}`, url),
+    );
+  });
+  return bookmarksHandler;
+}
+
+Object.entries(modules).forEach(
+  ([modcode, module]) =>
+    module.bookmarks &&
+    nus.addHandler(modcode.toLowerCase(), makeModBookmarkHandler(modcode, module.bookmarks)),
 );
 
 export default nus;

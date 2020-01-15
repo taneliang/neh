@@ -3,11 +3,16 @@
 import FuzzySet from 'fuzzyset.js';
 import mods from './modules.json';
 
+export type NUSModBookmarks = { [bookmark: string]: string };
+
 export type NUSMod = {
   coursemology?: string;
   luminus?: string;
   panopto?: string;
+  bookmarks?: NUSModBookmarks;
 };
+
+export type NUSModOnlyStringValues = Omit<NUSMod, 'bookmarks'>;
 
 export const modules: { [modcode: string]: NUSMod } = mods;
 
