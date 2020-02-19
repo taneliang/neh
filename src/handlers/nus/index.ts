@@ -1,8 +1,47 @@
 import { CommandHandler, FunctionHandler, HandlerFn, RedirectHandler, Token } from '../../Handler';
 import { redirect } from '../../util';
 import { getClosestModule, modules, NUSModBookmarks, NUSModOnlyStringValues } from './nus';
+import { makeParamBasedSearchEngine, SearchEngineHandler } from '../../SearchEngineHandler';
 
 const nus = new CommandHandler();
+
+nus.setDefaultHandler(
+  new SearchEngineHandler(
+    'does a DuckDuckGo search',
+    makeParamBasedSearchEngine('https://duckduckgo.com/', null, 'q'),
+  ),
+);
+
+nus.addHandler(
+  'dochub',
+  new RedirectHandler(
+    "navigates to NUS SoC's Documentation Hub",
+    'https://dochub.comp.nus.edu.sg/',
+  ),
+);
+
+nus.addHandler(
+  'emergency',
+  new RedirectHandler(
+    "navigates to NUS's emergency circulars",
+    'https://emergency.nus.edu.sg/circulars/',
+  ),
+);
+
+nus.addHandler(
+  'talentconnect',
+  new RedirectHandler('navigates to NUS TalentConnect', 'https://nus-csm.symplicity.com/'),
+);
+
+nus.addHandler(
+  'temp',
+  new RedirectHandler(
+    'navigates to temperature declaration portal',
+    'https://myaces.nus.edu.sg/htd/htd',
+  ),
+);
+
+// Module handlers
 
 const makeModRedirector = (
   defaultUrl: string,
@@ -59,6 +98,7 @@ nus.addHandler(
 );
 
 // Bookmarks
+
 function makeModBookmarkHandler(modcode: string, bookmarks: NUSModBookmarks): CommandHandler {
   const bookmarksHandler = new CommandHandler();
   Object.entries(bookmarks).forEach(([name, url]) => {
