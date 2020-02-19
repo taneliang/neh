@@ -33,7 +33,7 @@
     "@udacity/types-service-worker-mock": "^1.1.2",
     "awesome-pug-jest": "^1.1.0",
     "cloudflare-worker-mock": "^1.1.2",
-    "codecov": "^3.6.1",
+    "codecov": "^3.6.5",
     "css-loader": "^3.4.2",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
