@@ -477,12 +477,12 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@udacity/types-service-worker-mock@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@udacity/types-service-worker-mock/-/types-service-worker-mock-1.1.0.tgz#fd4c7e953cad97ed32ec1ce92b44629d294adca1"
-  integrity sha512-ZrQjXTmS6DmLeaPcUSkTe7YtIMpTtEaYKAa5koVg+6zezRvnr/Al7zCsu3oHKzcEvyxfUv4cP6wcilta/ggF5w==
+"@udacity/types-service-worker-mock@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@udacity/types-service-worker-mock/-/types-service-worker-mock-1.1.2.tgz#79a7c6b0cdf5a33581f34905faf6ba12b3baa0e7"
+  integrity sha512-2jTaANBBHuYOC1he5HAQ41kZgreYRV+3MCXoun6SIV8e6wFdRT7bNmnTGSb83GKVcADD9jVBSgm3xKRqfHX5qQ==
   dependencies:
-    service-worker-mock "^2.0.0"
+    service-worker-mock "^2.0.4"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -5990,7 +5990,7 @@ serialize-javascript@^2.1.2:
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-2.1.2.tgz#ecec53b0e0317bdc95ef76ab7074b7384785fa61"
   integrity sha512-rs9OggEUF0V4jUSecXazOYsLfu7OGK2qIn3c7IPBiffz32XniEp/TX9Xmc9LQfK2nQ2QKHvZ2oygKUGU0lG4jQ==
 
-service-worker-mock@^2.0.0, service-worker-mock@^2.0.4:
+service-worker-mock@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/service-worker-mock/-/service-worker-mock-2.0.4.tgz#bf8f278992becff114a6bccc7180274053767f6d"
   integrity sha512-uA4qa/Wh2UmXLBnTCJuR6UCVHu3zzgWKToPcw9lCMKv1gBXr/sZYLls6FNd4+MD5KgWtfhmK+D9UeGmp2rQFow==
