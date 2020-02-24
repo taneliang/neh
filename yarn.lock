@@ -470,10 +470,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@prettier/plugin-pug@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.1.8.tgz#6b1c9a800cde328fd8bd600b5e24f9cfff3df221"
-  integrity sha512-cW55oALlEPCEpyX7C8K7OKN3muX2aaiQG7oWgnWjY/DNcpejOu8DXB/iRB5lIKkApSlogy7EVc+9EQKdtIBs3A==
+"@prettier/plugin-pug@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.1.9.tgz#105a48e982dc043dd0c793dd7c8c04b2f6737ebc"
+  integrity sha512-QZH3zpmT0F9CSj6SydAvmg4lp8BSukYgz5LnTxQlhBw4OYibOHkA/dcyHAP/5mU8AE5EOxyAWzN6xqodviBMDA==
   dependencies:
     pug-lexer "~4.1.0"
 
