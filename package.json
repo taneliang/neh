@@ -20,7 +20,7 @@
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.7.0",
+    "@cloudflare/wrangler": "^1.8.0",
     "@fullhuman/postcss-purgecss": "^2.0.6",
     "@prettier/plugin-pug": "^1.1.9",
     "@types/fuzzyset.js": "^0.0.2",
