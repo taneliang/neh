@@ -8,6 +8,7 @@ import {
 } from '../SearchEngineHandler';
 import { redirect } from '../util';
 
+import dictHandler from './dict';
 import docsHandler from './docs';
 import ghHandler from './gh';
 import glHandler from './gl';
@@ -22,6 +23,7 @@ import makeListHandler from './list';
 const neh = new CommandHandler();
 
 // Handlers with their own files
+neh.addHandler('dict', dictHandler);
 neh.addHandler('docs', docsHandler);
 neh.addHandler('gh', ghHandler);
 neh.addHandler('gl', glHandler);
