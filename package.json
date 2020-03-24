@@ -22,7 +22,7 @@
   "devDependencies": {
     "@cloudflare/wrangler": "^1.8.3",
     "@fullhuman/postcss-purgecss": "^2.1.0",
-    "@prettier/plugin-pug": "^1.1.10",
+    "@prettier/plugin-pug": "^1.1.11",
     "@types/fuzzyset.js": "^0.0.2",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.1",
