@@ -264,10 +264,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cloudflare/wrangler@^1.8.2":
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/@cloudflare/wrangler/-/wrangler-1.8.2.tgz#77969457e83342ecb5f089c78611ca278285fa64"
-  integrity sha512-7qzfI0tuF0McSPZPKEk1LuMl27EKJ9pwDX8MnZUnZDQM1oli5WlSs9CfNUield7UIfDqMEyG7FZ2Ade8pjSSjw==
+"@cloudflare/wrangler@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@cloudflare/wrangler/-/wrangler-1.8.3.tgz#2b31aa107cf5e9ca10e18f88fe6b2a895e711446"
+  integrity sha512-jGQiZlnZnF6nNhgtfyUzHfBipRN+o2XQq2bdLeLmTyV0mPbaar1osMzKX+NRhYSjxPfIZ92RLLnFSrGEe5KbBg==
   dependencies:
     binary-install "0.0.1"
 
