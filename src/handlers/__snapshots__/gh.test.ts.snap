@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gh handler p handler should return error message if GitHub API returns error 1`] = `
+Response {
+  "body": Blob {
+    "parts": Array [
+      "GitHub API returned 403 Forbidden. Some message",
+    ],
+    "type": "",
+  },
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {},
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 500,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`gh handler p handler should return error message if GitHub returns empty items array 1`] = `
+Response {
+  "body": Blob {
+    "parts": Array [
+      "No users found for query some query.",
+    ],
+    "type": "",
+  },
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {},
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 500,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`gh handler r handler should return error message if GitHub API returns error 1`] = `
+Response {
+  "body": Blob {
+    "parts": Array [
+      "GitHub API returned 403 Forbidden. Some message",
+    ],
+    "type": "",
+  },
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {},
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 500,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`gh handler r handler should return error message if GitHub returns empty items array 1`] = `
+Response {
+  "body": Blob {
+    "parts": Array [
+      "No repositories found for query some query.",
+    ],
+    "type": "",
+  },
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {},
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 500,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;

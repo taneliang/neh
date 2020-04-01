@@ -57,25 +57,6 @@ Response {
 }
 `;
 
-exports[`neh should handle "gh r taneliang/neh" correctly 1`] = `
-Response {
-  "body": null,
-  "bodyUsed": false,
-  "headers": Headers {
-    "_map": Map {
-      "location" => "https://github.com/taneliang/neh",
-    },
-  },
-  "method": "GET",
-  "ok": false,
-  "redirected": false,
-  "status": 302,
-  "statusText": "OK",
-  "type": "basic",
-  "url": "http://example.com/asset",
-}
-`;
-
 exports[`neh should handle "ip" correctly 1`] = `
 Response {
   "body": null,
