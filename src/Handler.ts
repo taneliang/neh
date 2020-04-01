@@ -8,7 +8,7 @@ export const NOTHING_HANDLER_KEY = '$$$nothing_handler$$$';
 
 export type Token = string;
 
-export type HandlerFn = (tokens: Token[]) => Response;
+export type HandlerFn = (tokens: Token[]) => Response | Promise<Response>;
 
 export abstract class Handler {
   abstract readonly doc: DocType;
