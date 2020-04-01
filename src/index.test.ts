@@ -33,7 +33,6 @@ describe('neh', () => {
     '1+1',
     'drive 2',
     'drive',
-    'gh r taneliang/neh',
     'ip',
     "lyrics here's to never growing up",
     'npm p @babel/core',

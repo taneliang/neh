@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch';
 import { CommandHandler, FunctionHandler, RedirectHandler } from '../Handler';
 import { SearchEngineHandler, makeParamBasedSearchEngine } from '../SearchEngineHandler';
 import { redirect } from '../util';
