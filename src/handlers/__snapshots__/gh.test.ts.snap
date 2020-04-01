@@ -26,7 +26,7 @@ exports[`gh handler p handler should return error message if GitHub returns empt
 Response {
   "body": Blob {
     "parts": Array [
-      "No profiles found for query some query.",
+      "No users found for query some query.",
     ],
     "type": "",
   },

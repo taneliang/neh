@@ -39,7 +39,7 @@ const makeGitHubSearchHandlerFn = (resource: string): HandlerFn => async (
 
   const { items } = await response.json();
   if (items.length === 0) {
-    return new Response(`No profiles found for query ${query}.`, { status: 500 });
+    return new Response(`No ${resource} found for query ${query}.`, { status: 500 });
   }
 
   return redirect(items[0].html_url);
@@ -47,12 +47,18 @@ const makeGitHubSearchHandlerFn = (resource: string): HandlerFn => async (
 
 gh.addHandler(
   'p',
-  new FunctionHandler('navigates to a GitHub user profile', makeGitHubSearchHandlerFn('users')),
+  new FunctionHandler(
+    'navigates to a GitHub user/organization profile',
+    makeGitHubSearchHandlerFn('users'),
+  ),
 );
 
 gh.addHandler(
   'r',
-  new FunctionHandler('navigates to a GitHub repo', makeGitHubSearchHandlerFn('repositories')),
+  new FunctionHandler(
+    'navigates to a GitHub repository',
+    makeGitHubSearchHandlerFn('repositories'),
+  ),
 );
 
 export default gh;
