@@ -22,7 +22,7 @@
   "devDependencies": {
     "@cloudflare/wrangler": "^1.8.3",
     "@fullhuman/postcss-purgecss": "^2.1.0",
-    "@prettier/plugin-pug": "^1.1.11",
+    "@prettier/plugin-pug": "^1.2.0",
     "@types/fuzzyset.js": "^0.0.2",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.8",
@@ -47,7 +47,7 @@
     "jest-transform-stub": "^2.0.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.2",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "raw-loader": "^4.0.0",
