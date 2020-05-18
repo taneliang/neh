@@ -36,10 +36,9 @@ jobs:
           name: Test code
           environment:
             NODE_ENV: test
-            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
           command: |
             set -e
-            yarn test --coverage --runInBand --reporters=default --reporters=jest-junit
+            yarn test
             yarn codecov --disable=gcov -f ./coverage/coverage-final.json
       - store_test_results:
           path: reports
