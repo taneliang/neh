@@ -1,6 +1,7 @@
 worker
 .cargo-ok
 wrangler.toml
+test-reports
 
 # Created by https://www.gitignore.io/api/vim,node,linux,macos,pycharm,windows
 # Edit at https://www.gitignore.io/?templates=vim,node,linux,macos,pycharm,windows
