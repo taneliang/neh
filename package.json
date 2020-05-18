@@ -15,7 +15,7 @@
     "lint:code:fix": "yarn lint:code --fix",
     "lint:misc": "prettier --check **/*.{json,md,pug} --ignore-path '{node_modules,worker,dist}'",
     "lint:misc:fix": "yarn lint:misc --write",
-    "ci": "yarn typecheck && yarn lint && yarn ci"
+    "ci": "yarn typecheck && yarn lint && yarn test"
   },
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "@cloudflare/wrangler": "^1.9.0",
     "@fullhuman/postcss-purgecss": "^2.2.0",
     "@prettier/plugin-pug": "^1.2.0",
-    "@types/fuzzyset.js": "^0.0.2",
+    "@types/fuzzyset": "^1.0.2",
     "@types/jest": "^25.2.2",
     "@types/node": "^14.0.1",
     "@types/pug": "^2.0.4",
