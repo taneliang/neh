@@ -19,6 +19,7 @@ jobs:
           key: v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+            - node_modules
       - run:
           name: Typecheck Code
           command: yarn typecheck
@@ -34,4 +35,4 @@ jobs:
             yarn test
             yarn codecov --disable=gcov -f ./coverage/coverage-final.json
       - store_test_results:
-          path: reports
+          path: test-reports
