@@ -5,8 +5,7 @@ import { makeCloudflareWorkerRequest } from 'cloudflare-worker-mock';
 
 async function getResponse(path: string): Promise<Response> {
   const request = makeCloudflareWorkerRequest(path);
-  const responses = await self.trigger('fetch', request);
-  return responses[0];
+  return await self.trigger('fetch', request);
 }
 
 describe('neh', () => {
