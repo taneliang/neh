@@ -1,6 +1,6 @@
 // National University of Singapore-related data and utils
 
-import FuzzySet from 'fuzzyset.js';
+import FuzzySet from 'fuzzyset';
 import mods from './modules.json';
 
 export type NUSModBookmarks = { [bookmark: string]: string };
@@ -19,7 +19,7 @@ export const modules: { [modcode: string]: NUSMod } = mods;
 const modcodes = FuzzySet(Object.keys(modules));
 
 export function getClosestModcode(fuzzyModcode: string): string | undefined {
-  const hypotheses = modcodes.get(fuzzyModcode, null, 0.5);
+  const hypotheses = modcodes.get(fuzzyModcode);
   if (!hypotheses) return;
   return hypotheses[0][1];
 }

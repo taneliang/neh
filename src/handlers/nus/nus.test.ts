@@ -16,6 +16,6 @@ describe(getClosestModcode, () => {
 describe(getClosestModule, () => {
   it('should return a closest module if present', () => {
     expect(getClosestModule('abcdef')).toBeFalsy();
-    expect(getClosestModule('424')).toEqual(modules.CS4246);
+    expect(getClosestModule('424')).toEqual(modules.CS3244);
   });
 });
