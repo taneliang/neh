@@ -41,3 +41,5 @@ jobs:
             set -e
             yarn test --coverage --runInBand --reporters=default --reporters=jest-junit
             yarn codecov --disable=gcov -f ./coverage/coverage-final.json
+      - store_test_results:
+          path: reports
