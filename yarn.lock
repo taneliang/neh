@@ -789,12 +789,12 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@udacity/types-service-worker-mock@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@udacity/types-service-worker-mock/-/types-service-worker-mock-1.1.2.tgz#79a7c6b0cdf5a33581f34905faf6ba12b3baa0e7"
-  integrity sha512-2jTaANBBHuYOC1he5HAQ41kZgreYRV+3MCXoun6SIV8e6wFdRT7bNmnTGSb83GKVcADD9jVBSgm3xKRqfHX5qQ==
+"@udacity/types-service-worker-mock@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@udacity/types-service-worker-mock/-/types-service-worker-mock-1.2.0.tgz#f047a26d036469f11b8f0f50d4c0901ae999bb93"
+  integrity sha512-VWvPhE8U9Xi/QVq1E0UphfVjzZtNV7kDSKiJ9AXnrBO291BLHV2/alUh99xDO6BoG66L5ETx5k/ZSRUaRopv+w==
   dependencies:
-    service-worker-mock "^2.0.4"
+    service-worker-mock "^2.0.5"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -1842,12 +1842,12 @@ cliui@^6.0.0:
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
 
-cloudflare-worker-mock@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/cloudflare-worker-mock/-/cloudflare-worker-mock-1.1.2.tgz#77d55ce5ab16da7e641482d60740293c5ea30977"
-  integrity sha512-IBhid8TRbJi0pVV/QkBRCwTvQ1Y7QWZAkli7AX38iZ2VXXN/PrH/geEEH3qDbKWek3HiAPPJqEJFRGUFtA/Haw==
+cloudflare-worker-mock@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/cloudflare-worker-mock/-/cloudflare-worker-mock-1.2.0.tgz#14e3a63be9a9a10b08c358d179d91958aa8e3efd"
+  integrity sha512-IOS8JRq7fs8tBl2ITlPEa3r3eN685IjfflJv6cLNxf2fAuC8+rgEfr0Hu8mv5xrR6OxZQYdNfOxDMZbYH1SJbQ==
   dependencies:
-    service-worker-mock "^2.0.4"
+    service-worker-mock "^2.0.5"
 
 co@^4.6.0:
   version "4.6.0"
@@ -6709,10 +6709,10 @@ serialize-javascript@^2.1.2:
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-2.1.2.tgz#ecec53b0e0317bdc95ef76ab7074b7384785fa61"
   integrity sha512-rs9OggEUF0V4jUSecXazOYsLfu7OGK2qIn3c7IPBiffz32XniEp/TX9Xmc9LQfK2nQ2QKHvZ2oygKUGU0lG4jQ==
 
-service-worker-mock@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/service-worker-mock/-/service-worker-mock-2.0.4.tgz#bf8f278992becff114a6bccc7180274053767f6d"
-  integrity sha512-uA4qa/Wh2UmXLBnTCJuR6UCVHu3zzgWKToPcw9lCMKv1gBXr/sZYLls6FNd4+MD5KgWtfhmK+D9UeGmp2rQFow==
+service-worker-mock@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/service-worker-mock/-/service-worker-mock-2.0.5.tgz#89d47ec1571130114d4deed66d69bdcfee4a4545"
+  integrity sha512-yk6NCFnRWGfbOlP+IS4hEbJnGU8dVgtodAAKLxhkTPsOmaES44XVSWTNozK6KwI+p/0PDRrFsb2RjTMhvXiNkA==
   dependencies:
     dom-urls "^1.1.0"
     shelving-mock-indexeddb "^1.1.0"
