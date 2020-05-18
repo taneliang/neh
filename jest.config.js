@@ -15,6 +15,6 @@ module.exports = {
   // Only write lcov and test report files in CI
   coverageReporters: ['text'].concat(process.env.CI ? 'json' : []),
   reporters: ['default'].concat(
-    process.env.CI ? ['jest-junit', { outputDirectory: './test-reports/junit' }] : [],
+    process.env.CI ? [['jest-junit', { outputDirectory: './test-reports/junit' }]] : [],
   ),
 };
