@@ -54,7 +54,7 @@
     "source-map-loader": "^1.0.0",
     "tailwindcss": "^1.4.6",
     "to-string-loader": "^1.1.6",
-    "ts-jest": "^26.0.0",
+    "ts-jest": "^26.1.3",
     "ts-loader": "^7.0.5",
     "types-cloudflare-worker": "^1.2.0",
     "typescript": "^3.9.5",
