@@ -6,7 +6,10 @@
 
 <https://neh.eltan.net>
 
-A tool that redirects you; intended to be an Alfred for your browser.
+A tool that redirects you to some commonly used sites; intended to be an
+Alfred for your browser.
+
+![screencast](screenshots/screencast.gif)
 
 Inspired by Facebook's open source [bunny](http://www.bunny1.org) tool, but
 rewritten for the cloud serverless edge computing age – neh runs in Cloudflare
