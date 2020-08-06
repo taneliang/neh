@@ -59,7 +59,7 @@
     "types-cloudflare-worker": "^1.2.0",
     "typescript": "^3.9.7",
     "url-parse": "^1.4.7",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
 }
