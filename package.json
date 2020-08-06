@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@cloudflare/wrangler": "^1.10.3",
-    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "@prettier/plugin-pug": "^1.4.4",
     "@types/fuzzyset": "^1.0.2",
     "@types/jest": "^26.0.3",
