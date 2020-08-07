@@ -476,12 +476,12 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@prettier/plugin-pug@^1.4.4":
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.4.4.tgz#252c8dfac574c82d1e95492b9bd4cb59c44d3ee6"
-  integrity sha512-Lb3cc0a4IwUy9oNeYuN1YHg/+J5JDsJNSKFMGpcp6cq6vnMcNyWn+KNBkTo/ZYEIT2JAsl6X+KKAvjH1p+XGeQ==
+"@prettier/plugin-pug@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.5.1.tgz#25313566a3d21ae9457003501be33ddc5dbb68a1"
+  integrity sha512-LUuXiILPURVCF8u4gnE6SWQZ/+1kVnRatXK6SmQyk+ed8F4uDyNCGuIu3/W7jYQB+k7kD6eQZqINuPWvbPTzYQ==
   dependencies:
-    pug-lexer "~5.0.0"
+    pug-lexer "^5.0.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.7.2"
@@ -5841,7 +5841,7 @@ pug-lexer@^4.1.0:
     is-expression "^3.0.0"
     pug-error "^1.3.3"
 
-pug-lexer@~5.0.0:
+pug-lexer@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/pug-lexer/-/pug-lexer-5.0.0.tgz#0b779e7d8cbf0f103803675be96351942fd9a727"
   integrity sha512-52xMk8nNpuyQ/M2wjZBN5gXQLIylaGkAoTk5Y1pBhVqaopaoj8Z0iVzpbFZAqitL4RHNVDZRnJDsqEYe99Ti0A==
