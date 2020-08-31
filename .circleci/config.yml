@@ -4,6 +4,12 @@ aliases:
   - &docker
     - image: circleci/node:12
 
+  - &restore_yarn_cache
+    restore_cache:
+      - restore_cache:
+          name: Restore yarn cache
+          key: v2-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
+
   - &restore_node_modules
     restore_cache:
       name: Restore node_modules cache
@@ -16,9 +22,7 @@ jobs:
     docker: *docker
     steps:
       - checkout
-      - restore_cache:
-          name: Restore yarn cache
-          key: v2-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
+      - *restore_yarn_cache
       - *restore_node_modules
       - run:
           name: Install dependencies
@@ -61,7 +65,11 @@ jobs:
     docker: *docker
     steps:
       - checkout
-      - *restore_node_modules
+      - *restore_yarn_cache
+      # `yarn install` run necessary so that wrangler is installed correctly
+      - run:
+          name: Install dependencies
+          command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn --non-interactive
       - run: yarn run publish
 
 workflows:
