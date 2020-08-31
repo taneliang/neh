@@ -40,42 +40,49 @@ Examples:
 
 Neh! Liddat only. Easy.
 
-## Dev setup
+## Development
+
+### Setup
 
 We use Cloudflare's [Wrangler](https://github.com/cloudflare/wrangler) tool to
 run and publish neh.
 
-Create a wrangler.toml file with appropriate configuration. Here's a template:
+1. Run `yarn` to install dependencies.
+1. `cp .env.example .env` and fill it in.
+1. Modify the wrangler.toml file as appropriate.
 
-```toml
-name = "neh"
-type = "webpack"
-webpack_config = "./webpack.config.js"
-zone_id = ""
-private = false
-account_id = ""
-route = ""
-workers_dev = true
-```
+### Local development server
 
-Install dependencies with Yarn.
+To start a local development server, run:
 
 ```sh
-yarn
+yarn start
 ```
+
+You'll then be able to open neh at http://localhost:8787.
+
+### Cloudflare Workers preview
 
 To
-[preview](https://developers.cloudflare.com/workers/quickstart/#preview-your-project)
-neh in development, run:
+[preview](https://developers.cloudflare.com/workers/learning/getting-started#5-preview-your-project)
+neh, run:
 
 ```sh
-yarn start  # Starts a local dev server accessible at http://localhost:8787
-# OR
-yarn preview  # Starts a preview on cloudflareworkers.com
+yarn preview
 ```
 
-To publish neh to Cloudflare Workers, run:
+Wrangler will open the preview in your web browser. If this does not happen,
+ensure that the `BROWSER` environmental variable has been set.
 
-```sh
-yarn run publish
-```
+## Publishing
+
+Our CircleCI workflow automatically deploys neh's `master` branch to
+Cloudflare Workers.
+
+Having said that, here's how you can publish neh manually:
+
+1. Add `CF_API_TOKEN` to your `.env` file.
+1. Run:
+   ```sh
+   yarn env-cmd yarn run publish
+   ```
