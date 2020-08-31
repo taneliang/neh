@@ -7,7 +7,6 @@ describe('gh handler', () => {
       fetchMock.enableMocks();
 
       const htmlUrl = 'https://github.com/taneliang';
-      // eslint-disable-next-line @typescript-eslint/camelcase
       const expectedJsonResponse = { items: [{ html_url: htmlUrl }] };
       fetchMock.mockOnce(async () => JSON.stringify(expectedJsonResponse));
 
@@ -53,7 +52,6 @@ describe('gh handler', () => {
       fetchMock.enableMocks();
 
       const htmlUrl = 'https://github.com/taneliang/neh';
-      // eslint-disable-next-line @typescript-eslint/camelcase
       const expectedJsonResponse = { items: [{ html_url: htmlUrl }] };
       fetchMock.mockOnce(async () => JSON.stringify(expectedJsonResponse));
 
