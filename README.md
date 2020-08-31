@@ -1,7 +1,7 @@
 # neh
 
 [![CircleCI](https://circleci.com/gh/taneliang/neh.svg?style=svg)](https://circleci.com/gh/taneliang/neh)
-[![codecov](https://codecov.io/gh/taneliang/neh/branch/master/graph/badge.svg)](https://codecov.io/gh/taneliang/neh)
+[![codecov](https://codecov.io/gh/taneliang/neh/branch/main/graph/badge.svg)](https://codecov.io/gh/taneliang/neh)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a17d9aa41c5fe1ee3dfb/maintainability)](https://codeclimate.com/github/taneliang/neh/maintainability)
 
 <https://neh.eltan.net>
@@ -76,7 +76,7 @@ ensure that the `BROWSER` environmental variable has been set.
 
 ## Publishing
 
-Our CircleCI workflow automatically deploys neh's `master` branch to
+Our CircleCI workflow automatically deploys neh's `main` branch to
 Cloudflare Workers.
 
 Having said that, here's how you can publish neh manually:
