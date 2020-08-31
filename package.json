@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "A tool that redirects you; intended to be an Alfred for your browser.",
   "scripts": {
-    "start": "wrangler preview --watch",
+    "start": "wrangler dev",
+    "preview": "wrangler preview --watch",
     "publish": "wrangler publish",
     "typecheck": "tsc --noEmit",
     "test": "jest --coverage",
@@ -53,7 +54,6 @@
     "raw-loader": "^4.0.1",
     "source-map-loader": "^1.0.1",
     "tailwindcss": "^1.4.6",
-    "to-string-loader": "^1.1.6",
     "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.3",
     "types-cloudflare-worker": "^1.2.0",

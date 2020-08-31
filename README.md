@@ -47,7 +47,7 @@ run and publish neh.
 
 Create a wrangler.toml file with appropriate configuration. Here's a template:
 
-```
+```toml
 name = "neh"
 type = "webpack"
 webpack_config = "./webpack.config.js"
@@ -60,7 +60,7 @@ workers_dev = true
 
 Install dependencies with Yarn.
 
-```
+```sh
 yarn
 ```
 
@@ -68,12 +68,14 @@ To
 [preview](https://developers.cloudflare.com/workers/quickstart/#preview-your-project)
 neh in development, run:
 
-```
-yarn start
+```sh
+yarn start  # Starts a local dev server accessible at http://localhost:8787
+# OR
+yarn preview  # Starts a preview on cloudflareworkers.com
 ```
 
 To publish neh to Cloudflare Workers, run:
 
-```
+```sh
 yarn run publish
 ```

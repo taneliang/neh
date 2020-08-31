@@ -36,11 +36,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'to-string-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader',
-        ],
+        use: ['css-loader', 'postcss-loader'],
       },
     ],
   },
