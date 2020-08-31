@@ -34,9 +34,8 @@ different search engines. It's not completely reliable but works in most cases.
 Examples:
 
 - Convert a YouTube search to a Wikipedia search: [wk https://www.youtube.com/results?search_query=rickroll](https://neh.eltan.net/wk%20https://www.youtube.com/results?search_query=rickroll)
-- Find the Yarnpkg.com package which corresponds to an NPM package: [npm p https://yarnpkg.com/en/package/react](https://neh.eltan.net/npm%20p%20https://yarnpkg.com/en/package/react)
 - Convert a Google search to an NPM package: [npm p https://www.google.com/search?q=react](https://neh.eltan.net/npm%20p%20https://www.google.com/search?q=react)
-- Search DuckDuckGo for a Yarn package: [d https://yarnpkg.com/en/package/react](https://neh.eltan.net/d%20https://yarnpkg.com/en/package/react)
+- Look up an NPM package on BundlePhobia: [bp https://www.npmjs.com/package/react](https://neh.eltan.net/bp%20https://www.npmjs.com/package/react)
 
 Neh! Liddat only. Easy.
 
