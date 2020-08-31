@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "description": "A tool that redirects you; intended to be an Alfred for your browser.",
   "scripts": {
-    "start": "wrangler dev",
-    "preview": "wrangler preview --watch",
+    "start": "env-cmd wrangler dev",
+    "preview": "env-cmd wrangler preview --watch",
     "publish": "wrangler publish",
     "typecheck": "tsc --noEmit",
     "test": "jest --coverage",
@@ -21,7 +21,7 @@
   "author": "E-Liang Tan <eliang@eliangtan.com>",
   "license": "MIT",
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.10.3",
+    "@cloudflare/wrangler": "^1.11.0",
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@prettier/plugin-pug": "^1.5.1",
     "@types/fuzzyset": "^1.0.2",
@@ -37,6 +37,7 @@
     "codecov": "^3.7.2",
     "css-loader": "^4.2.2",
     "cssnano": "^4.1.10",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",

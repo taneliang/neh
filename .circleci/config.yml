@@ -1,24 +1,45 @@
 version: 2
 
+aliases:
+  - &docker
+    - image: circleci/node:12
+
+  - &restore_yarn_cache
+    restore_cache:
+      name: Restore yarn cache
+      key: v2-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
+
+  - &restore_node_modules
+    restore_cache:
+      name: Restore node_modules cache
+      key: v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-node-modules
+
 jobs:
   build:
     working_directory: ~/neh
-    docker:
-      - image: circleci/node:12
+    docker: *docker
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - v2-node-{{ arch }}-{{ .Branch }}-
-            - v2-node-{{ arch }}-
+      - *restore_yarn_cache
+      - *restore_node_modules
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn --non-interactive
       - save_cache:
-          key: v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          # Store the yarn cache globally for all lock files with this same
+          # checksum. This will speed up the setup job for all PRs where the
+          # lockfile is the same.
+          name: Save yarn cache for future installs
+          key: v2-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
           paths:
             - ~/.cache/yarn
+      - save_cache:
+          # Store node_modules for all jobs in this workflow so that they don't
+          # need to each run a yarn install for each job. This will speed up
+          # all jobs run on this branch with the same lockfile.
+          name: Save node_modules cache
+          key: v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-node-modules
+          paths:
             - node_modules
       - run:
           name: Typecheck Code
@@ -36,3 +57,28 @@ jobs:
             yarn codecov --disable=gcov -f ./coverage/coverage-final.json
       - store_test_results:
           path: test-reports
+
+  deploy:
+    working_directory: ~/neh
+    docker: *docker
+    steps:
+      - checkout
+      - *restore_yarn_cache
+      # `yarn install` run necessary so that wrangler is installed correctly
+      - run:
+          name: Install dependencies
+          command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn --non-interactive
+      - run: yarn run publish
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+          context: neh-cf-deploy
