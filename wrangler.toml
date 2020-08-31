@@ -1,0 +1,6 @@
+name = "neh"
+type = "webpack"
+webpack_config = "./webpack.config.js"
+private = false
+route = "neh.eltan.net/*"
+workers_dev = false
