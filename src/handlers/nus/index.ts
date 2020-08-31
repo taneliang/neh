@@ -89,10 +89,10 @@ nus.addHandler(
   new FunctionHandler(
     "navigates to an NUS module's Panopto webcasts",
     makeModRedirector(
-      'https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx',
+      'https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx',
       'panopto',
       (fieldValue) =>
-        `https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${fieldValue}"`,
+        `https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="${fieldValue}"`,
     ),
   ),
 );

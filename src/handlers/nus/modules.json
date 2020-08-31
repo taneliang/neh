@@ -1,27 +1,22 @@
 {
   "CS3219": {
-    "luminus": "42f051f9-44d2-4393-8ed5-e79d4a97b8de",
-    "panopto": "a37a4fec-408e-4e1e-9a89-aabc000a5ce8"
+    "luminus": "42f051f9-44d2-4393-8ed5-e79d4a97b8de"
   },
   "CS3230": {
-    "luminus": "b85e28eb-bab3-4375-b03e-16f0ce45a591",
-    "panopto": "4da3b08c-eb31-4fea-a07e-aa9600837aa3"
+    "luminus": "b85e28eb-bab3-4375-b03e-16f0ce45a591"
   },
   "CS3244": {
     "coursemology": "1677",
     "luminus": "783480f2-d3be-4587-843d-d73140337bec"
   },
   "CS4211": {
-    "luminus": "e24ac9c6-1c2b-4c0d-a4d7-91bc3121e5d6",
-    "panopto": "d538678a-c436-47e3-b768-aa6f00868281"
+    "luminus": "e24ac9c6-1c2b-4c0d-a4d7-91bc3121e5d6"
   },
   "CS4246": {
-    "luminus": "b864e4ca-c625-475b-931e-e48dcd746058",
-    "panopto": "c00ebc7d-88e6-443f-9528-aaa90034c033"
+    "luminus": "b864e4ca-c625-475b-931e-e48dcd746058"
   },
   "CS4231": {
-    "luminus": "ed35bc67-1722-47f3-ac5a-e9f8bee89515",
-    "panopto": "bd4781dd-c3a8-4d8a-9e69-ab510059c01d"
+    "luminus": "ed35bc67-1722-47f3-ac5a-e9f8bee89515"
   },
   "ES2660": {
     "luminus": "ea39a802-3aa8-412b-a5b1-5d606612db9e"
@@ -37,7 +32,26 @@
     }
   },
   "LSM1301": {
-    "luminus": "cd4b5dae-e8b6-4bda-b8ea-ac739559e606",
-    "panopto": "6312f688-0769-4672-82cb-ab3c005e2302"
+    "luminus": "cd4b5dae-e8b6-4bda-b8ea-ac739559e606"
+  },
+  "AH2101": {
+    "luminus": "f558bac6-e2ed-4558-b829-b967795403f6"
+  },
+  "ALS1020": {
+    "luminus": "5be8677f-5081-458a-bc55-fa01902834f1"
+  },
+  "CS2102": {
+    "coursemology": "1904",
+    "luminus": "f570a755-a92f-4701-82c4-fb889645a7d0"
+  },
+  "CS2104": {
+    "luminus": "d2e3f374-3709-40a3-a2bf-722591ea98d4"
+  },
+  "IS4152": {
+    "luminus": "59fa601c-f93c-4374-bc53-03192760502e",
+    "panopto": "e6ffcd4a-b0c3-4432-9045-ac16009dfc67"
+  },
+  "PH2241": {
+    "luminus": "9ac212d2-fc44-4f63-9a65-263a0fe4771f"
   }
 }

@@ -120,7 +120,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=\\"a37a4fec-408e-4e1e-9a89-aabc000a5ce8\\"",
+      "location" => "https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=\\"a37a4fec-408e-4e1e-9a89-aabc000a5ce8\\"",
     },
   },
   "method": "GET",
@@ -139,7 +139,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx",
+      "location" => "https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx",
     },
   },
   "method": "GET",
@@ -158,7 +158,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://nuscast.ap.panopto.com/Panopto/Pages/Sessions/List.aspx",
+      "location" => "https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx",
     },
   },
   "method": "GET",
