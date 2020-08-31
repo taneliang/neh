@@ -16,7 +16,6 @@ import ibankHandler from './ibank';
 import npmHandler from './npm';
 import nusHandler from './nus';
 import rdHandler from './rd';
-import yarnHandler from './yarn';
 
 import makeListHandler from './list';
 
@@ -31,7 +30,6 @@ neh.addHandler('ibank', ibankHandler);
 neh.addHandler('npm', npmHandler);
 neh.addHandler('nus', nusHandler);
 neh.addHandler('rd', rdHandler);
-neh.addHandler('yarn', yarnHandler);
 
 const listHandler = makeListHandler(neh);
 neh.addHandler('list', listHandler);
