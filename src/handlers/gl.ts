@@ -13,7 +13,7 @@ gl.setNothingHandler(new RedirectHandler('navigates to GitLab', glHomeUrl));
 gl.setDefaultHandler(
   new SearchEngineHandler(
     'does a GitLab search',
-    makeParamBasedSearchEngine(glHomeUrl, 'https://github.com/search', 'q'),
+    makeParamBasedSearchEngine(glHomeUrl, 'https://gitlab.com/search', 'search'),
   ),
 );
 
