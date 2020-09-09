@@ -35,7 +35,7 @@
     "awesome-pug-jest": "^1.1.0",
     "cloudflare-worker-mock": "^1.2.0",
     "codecov": "^3.7.2",
-    "css-loader": "^4.2.2",
+    "css-loader": "^4.3.0",
     "cssnano": "^4.1.10",
     "env-cmd": "^10.1.0",
     "eslint": "^7.7.0",
