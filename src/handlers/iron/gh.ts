@@ -1,12 +1,12 @@
-import { CommandHandler, RedirectHandler } from '../../../Handler';
+import { CommandHandler, RedirectHandler } from '../../Handler';
 import {
   SearchEngineHandler,
   makeParamBasedSearchEngine,
   makeAppendBasedSearchEngine,
-} from '../../../SearchEngineHandler';
-import { repoUrl } from './constants';
+} from '../../SearchEngineHandler';
 
 const gh = new CommandHandler();
+const repoUrl = 'https://github.com/Ironclad/ironclad';
 
 gh.setNothingHandler(new RedirectHandler('navigates to GitHub', repoUrl));
 
