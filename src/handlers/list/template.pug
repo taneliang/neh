@@ -1,5 +1,5 @@
 mixin docTable(doc, nested)
-  table.text-left.w-full.h-full.sm_px-4
+  table(class="text-left w-full sm_px-4 " + nested ? "" : " h-full")
     thead.uppercase.text-xs.text-gray-700.tracking-wide
       tr
         th.p-3 Command
