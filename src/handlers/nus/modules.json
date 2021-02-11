@@ -1,4 +1,13 @@
 {
+  "CS2030S": {
+    "luminus": "c8378b00-daa4-430e-b49f-22f6509a1287"
+  },
+  "CS20404S": {
+    "coursemology": "2013"
+  },
+  "CS2100": {
+    "luminus": "6186cea5-8af5-4cc0-987b-1422e4145bc2"
+  },
   "CS3219": {
     "luminus": "42f051f9-44d2-4393-8ed5-e79d4a97b8de"
   },
@@ -21,6 +30,9 @@
   "ES2660": {
     "luminus": "ea39a802-3aa8-412b-a5b1-5d606612db9e"
   },
+  "GER1000": {
+    "luminus": "05f3169d-1473-4435-8a9d-088945a40e8f"
+  },
   "GET1036": {
     "luminus": "cca6d37b-76e4-4658-a62b-5bbd90f919d3"
   },
@@ -29,6 +41,12 @@
     "bookmarks": {
       "files": "https://nusu.sharepoint.com/sites/GET1042SkyandTelescopes1920/Class%20Materials/Forms/AllItems.aspx",
       "teams": "https://teams.microsoft.com/_#/tab::1c91b052-23cf-439e-8522-e4b5fadac169/General?threadId=19:93415ed9fcf34d11823e1c55b710cd32@thread.skype&ctx=channel"
+    }
+  },
+  "IS1103": {
+    "luminus": "bec9a2ca-49a8-4774-bb0a-c243b85165b5",
+    "bookmarks": {
+      "missions": "http://is1103db-i.comp.nus.edu.sg/wordpress/"
     }
   },
   "LSM1301": {
