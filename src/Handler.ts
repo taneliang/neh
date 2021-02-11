@@ -12,7 +12,7 @@ export type HandlerFn = (tokens: Token[]) => Response | Promise<Response>;
 
 export abstract class Handler {
   abstract readonly doc: DocType;
-  abstract async handle(tokens: Token[]): Promise<Response>;
+  abstract handle(tokens: Token[]): Promise<Response>;
 }
 
 export class FunctionHandler extends Handler {
