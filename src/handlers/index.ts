@@ -141,6 +141,11 @@ neh.addHandler(
 );
 
 neh.addHandler(
+  'pb',
+  new RedirectHandler('navigates to Productboard', 'https://app.productboard.com'),
+);
+
+neh.addHandler(
   'rtm',
   new RedirectHandler('navigates to Remember the Milk', 'https://www.rememberthemilk.com'),
 );
