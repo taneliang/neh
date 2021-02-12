@@ -2,7 +2,6 @@ import { CommandHandler, FunctionHandler, RedirectHandler } from '../Handler';
 import {
   SearchEngineHandler,
   makeAppendBasedSearchEngine,
-  makeHashBasedSearchEngine,
   makeParamBasedSearchEngine,
   makePathBasedSearchEngine,
 } from '../SearchEngineHandler';
@@ -114,11 +113,7 @@ neh.addHandler(
   'nixo',
   new SearchEngineHandler(
     'does a NixOS option search',
-    makeParamBasedSearchEngine(
-      'https://search.nixos.org/options?channel=unstable',
-      null,
-      'query',
-    ),
+    makeParamBasedSearchEngine('https://search.nixos.org/options?channel=unstable', null, 'query'),
   ),
 );
 
@@ -126,11 +121,7 @@ neh.addHandler(
   'nixp',
   new SearchEngineHandler(
     'does a NixOS package search',
-    makeParamBasedSearchEngine(
-      'https://search.nixos.org/packages?channel=unstable',
-      null,
-      'query',
-    ),
+    makeParamBasedSearchEngine('https://search.nixos.org/packages?channel=unstable', null, 'query'),
   ),
 );
 
