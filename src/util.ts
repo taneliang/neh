@@ -6,7 +6,14 @@ export function emptyArray<T>(arr: T[]): void {
   arr.splice(0, arr.length);
 }
 
-export function extractQueryFromUrl(urlStr: string): string {
+export function extractQueryFromUrl(urlStr: string, convertPlusToSpace?: boolean): string {
+  // Firefox sends search queries for 'token1 token2' as '/token1+token2',
+  // while Chrome sends '/token1%20token2'. The `convertPlusToSpace` normalizes
+  // this behaviour.
+  if (convertPlusToSpace) {
+    urlStr = urlStr.replace(/\+/g, '%20');
+  }
+
   // Use url-parse instead of URL for pathname as double slashes will be
   // removed on Cloudflare by URL.
   const parsedUrl = parse(urlStr, true);

@@ -35,6 +35,22 @@ describe(extractQueryFromUrl, () => {
       'cmd https://derp.com/search#query',
     );
   });
+
+  test('should accept queries encoded with `+` instead of `%20` for space characters', () => {
+    expect(extractQueryFromUrl('https://example.com/cmd+token', true)).toEqual('cmd token');
+
+    expect(extractQueryFromUrl('https://example.com/cmd+https://derp.com', true)).toEqual(
+      'cmd https://derp.com',
+    );
+
+    expect(
+      extractQueryFromUrl('https://example.com/cmd+https://derp.com/search?q=query', true),
+    ).toEqual('cmd https://derp.com/search?q=query');
+
+    expect(
+      extractQueryFromUrl('https://example.com/cmd+https://derp.com/search#query', true),
+    ).toEqual('cmd https://derp.com/search#query');
+  });
 });
 
 describe(tokenizeQuery, () => {
