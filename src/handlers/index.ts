@@ -114,7 +114,11 @@ neh.addHandler(
   'nixo',
   new SearchEngineHandler(
     'does a NixOS option search',
-    makeHashBasedSearchEngine('https://nixos.org/nixos/options.html', null),
+    makeParamBasedSearchEngine(
+      'https://search.nixos.org/options?channel=unstable',
+      null,
+      'query',
+    ),
   ),
 );
 
@@ -123,7 +127,7 @@ neh.addHandler(
   new SearchEngineHandler(
     'does a NixOS package search',
     makeParamBasedSearchEngine(
-      'https://nixos.org/nixos/packages.html?channel=nixos-unstable',
+      'https://search.nixos.org/packages?channel=unstable',
       null,
       'query',
     ),
