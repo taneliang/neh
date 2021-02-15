@@ -5,7 +5,6 @@ import { redirect } from './util';
 type SearchUrlGenerator = (tokens: string[]) => string;
 type SearchUrlParser = (url: string) => string | null;
 
-// Move this to a search engine file
 export type SearchEngine = {
   defaultUrl: string;
   generateSearchUrl: SearchUrlGenerator;

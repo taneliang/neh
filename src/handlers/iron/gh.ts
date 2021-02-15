@@ -21,13 +21,21 @@ gh.addHandler(
   ),
 );
 
-const prHandler = new SearchEngineHandler(
-  'navigates to a pull request',
-  makeAppendBasedSearchEngine(
-    `${repoUrl}/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc`,
-    `${repoUrl}/pull/`,
-  ),
+const baseSearchEngine = makeAppendBasedSearchEngine(
+  `${repoUrl}/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc`,
+  `${repoUrl}/pulls?q=is%3Apr+sort%3Aupdated-desc+`,
 );
+const prHandler = new SearchEngineHandler('navigates to a specific PR or does a PR search', {
+  ...baseSearchEngine,
+  generateSearchUrl(tokens): string {
+    const prNumberString = tokens[0];
+    const prNumber = parseInt(prNumberString, 10);
+    if (!isNaN(prNumber)) {
+      return `${repoUrl}/pull/${prNumber}`;
+    }
+    return baseSearchEngine.generateSearchUrl(tokens);
+  },
+});
 gh.setDefaultHandler(prHandler);
 gh.addHandler('pr', prHandler);
 
