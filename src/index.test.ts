@@ -5,15 +5,6 @@ import { makeCloudflareWorkerRequest } from 'cloudflare-worker-mock';
 
 async function getResponse(requestInfo: RequestInfo): Promise<Response> {
   const request = makeCloudflareWorkerRequest(requestInfo);
-  // userAgent
-  //   ? path
-  //   : new Request(path, {
-  //       headers: {
-  //         'User-Agent':
-  //           'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:85.0) Gecko/20100101 Firefox/85.0',
-  //       },
-  //     }),
-  // );
   return await self.trigger('fetch', request);
 }
 
