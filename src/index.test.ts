@@ -3,8 +3,8 @@ declare const self: CloudflareWorkerGlobalScope;
 
 import { makeCloudflareWorkerRequest } from 'cloudflare-worker-mock';
 
-async function getResponse(path: string): Promise<Response> {
-  const request = makeCloudflareWorkerRequest(path);
+async function getResponse(requestInfo: RequestInfo): Promise<Response> {
+  const request = makeCloudflareWorkerRequest(requestInfo);
   return await self.trigger('fetch', request);
 }
 
@@ -29,7 +29,7 @@ describe('neh', () => {
 
   // Some test input
   const testCases = [
-    '1+1',
+    '1 + 1',
     'drive 2',
     'drive',
     'ip',
@@ -39,10 +39,28 @@ describe('neh', () => {
     'trzh hong kong',
   ];
 
-  testCases.forEach((inputStr) => {
-    test(`should handle "${inputStr}" correctly`, async () => {
-      const response = await getResponse(inputStr);
-      expect(response).toMatchSnapshot();
+  testCases
+    .map((inputStr) => inputStr.replace(/ /g, '%20'))
+    .forEach((inputStr) => {
+      test(`should handle "${inputStr}" "%20"-spaced query correctly`, async () => {
+        const response = await getResponse(inputStr);
+        expect(response).toMatchSnapshot();
+      });
     });
-  });
+
+  testCases
+    .map((inputStr) => inputStr.replace(/\+/g, '%2B').replace(/ /g, '+'))
+    .forEach((inputStr) => {
+      test(`should handle "${inputStr}" "+"-spaced query correctly`, async () => {
+        const response = await getResponse(
+          new Request(inputStr, {
+            headers: {
+              'User-Agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:85.0) Gecko/20100101 Firefox/85.0',
+            },
+          }),
+        );
+        expect(response).toMatchSnapshot();
+      });
+    });
 });

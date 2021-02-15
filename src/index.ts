@@ -13,12 +13,15 @@ async function handleRequest(request: Request): Promise<Response> {
   if (requestURL.pathname === '/_opensearch') {
     return new Response(openSearchDescription, {
       headers: {
-        'content-type': 'application/xml',
+        'content-type': 'application/opensearchdescription+xml',
       },
     });
   }
 
-  const query = extractQueryFromUrl(request.url);
+  // extractQueryFromUrl explains why areSpacesEncodedAsPlus is necessary
+  const areSpacesEncodedAsPlus = /\bFirefox\b/i.test(request.headers.get('user-agent') || '');
+  const query = extractQueryFromUrl(request.url, areSpacesEncodedAsPlus);
+
   const tokens = tokenizeQuery(query);
   return await handler.handle(tokens);
 }
