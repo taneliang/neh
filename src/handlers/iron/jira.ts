@@ -1,11 +1,9 @@
-import { CommandHandler, FunctionHandler, HandlerFn, RedirectHandler } from '../../Handler';
-import { redirect } from '../../util';
+import { CommandHandler, RedirectHandler } from '../../Handler';
+import { makeParamBasedSearchEngine, SearchEngineHandler } from '../../SearchEngineHandler';
 
 const jira = new CommandHandler();
 
-jira.setNothingHandler(
-  new RedirectHandler('navigates to Jira', 'https://ironcladapp.atlassian.net/jira/your-work'),
-);
+const defaultUrl = 'https://ironcladapp.atlassian.net/jira/your-work';
 
 jira.addHandler(
   'backlog',
@@ -15,23 +13,30 @@ jira.addHandler(
   ),
 );
 
-export const jiraTicketNumberHandlerFn: HandlerFn = (tokens) => {
-  if (tokens.length === 0) {
-    return new Response('No Jira ticket provided', { status: 400 });
-  }
-  const [ticket] = tokens;
-  const ticketNumber = parseInt(ticket, 10);
-  if (!isNaN(ticketNumber)) {
-    return redirect(`https://ironcladapp.atlassian.net/browse/IRON-${ticketNumber}`);
-  }
-  if (ticket.toUpperCase().startsWith('IRON-')) {
-    return redirect(`https://ironcladapp.atlassian.net/browse/${ticket.toUpperCase()}`);
-  }
-  return new Response(`No valid Jira ticket found`, { status: 400 });
-};
-
-jira.setDefaultHandler(
-  new FunctionHandler('navigates to a Jira ticket', jiraTicketNumberHandlerFn),
+const baseSearchEngine = makeParamBasedSearchEngine(
+  defaultUrl,
+  'https://ironcladapp.atlassian.net/secure/QuickSearch.jspa',
+  'searchString',
 );
+export const jiraSearchEngineHandler = new SearchEngineHandler(
+  'navigates to a Jira ticket or does a Jira search',
+  {
+    ...baseSearchEngine,
+    generateSearchUrl(tokens): string {
+      const ticket = tokens[0];
+      const ticketNumber = parseInt(ticket, 10);
+      if (!isNaN(ticketNumber)) {
+        return `https://ironcladapp.atlassian.net/browse/IRON-${ticketNumber}`;
+      }
+      if (ticket.toUpperCase().startsWith('IRON-')) {
+        return `https://ironcladapp.atlassian.net/browse/${ticket.toUpperCase()}`;
+      }
+      return baseSearchEngine.generateSearchUrl(tokens);
+    },
+  },
+);
+
+jira.setNothingHandler(new RedirectHandler('navigates to Jira', defaultUrl));
+jira.setDefaultHandler(jiraSearchEngineHandler);
 
 export default jira;
