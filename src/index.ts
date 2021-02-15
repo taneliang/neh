@@ -18,8 +18,10 @@ async function handleRequest(request: Request): Promise<Response> {
     });
   }
 
-  const isFirefox = /\bFirefox\b/i.test(request.headers.get('user-agent') || '');
-  const query = extractQueryFromUrl(request.url, isFirefox);
+  // extractQueryFromUrl explains why areSpacesEncodedAsPlus is necessary
+  const areSpacesEncodedAsPlus = /\bFirefox\b/i.test(request.headers.get('user-agent') || '');
+  const query = extractQueryFromUrl(request.url, areSpacesEncodedAsPlus);
+
   const tokens = tokenizeQuery(query);
   return await handler.handle(tokens);
 }

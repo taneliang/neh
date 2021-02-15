@@ -16,28 +16,14 @@ describe(emptyArray, () => {
 
 describe(extractQueryFromUrl, () => {
   test('should return empty string if no query', () => {
-    expect(extractQueryFromUrl('https://example.com')).toEqual('');
-    expect(extractQueryFromUrl('https://example.com/')).toEqual('');
+    expect(extractQueryFromUrl('https://example.com', false)).toEqual('');
+    expect(extractQueryFromUrl('https://example.com/', false)).toEqual('');
   });
 
-  test('should return query from path if present', () => {
-    expect(extractQueryFromUrl('https://example.com/cmd%20token')).toEqual('cmd token');
-
-    expect(extractQueryFromUrl('https://example.com/cmd%20https://derp.com')).toEqual(
-      'cmd https://derp.com',
-    );
-
-    expect(
-      extractQueryFromUrl('https://example.com/cmd%20https://derp.com/search?q=query'),
-    ).toEqual('cmd https://derp.com/search?q=query');
-
-    expect(extractQueryFromUrl('https://example.com/cmd%20https://derp.com/search#query')).toEqual(
-      'cmd https://derp.com/search#query',
-    );
-  });
-
-  test('should accept queries encoded with `+` instead of `%20` for space characters', () => {
+  test('should return query-encoded query from path if present', () => {
     expect(extractQueryFromUrl('https://example.com/cmd+token', true)).toEqual('cmd token');
+
+    expect(extractQueryFromUrl('https://example.com/d+1%2B2', true)).toEqual('d 1+2');
 
     expect(extractQueryFromUrl('https://example.com/cmd+https://derp.com', true)).toEqual(
       'cmd https://derp.com',
@@ -49,6 +35,24 @@ describe(extractQueryFromUrl, () => {
 
     expect(
       extractQueryFromUrl('https://example.com/cmd+https://derp.com/search#query', true),
+    ).toEqual('cmd https://derp.com/search#query');
+  });
+
+  test('should return path-encoded query from path if present', () => {
+    expect(extractQueryFromUrl('https://example.com/cmd%20token', false)).toEqual('cmd token');
+
+    expect(extractQueryFromUrl('https://example.com/d%201+2', false)).toEqual('d 1+2');
+
+    expect(extractQueryFromUrl('https://example.com/cmd%20https://derp.com', false)).toEqual(
+      'cmd https://derp.com',
+    );
+
+    expect(
+      extractQueryFromUrl('https://example.com/cmd%20https://derp.com/search?q=query', false),
+    ).toEqual('cmd https://derp.com/search?q=query');
+
+    expect(
+      extractQueryFromUrl('https://example.com/cmd%20https://derp.com/search#query', false),
     ).toEqual('cmd https://derp.com/search#query');
   });
 });
