@@ -39,7 +39,7 @@
     "cssnano": "^4.1.10",
     "env-cmd": "^10.1.0",
     "eslint": "^7.19.0",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-prettier": "^8.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "fuzzyset": "^1.0.6",
     "jest": "^26.6.3",
