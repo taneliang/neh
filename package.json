@@ -30,7 +30,7 @@
     "@types/pug": "^2.0.4",
     "@types/url-parse": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
-    "@typescript-eslint/parser": "^4.15.0",
+    "@typescript-eslint/parser": "^4.18.0",
     "@udacity/types-service-worker-mock": "^1.2.0",
     "awesome-pug-jest": "^1.1.0",
     "cloudflare-worker-mock": "^1.2.0",
