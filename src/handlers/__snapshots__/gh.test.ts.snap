@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`gh handler p handler should return error message if GitHub API returns error 1`] = `
+exports[`gh handler > p handler > should return error message if GitHub API returns error 1`] = `
 Response {
   "body": Blob {
-    "parts": Array [
+    "parts": [
       "GitHub API returned 403 Forbidden. Some message",
     ],
     "type": "",
@@ -22,10 +22,10 @@ Response {
 }
 `;
 
-exports[`gh handler p handler should return error message if GitHub returns empty items array 1`] = `
+exports[`gh handler > p handler > should return error message if GitHub returns empty items array 1`] = `
 Response {
   "body": Blob {
-    "parts": Array [
+    "parts": [
       "No users found for query some query.",
     ],
     "type": "",
@@ -44,10 +44,10 @@ Response {
 }
 `;
 
-exports[`gh handler r handler should return error message if GitHub API returns error 1`] = `
+exports[`gh handler > r handler > should return error message if GitHub API returns error 1`] = `
 Response {
   "body": Blob {
-    "parts": Array [
+    "parts": [
       "GitHub API returned 403 Forbidden. Some message",
     ],
     "type": "",
@@ -66,10 +66,10 @@ Response {
 }
 `;
 
-exports[`gh handler r handler should return error message if GitHub returns empty items array 1`] = `
+exports[`gh handler > r handler > should return error message if GitHub returns empty items array 1`] = `
 Response {
   "body": Blob {
-    "parts": Array [
+    "parts": [
       "No repositories found for query some query.",
     ],
     "type": "",

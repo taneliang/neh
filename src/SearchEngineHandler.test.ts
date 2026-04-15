@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import {
   SearchEngine,
   SearchEngineHandler,
@@ -255,8 +256,8 @@ describe(SearchEngineHandler, () => {
 
   describe(SearchEngineHandler.prototype.handle, () => {
     type MockSearchEngine = SearchEngine & {
-      generateSearchUrl: jest.Mock;
-      parseSearchUrl?: jest.Mock;
+      generateSearchUrl: Mock;
+      parseSearchUrl?: Mock;
     };
 
     let noParseEngine: MockSearchEngine;
@@ -266,17 +267,17 @@ describe(SearchEngineHandler, () => {
     beforeEach(() => {
       noParseEngine = {
         defaultUrl,
-        generateSearchUrl: jest.fn(),
+        generateSearchUrl: vi.fn(),
       };
       parsableEngine1 = {
         defaultUrl,
-        generateSearchUrl: jest.fn(),
-        parseSearchUrl: jest.fn(),
+        generateSearchUrl: vi.fn(),
+        parseSearchUrl: vi.fn(),
       };
       parsableEngine2 = {
         defaultUrl,
-        generateSearchUrl: jest.fn(),
-        parseSearchUrl: jest.fn(),
+        generateSearchUrl: vi.fn(),
+        parseSearchUrl: vi.fn(),
       };
     });
 

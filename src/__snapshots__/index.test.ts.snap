@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`neh should handle "1%20+%201" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "1%20+%201" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -19,7 +19,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "1+%2B+1" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "1+%2B+1" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -38,7 +38,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "drive" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "drive" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -57,7 +57,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "drive" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "drive" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -76,7 +76,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "drive%202" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "drive%202" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -95,7 +95,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "drive+2" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "drive+2" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -114,7 +114,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "ip" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "ip" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -133,7 +133,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "ip" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "ip" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -152,7 +152,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "lyrics%20here's%20to%20never%20growing%20up" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "lyrics%20here's%20to%20never%20growing%20up" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -171,7 +171,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "lyrics+here's+to+never+growing+up" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "lyrics+here's+to+never+growing+up" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -190,7 +190,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "npm%20p%20@babel/core" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "npm%20p%20@babel/core" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -209,7 +209,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "npm+p+@babel/core" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "npm+p+@babel/core" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -228,7 +228,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "search%20query" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "search%20query" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -247,7 +247,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "search+query" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "search+query" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -266,7 +266,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "trzh%20hong%20kong" "%20"-spaced query correctly 1`] = `
+exports[`neh > should handle "trzh%20hong%20kong" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -285,7 +285,7 @@ Response {
 }
 `;
 
-exports[`neh should handle "trzh+hong+kong" "+"-spaced query correctly 1`] = `
+exports[`neh > should handle "trzh+hong+kong" "+"-spaced query correctly 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,

@@ -14,36 +14,39 @@ gh.setDefaultHandler(
   ),
 );
 
-const makeGitHubSearchHandlerFn = (resource: string): HandlerFn => async (
-  tokens,
-): Promise<Response> => {
-  const query = tokens.join('+');
-  const url = new URL(`https://api.github.com/search/${resource}`);
-  url.searchParams.set('q', query);
-  url.searchParams.set('per_page', '1');
-  const searchUrl = url.toString();
+const makeGitHubSearchHandlerFn =
+  (resource: string): HandlerFn =>
+  async (tokens): Promise<Response> => {
+    const query = tokens.join('+');
+    const url = new URL(`https://api.github.com/search/${resource}`);
+    url.searchParams.set('q', query);
+    url.searchParams.set('per_page', '1');
+    const searchUrl = url.toString();
 
-  const response = await fetch(searchUrl, {
-    headers: {
-      'User-Agent': 'neh.eltan.net',
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    const body = await response.text();
-    return new Response(`GitHub API returned ${response.status} ${response.statusText}. ${body}`, {
-      status: 500,
+    const response = await fetch(searchUrl, {
+      headers: {
+        'User-Agent': 'neh.eltan.net',
+        'Content-Type': 'application/json',
+      },
     });
-  }
 
-  const { items } = await response.json();
-  if (items.length === 0) {
-    return new Response(`No ${resource} found for query ${query}.`, { status: 500 });
-  }
+    if (!response.ok) {
+      const body = await response.text();
+      return new Response(
+        `GitHub API returned ${response.status} ${response.statusText}. ${body}`,
+        {
+          status: 500,
+        },
+      );
+    }
 
-  return redirect(items[0].html_url);
-};
+    const { items } = (await response.json()) as { items: { html_url: string }[] };
+    if (items.length === 0) {
+      return new Response(`No ${resource} found for query ${query}.`, { status: 500 });
+    }
+
+    return redirect(items[0].html_url);
+  };
 
 gh.addHandler(
   'p',

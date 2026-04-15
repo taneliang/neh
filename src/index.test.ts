@@ -1,22 +1,19 @@
-import { CloudflareWorkerGlobalScope } from 'types-cloudflare-worker';
-declare const self: CloudflareWorkerGlobalScope;
-
 import { makeCloudflareWorkerRequest } from 'cloudflare-worker-mock';
+import '.'; // register the fetch event listener
 
 async function getResponse(requestInfo: RequestInfo): Promise<Response> {
   const request = makeCloudflareWorkerRequest(requestInfo);
-  return await self.trigger('fetch', request);
+  return await (
+    self as unknown as { trigger: (event: string, req: Request) => Promise<Response> }
+  ).trigger('fetch', request);
 }
 
 describe('neh', () => {
-  beforeEach(() => {
-    // Import and init the Worker.
-    jest.requireActual('.');
-  });
-
   // Ensure that test env has been set up correctly.
   test('should add listeners', async () => {
-    expect(self.listeners.get('fetch')).toBeDefined();
+    expect(
+      (self as unknown as { listeners: Map<string, unknown> }).listeners.get('fetch'),
+    ).toBeDefined();
   });
 
   test('should respond to OpenSearch endpoint', async () => {

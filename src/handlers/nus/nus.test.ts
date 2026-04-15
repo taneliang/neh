@@ -1,6 +1,6 @@
 import { getClosestModcode, getClosestModule, modules } from './nus';
 
-jest.mock('./modules.json');
+vi.mock('./modules.json');
 
 describe(getClosestModcode, () => {
   it('should return a closest modcode if present', () => {

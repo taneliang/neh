@@ -1,6 +1,12 @@
 name = "neh"
-type = "webpack"
-webpack_config = "./webpack.config.js"
-private = false
-route = "neh.eltan.net/*"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
 workers_dev = false
+
+[[routes]]
+pattern = "neh.eltan.net/*"
+zone_name = "eltan.net"
+
+[[rules]]
+type = "Text"
+globs = ["**/*.xml"]
