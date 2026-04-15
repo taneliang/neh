@@ -1,5 +1,9 @@
 import { CommandHandler, FunctionHandler, RedirectHandler, HandlerFn } from '../Handler';
-import { SearchEngineHandler, makeParamBasedSearchEngine } from '../SearchEngineHandler';
+import {
+  SearchEngineHandler,
+  makeParamBasedSearchEngine,
+  SearchEngine,
+} from '../SearchEngineHandler';
 import { redirect } from '../util';
 
 const gh = new CommandHandler();
@@ -7,10 +11,29 @@ const ghHomeUrl = 'https://github.com/';
 
 gh.setNothingHandler(new RedirectHandler('navigates to GitHub', ghHomeUrl));
 
+const githubSearchEngine = makeParamBasedSearchEngine(ghHomeUrl, 'https://github.com/search', 'q');
+
+const ghDefaultSearchEngine: SearchEngine = {
+  ...githubSearchEngine,
+  generateSearchUrl(tokens): string {
+    if (tokens.length > 0) {
+      // https://app.graphite.com/github/pr/{owner}/{repo}/{number}
+      const graphiteMatch = tokens[0].match(
+        /^https:\/\/app\.graphite\.com\/github\/pr\/([^/]+)\/([^/]+)\/(\d+)/,
+      );
+      if (graphiteMatch) {
+        const [, owner, repo, prNumber] = graphiteMatch;
+        return `https://github.com/${owner}/${repo}/pull/${prNumber}`;
+      }
+    }
+    return githubSearchEngine.generateSearchUrl(tokens);
+  },
+};
+
 gh.setDefaultHandler(
   new SearchEngineHandler(
-    'does a GitHub search',
-    makeParamBasedSearchEngine(ghHomeUrl, 'https://github.com/search', 'q'),
+    'does a GitHub search, or converts a Graphite PR URL to a GitHub PR URL',
+    ghDefaultSearchEngine,
   ),
 );
 

@@ -2,6 +2,26 @@ import fetchMock from 'jest-fetch-mock';
 import handler from './gh';
 
 describe('gh handler', () => {
+  describe('default handler', () => {
+    test('should convert a Graphite PR URL to a GitHub PR URL', async () => {
+      const response = await handler.handle([
+        'https://app.graphite.com/github/pr/paraform-xyz/paraform/10437',
+      ]);
+      expect(response.status).toBe(302);
+      expect(response.headers.get('location')).toMatchInlineSnapshot(
+        `"https://github.com/paraform-xyz/paraform/pull/10437"`,
+      );
+    });
+
+    test('should do a GitHub search for non-Graphite tokens', async () => {
+      const response = await handler.handle(['react', 'hooks']);
+      expect(response.status).toBe(302);
+      expect(response.headers.get('location')).toMatchInlineSnapshot(
+        `"https://github.com/search?q=react+hooks"`,
+      );
+    });
+  });
+
   describe('p handler', () => {
     test('should redirect if at least one user is returned', async () => {
       fetchMock.enableMocks();
