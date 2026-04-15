@@ -2,7 +2,7 @@ version: 2
 
 aliases:
   - &docker
-    - image: cimg/node:22.0
+    - image: cimg/node:24.0
 
   - &restore_yarn_cache
     restore_cache:
