@@ -11,10 +11,9 @@ import dictHandler from './dict';
 import docsHandler from './docs';
 import ghHandler from './gh';
 import glHandler from './gl';
-import ibankHandler from './ibank';
-import ironHandler from './iron';
+import gpHandler from './gp';
 import npmHandler from './npm';
-import nusHandler from './nus';
+import pfHandler from './pf';
 import rdHandler from './rd';
 import twHandler from './tw';
 
@@ -27,10 +26,9 @@ neh.addHandler('dict', dictHandler);
 neh.addHandler('docs', docsHandler);
 neh.addHandler('gh', ghHandler);
 neh.addHandler('gl', glHandler);
-neh.addHandler('ibank', ibankHandler);
-neh.addHandler('iron', ironHandler);
+neh.addHandler('gp', gpHandler);
 neh.addHandler('npm', npmHandler);
-neh.addHandler('nus', nusHandler);
+neh.addHandler('pf', pfHandler);
 neh.addHandler('rd', rdHandler);
 neh.addHandler('tw', twHandler);
 
@@ -143,11 +141,6 @@ neh.addHandler(
 );
 
 neh.addHandler(
-  'rtm',
-  new RedirectHandler('navigates to Remember the Milk', 'https://www.rememberthemilk.com'),
-);
-
-neh.addHandler(
   'so',
   new SearchEngineHandler(
     'does a StackOverflow search',
@@ -215,14 +208,6 @@ neh.addHandler(
       'https://www.youtube.com/results',
       'search_query',
     ),
-  ),
-);
-
-neh.addHandler(
-  'yub',
-  new SearchEngineHandler(
-    'run a YubNub command',
-    makeParamBasedSearchEngine('https://yubnub.org', 'https://yubnub.org/parser/parse', 'command'),
   ),
 );
 
