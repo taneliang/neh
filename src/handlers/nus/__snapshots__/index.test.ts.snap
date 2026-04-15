@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`nus handler coursem should redirect to appropriate path for mod if can be found 1`] = `
+exports[`nus handler > coursem > should redirect to appropriate path for mod if can be found 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -19,7 +19,7 @@ Response {
 }
 `;
 
-exports[`nus handler coursem should redirect to appropriate path for mod if can be found 2`] = `
+exports[`nus handler > coursem > should redirect to appropriate path for mod if can be found 2`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -38,7 +38,7 @@ Response {
 }
 `;
 
-exports[`nus handler coursem should redirect to homepage if no mod provided 1`] = `
+exports[`nus handler > coursem > should redirect to homepage if no mod provided 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -57,7 +57,7 @@ Response {
 }
 `;
 
-exports[`nus handler lum should redirect to appropriate path for mod if can be found 1`] = `
+exports[`nus handler > lum > should redirect to appropriate path for mod if can be found 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -76,7 +76,7 @@ Response {
 }
 `;
 
-exports[`nus handler lum should redirect to appropriate path for mod if can be found 2`] = `
+exports[`nus handler > lum > should redirect to appropriate path for mod if can be found 2`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -95,7 +95,7 @@ Response {
 }
 `;
 
-exports[`nus handler lum should redirect to homepage if no mod provided 1`] = `
+exports[`nus handler > lum > should redirect to homepage if no mod provided 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -114,13 +114,13 @@ Response {
 }
 `;
 
-exports[`nus handler webcast should redirect to appropriate path for mod if can be found 1`] = `
+exports[`nus handler > webcast > should redirect to appropriate path for mod if can be found 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=\\"a37a4fec-408e-4e1e-9a89-aabc000a5ce8\\"",
+      "location" => "https://mediaweb.ap.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID="a37a4fec-408e-4e1e-9a89-aabc000a5ce8"",
     },
   },
   "method": "GET",
@@ -133,7 +133,7 @@ Response {
 }
 `;
 
-exports[`nus handler webcast should redirect to appropriate path for mod if can be found 2`] = `
+exports[`nus handler > webcast > should redirect to appropriate path for mod if can be found 2`] = `
 Response {
   "body": null,
   "bodyUsed": false,
@@ -152,7 +152,7 @@ Response {
 }
 `;
 
-exports[`nus handler webcast should redirect to homepage if no mod provided 1`] = `
+exports[`nus handler > webcast > should redirect to homepage if no mod provided 1`] = `
 Response {
   "body": null,
   "bodyUsed": false,

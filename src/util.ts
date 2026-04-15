@@ -1,4 +1,3 @@
-import parse from 'url-parse';
 import { Token } from './Handler';
 
 export function emptyArray<T>(arr: T[]): void {
@@ -6,17 +5,22 @@ export function emptyArray<T>(arr: T[]): void {
   arr.splice(0, arr.length);
 }
 
-export function extractQueryFromUrl(urlStr: string, areSpacesEncodedAsPlus: boolean): string {
-  // Use url-parse instead of URL for pathname as double slashes will be
-  // removed on Cloudflare by URL.
-  const parsedUrl = parse(urlStr, true);
+function getRawPathname(urlStr: string): string {
+  // Native URL normalizes double slashes; avoid it for pathname extraction.
+  // Cloudflare Workers URL parsing removes // from paths, hence this workaround.
+  const withoutOrigin = urlStr.replace(/^[a-z][a-z0-9+\-.]*:\/\/[^/?#]*/i, '');
+  const pathEnd = withoutOrigin.search(/[?#]/);
+  return pathEnd === -1 ? withoutOrigin : withoutOrigin.slice(0, pathEnd);
+}
 
+export function extractQueryFromUrl(urlStr: string, areSpacesEncodedAsPlus: boolean): string {
+  if (!urlStr) return '';
   // Browsers encode the query in 2 ways:
   // 1. Query, e.g. "token1+%2B+token2". Firefox does this.
   // 2. Path, e.g. "token1%20+%20token2". Chrome does this.
   const pathname = areSpacesEncodedAsPlus
-    ? parsedUrl.pathname.replace(/\+/g, ' ')
-    : parsedUrl.pathname;
+    ? getRawPathname(urlStr).replace(/\+/g, ' ')
+    : getRawPathname(urlStr);
 
   const url = new URL(urlStr);
   let query = decodeURIComponent(pathname + url.search + url.hash);

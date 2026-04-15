@@ -2,17 +2,17 @@ version: 2
 
 aliases:
   - &docker
-    - image: circleci/node:12
+    - image: cimg/node:22.0
 
   - &restore_yarn_cache
     restore_cache:
       name: Restore yarn cache
-      key: v2-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
+      key: v3-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
 
   - &restore_node_modules
     restore_cache:
       name: Restore node_modules cache
-      key: v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-node-modules
+      key: v3-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-node-modules
 
 jobs:
   build:
@@ -26,21 +26,18 @@ jobs:
           name: Install dependencies
           command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn --non-interactive
       - save_cache:
-          # Store the yarn cache globally for all lock files with this same
-          # checksum. This will speed up the setup job for all PRs where the
-          # lockfile is the same.
           name: Save yarn cache for future installs
-          key: v2-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
+          key: v3-node-{{ arch }}-{{ checksum "yarn.lock" }}-yarn
           paths:
             - ~/.cache/yarn
       - save_cache:
-          # Store node_modules for all jobs in this workflow so that they don't
-          # need to each run a yarn install for each job. This will speed up
-          # all jobs run on this branch with the same lockfile.
           name: Save node_modules cache
-          key: v2-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-node-modules
+          key: v3-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}-node-modules
           paths:
             - node_modules
+      - run:
+          name: Build assets
+          command: yarn build
       - run:
           name: Typecheck Code
           command: yarn typecheck
@@ -54,7 +51,9 @@ jobs:
           command: |
             set -e
             yarn test
-            yarn codecov --disable=gcov -f ./coverage/coverage-final.json
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+            chmod +x codecov
+            ./codecov -f ./coverage/coverage-final.json
       - store_test_results:
           path: test-reports
 
@@ -64,7 +63,6 @@ jobs:
     steps:
       - checkout
       - *restore_yarn_cache
-      # `yarn install` run necessary so that wrangler is installed correctly
       - run:
           name: Install dependencies
           command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn --non-interactive

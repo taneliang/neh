@@ -1,6 +1,3 @@
-import CloudflareWorkerGlobalScope from 'types-cloudflare-worker';
-declare const self: CloudflareWorkerGlobalScope;
-
 import handler from './handlers';
 import { extractQueryFromUrl, tokenizeQuery } from './util';
 import openSearchDescription from './resources/_opensearch.xml';
@@ -26,6 +23,8 @@ async function handleRequest(request: Request): Promise<Response> {
   return await handler.handle(tokens);
 }
 
+// FetchEvent is declared by @cloudflare/workers-types
 self.addEventListener('fetch', (event) => {
-  event.respondWith(handleRequest(event.request));
+  const e = event as unknown as FetchEvent;
+  e.respondWith(handleRequest(e.request));
 });

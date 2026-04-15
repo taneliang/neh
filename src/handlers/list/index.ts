@@ -6,8 +6,8 @@ import {
   DEFAULT_HANDLER_KEY,
   NOTHING_HANDLER_KEY,
 } from '../../Handler';
-import css from '../../resources/tailwind.css';
-import listTemplate from './template.pug';
+import css from '../../resources/generated-css';
+import listTemplate from './template.generated.js';
 
 export default (neh: CommandHandler): Handler => {
   return new FunctionHandler('show the list of methods you can use or search that list', () => {

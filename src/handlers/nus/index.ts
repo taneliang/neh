@@ -43,20 +43,22 @@ nus.addHandler(
 
 // Module handlers
 
-const makeModRedirector = (
-  defaultUrl: string,
-  modFieldName: keyof NUSModOnlyStringValues,
-  modUrlTransformer: (fieldValue: string, otherTokens: Token[]) => string,
-): HandlerFn => (tokens): Response => {
-  if (tokens.length > 0) {
-    const [fuzzyModcode, ...otherTokens] = tokens;
-    const fieldValue = getClosestModule(fuzzyModcode)?.[modFieldName];
-    if (fieldValue) {
-      return redirect(modUrlTransformer(fieldValue, otherTokens));
+const makeModRedirector =
+  (
+    defaultUrl: string,
+    modFieldName: keyof NUSModOnlyStringValues,
+    modUrlTransformer: (fieldValue: string, otherTokens: Token[]) => string,
+  ): HandlerFn =>
+  (tokens): Response => {
+    if (tokens.length > 0) {
+      const [fuzzyModcode, ...otherTokens] = tokens;
+      const fieldValue = getClosestModule(fuzzyModcode)?.[modFieldName];
+      if (fieldValue) {
+        return redirect(modUrlTransformer(fieldValue, otherTokens));
+      }
     }
-  }
-  return redirect(defaultUrl);
-};
+    return redirect(defaultUrl);
+  };
 
 nus.addHandler(
   'coursem',

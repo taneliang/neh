@@ -1,4 +1,5 @@
 import { emptyArray, extractQueryFromUrl, tokenizeQuery } from './util';
+// getRawPathname is tested indirectly through extractQueryFromUrl
 
 describe(emptyArray, () => {
   test('should empty array in place', () => {
@@ -18,6 +19,15 @@ describe(extractQueryFromUrl, () => {
   test('should return empty string if no query', () => {
     expect(extractQueryFromUrl('https://example.com', false)).toEqual('');
     expect(extractQueryFromUrl('https://example.com/', false)).toEqual('');
+  });
+
+  test('should return empty string for empty input', () => {
+    expect(extractQueryFromUrl('', false)).toEqual('');
+  });
+
+  test('should preserve double slashes in path', () => {
+    // Cloudflare normalizes double slashes via URL constructor; getRawPathname preserves them
+    expect(extractQueryFromUrl('https://example.com//gh/foo', false)).toEqual('/gh/foo');
   });
 
   test('should return query-encoded query from path if present', () => {

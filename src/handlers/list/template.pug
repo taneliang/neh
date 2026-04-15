@@ -1,13 +1,13 @@
 mixin docTable(doc, nested)
-  table.text-left.w-full.sm_px-4.nested(class=nested ? "" : " h-full")
+  table.text-left.w-full.nested(class=(nested ? '' : ' h-full') + ' sm:px-4')
     thead.uppercase.text-xs.text-gray-700.tracking-wide
       tr
         th.p-3 Command
         th.p-3 Description
     tbody
       each c in doc
-        - var hasNestedTable = typeof c.doc === "object";
-        tr(class=nested ? "hover_bg-gray-200" : "odd_bg-gray-100")
+        - var hasNestedTable = typeof c.doc === 'object';
+        tr(class=nested ? 'hover:bg-gray-200' : 'odd:bg-gray-100')
           td.px-3.h-full.align-text-top
             if c.command === DEFAULT_HANDLER_KEY
               em.py-3 No Matching Command
@@ -15,7 +15,7 @@ mixin docTable(doc, nested)
               em.py-3 No Input
             else
               .block.h-full
-                strong.py-3.my-3(class=hasNestedTable ? "sticky top-0" : "")= c.command
+                strong.py-3.my-3(class=hasNestedTable ? 'sticky top-0' : '')= c.command
           if hasNestedTable
             td.align-text-top
               +docTable(c.doc, true)
@@ -27,7 +27,7 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width,initial-scale=1')
-    title= "neh commands"
+    title= 'neh commands'
     link(
       rel='search',
       type='application/opensearchdescription+xml',

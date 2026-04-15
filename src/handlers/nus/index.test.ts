@@ -1,6 +1,6 @@
 import handler from '.';
 
-jest.mock('./modules.json');
+vi.mock('./modules.json');
 
 describe('nus handler', () => {
   const subcommands = ['coursem', 'lum', 'webcast'];

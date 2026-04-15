@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import {
   Handler,
   FunctionHandler,
@@ -14,13 +15,13 @@ const tokens = ['token1', 'token2'];
 
 describe(FunctionHandler, () => {
   test('should passthrough docstring', () => {
-    const mockHandlerFn = jest.fn();
+    const mockHandlerFn = vi.fn();
     const handler = new FunctionHandler(docstring, mockHandlerFn);
     expect(handler.doc).toEqual(docstring);
   });
 
   test('should execute function with tokens when handle is called', async () => {
-    const mockHandlerFn = jest.fn();
+    const mockHandlerFn = vi.fn();
     const handler = new FunctionHandler(docstring, mockHandlerFn);
     await handler.handle(tokens);
     expect(mockHandlerFn).toBeCalledWith(tokens);
@@ -46,12 +47,12 @@ describe(RedirectHandler, () => {
 describe(CommandHandler, () => {
   type MockHandlerWrapper = {
     command: string;
-    mockHandlerFn: jest.Mock;
+    mockHandlerFn: Mock;
     handler: Handler;
   };
 
   function makeMockHandler(command: string): MockHandlerWrapper {
-    const mockHandlerFn = jest.fn();
+    const mockHandlerFn = vi.fn();
     return {
       command,
       mockHandlerFn,

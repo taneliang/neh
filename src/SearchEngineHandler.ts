@@ -1,4 +1,3 @@
-import parse from 'url-parse';
 import { FunctionHandler } from './Handler';
 import { redirect } from './util';
 
@@ -115,7 +114,7 @@ export function makePathBasedSearchEngine(
         return null;
       }
 
-      const searchUrl = parse(url, true);
+      const searchUrl = new URL(url);
       const query = searchUrl.pathname.substring(1);
       if (query.length === 0) {
         return null;
