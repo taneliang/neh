@@ -29,9 +29,7 @@ describe('linearIssueHandler', () => {
   test('should redirect to Linear home if token is not a number or ENG- identifier', async () => {
     const response = await linearIssueHandler.handle(['somequery']);
     expect(response.status).toBe(302);
-    expect(response.headers.get('location')).toMatchInlineSnapshot(
-      `"https://linear.app/paraform"`,
-    );
+    expect(response.headers.get('location')).toMatchInlineSnapshot(`"https://linear.app/paraform"`);
   });
 });
 
@@ -39,8 +37,6 @@ describe('linear handler (nothing handler)', () => {
   test('should redirect to Linear home if no tokens provided', async () => {
     const response = await linearHandler.handle([]);
     expect(response.status).toBe(302);
-    expect(response.headers.get('location')).toMatchInlineSnapshot(
-      `"https://linear.app/paraform"`,
-    );
+    expect(response.headers.get('location')).toMatchInlineSnapshot(`"https://linear.app/paraform"`);
   });
 });

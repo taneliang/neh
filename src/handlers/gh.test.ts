@@ -22,7 +22,6 @@ describe('gh handler', () => {
     });
   });
 
-
   describe('p handler', () => {
     test('should redirect if at least one user is returned', async () => {
       fetchMock.enableMocks();
