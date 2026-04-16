@@ -16,15 +16,13 @@ const githubSearchEngine = makeParamBasedSearchEngine(ghHomeUrl, 'https://github
 const ghDefaultSearchEngine: SearchEngine = {
   ...githubSearchEngine,
   generateSearchUrl(tokens): string {
-    if (tokens.length > 0) {
-      // https://app.graphite.com/github/pr/{owner}/{repo}/{number}
-      const graphiteMatch = tokens[0].match(
-        /^https:\/\/app\.graphite\.com\/github\/pr\/([^/]+)\/([^/]+)\/(\d+)/,
-      );
-      if (graphiteMatch) {
-        const [, owner, repo, prNumber] = graphiteMatch;
-        return `https://github.com/${owner}/${repo}/pull/${prNumber}`;
-      }
+    // https://app.graphite.com/github/pr/{owner}/{repo}/{number}
+    const graphiteMatch = tokens[0].match(
+      /^https:\/\/app\.graphite\.com\/github\/pr\/([^/]+)\/([^/]+)\/(\d+)/,
+    );
+    if (graphiteMatch) {
+      const [, owner, repo, prNumber] = graphiteMatch;
+      return `https://github.com/${owner}/${repo}/pull/${prNumber}`;
     }
     return githubSearchEngine.generateSearchUrl(tokens);
   },
