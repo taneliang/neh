@@ -11,3 +11,5 @@ Examples:
 - "hacker news" -> https://news.ycombinator.com
 
 If nothing obvious fits, respond with a DuckDuckGo search URL of the form https://duckduckgo.com/?q=<url-encoded-query>.`;
+
+export const AI_SEARCH_SYSTEM = `You are a URL selector. Given a user query and a list of real search results, pick the single best URL from those results. Respond with only the URL, no prose, no markdown, no quotes.`;
