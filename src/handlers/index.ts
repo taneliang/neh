@@ -7,6 +7,7 @@ import {
 } from '../SearchEngineHandler';
 import { redirect } from '../util';
 
+import aiHandler from './ai';
 import dictHandler from './dict';
 import docsHandler from './docs';
 import ghHandler from './gh';
@@ -15,6 +16,8 @@ import gpHandler from './gp';
 import npmHandler from './npm';
 import pfHandler from './pf';
 import rdHandler from './rd';
+import sumHandler from './sum';
+import tldrHandler from './tldr';
 import twHandler from './tw';
 
 import makeListHandler from './list';
@@ -22,6 +25,7 @@ import makeListHandler from './list';
 const neh = new CommandHandler();
 
 // Handlers with their own files
+neh.addHandler('ai', aiHandler);
 neh.addHandler('dict', dictHandler);
 neh.addHandler('docs', docsHandler);
 neh.addHandler('gh', ghHandler);
@@ -30,6 +34,8 @@ neh.addHandler('gp', gpHandler);
 neh.addHandler('npm', npmHandler);
 neh.addHandler('pf', pfHandler);
 neh.addHandler('rd', rdHandler);
+neh.addHandler('sum', sumHandler);
+neh.addHandler('tldr', tldrHandler);
 neh.addHandler('tw', twHandler);
 
 const listHandler = makeListHandler(neh);
