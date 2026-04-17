@@ -8,6 +8,7 @@ import {
 import { redirect } from '../util';
 
 import aiHandler from './ai';
+import customPromptHandler from './custom';
 import dictHandler from './dict';
 import docsHandler from './docs';
 import ghHandler from './gh';
@@ -59,7 +60,7 @@ const dHandler = new SearchEngineHandler(
   makeParamBasedSearchEngine('https://duckduckgo.com/', null, 'q'),
 );
 neh.addHandler('d', dHandler);
-neh.setDefaultHandler(dHandler);
+neh.setDefaultHandler(customPromptHandler);
 
 neh.addHandler(
   'do',
