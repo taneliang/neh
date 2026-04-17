@@ -7,10 +7,10 @@ describe('neh global handler', () => {
     expect(homeResponse).toEqual(listResponse);
   });
 
-  test('should default to DuckDuckGo', async () => {
-    const tokens = ['search', 'query'];
-    const homeResponse = await handler.handle(tokens);
-    const dResponse = await handler.handle(['d', ...tokens]);
-    expect(homeResponse).toEqual(dResponse);
+  test('should default to DuckDuckGo for queries without a URL', async () => {
+    const response = await handler.handle(['search', 'query']);
+    expect(response.status).toBe(302);
+    expect(response.headers.get('location')).toContain('duckduckgo.com');
+    expect(response.headers.get('location')).toContain('search');
   });
 });

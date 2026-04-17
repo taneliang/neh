@@ -6,7 +6,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://duckduckgo.com/?q=1+%2B+1",
+      "location" => "https://duckduckgo.com/?q=1%20%2B%201",
     },
   },
   "method": "GET",
@@ -25,7 +25,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://duckduckgo.com/?q=1+%2B+1",
+      "location" => "https://duckduckgo.com/?q=1%20%2B%201",
     },
   },
   "method": "GET",
@@ -234,7 +234,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://duckduckgo.com/?q=search+query",
+      "location" => "https://duckduckgo.com/?q=search%20query",
     },
   },
   "method": "GET",
@@ -253,7 +253,7 @@ Response {
   "bodyUsed": false,
   "headers": Headers {
     "_map": Map {
-      "location" => "https://duckduckgo.com/?q=search+query",
+      "location" => "https://duckduckgo.com/?q=search%20query",
     },
   },
   "method": "GET",
