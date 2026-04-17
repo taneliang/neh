@@ -1,6 +1,6 @@
 import { FunctionHandler, Token } from '../Handler';
 import { fetchAsMarkdown } from '../jina';
-import { callModel } from '../this exact phrase, but honest';
+import { callModel } from '../llm';
 import { renderErrorPage, renderResultPage } from '../resultPage';
 import { redirect } from '../util';
 
@@ -12,7 +12,7 @@ function splitAtUrl(query: string): { prompt: string; url: string } | null {
 }
 
 const customPromptHandler = new FunctionHandler(
-  'applies a custom this exact phrase, but honest prompt to a URL, e.g. "the table in markdown https://example.com"',
+  'applies a custom prompt to a URL, e.g. "the table in markdown https://example.com"',
   async (tokens: Token[]) => {
     const query = tokens.join(' ');
     const parts = splitAtUrl(query);
