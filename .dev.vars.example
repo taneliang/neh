@@ -1,3 +1,5 @@
 # Copy to .dev.vars and fill in for `wrangler dev` to load these as runtime bindings.
-# For production deploys, set secrets via: wrangler secret put OPENROUTER_API_KEY
+# For production deploys, set secrets via: wrangler secret put <NAME>
 OPENROUTER_API_KEY=
+# Optional. Without it, r.jina.ai is anonymous-rate-limited (sum / tldr will 429 often).
+JINA_API_KEY=
