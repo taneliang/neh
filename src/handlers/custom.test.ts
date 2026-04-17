@@ -65,11 +65,7 @@ describe('custom prompt handler', () => {
       [JSON.stringify({ choices: [{ message: { content: 'result' } }] }), { status: 200 }],
     );
 
-    const response = await customPromptHandler.handle([
-      'extract',
-      'URLs',
-      'https://example.com',
-    ]);
+    const response = await customPromptHandler.handle(['extract', 'URLs', 'https://example.com']);
     const body = await response.text();
     expect(body).toContain('extract URLs');
   });
@@ -105,10 +101,7 @@ describe('custom prompt handler', () => {
   test('renders an error page when Jina Reader fails', async () => {
     fetchMock.mockResponseOnce('not found', { status: 404 });
 
-    const response = await customPromptHandler.handle([
-      'summarize',
-      'https://example.com/missing',
-    ]);
+    const response = await customPromptHandler.handle(['summarize', 'https://example.com/missing']);
     expect(response.status).toBe(500);
     expect(await response.text()).toContain('Jina Reader returned 404');
   });
@@ -119,10 +112,7 @@ describe('custom prompt handler', () => {
       ['server exploded', { status: 500 }],
     );
 
-    const response = await customPromptHandler.handle([
-      'summarize',
-      'https://example.com/article',
-    ]);
+    const response = await customPromptHandler.handle(['summarize', 'https://example.com/article']);
     expect(response.status).toBe(500);
     expect(await response.text()).toContain('OpenRouter returned 500');
   });
