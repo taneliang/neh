@@ -8,7 +8,7 @@ const pf = new CommandHandler();
 pf.addHandler('gh', ghHandler);
 pf.addHandler('linear', linearHandler);
 
-pf.setNothingHandler(new RedirectHandler('navigates to Paraform', 'https://app.paraform.com'));
+pf.setNothingHandler(new RedirectHandler('navigates to Paraform', 'https://www.paraform.com'));
 pf.setDefaultHandler(linearIssueHandler);
 
 export default pf;
