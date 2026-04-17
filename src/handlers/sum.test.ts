@@ -93,4 +93,22 @@ describe('sum handler', () => {
     expect(response.status).toBe(500);
     expect(await response.text()).toContain('OpenRouter returned 500');
   });
+
+  test('rejects URLs with non-http(s) protocols', async () => {
+    const response = await sumHandler.handle(['ftp://example.com']);
+    expect(response.status).toBe(400);
+    expect(await response.text()).toContain('Not a valid URL');
+  });
+
+  test('escapes HTML-special characters from the source URL', async () => {
+    fetchMock.mockResponses(
+      ['content', { status: 200 }],
+      [JSON.stringify({ choices: [{ message: { content: 'ok' } }] }), { status: 200 }],
+    );
+
+    const response = await sumHandler.handle(['https://example.com/?q=a&b=c']);
+    const body = await response.text();
+    expect(body).toContain('q=a&amp;b=c');
+    expect(body).not.toContain('q=a&b=c');
+  });
 });
