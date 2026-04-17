@@ -116,4 +116,10 @@ describe('custom prompt handler', () => {
     expect(response.status).toBe(500);
     expect(await response.text()).toContain('OpenRouter returned 500');
   });
+
+  test('renders an error page for invalid URLs', async () => {
+    const response = await customPromptHandler.handle(['summarize', 'https://example.com:invalid']);
+    expect(response.status).toBe(400);
+    expect(await response.text()).toContain('Not a valid URL');
+  });
 });
