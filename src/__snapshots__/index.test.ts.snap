@@ -38,6 +38,120 @@ Response {
 }
 `;
 
+exports[`neh > should handle "dd" "%20"-spaced query correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://app.datadoghq.com/logs/livetail",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh > should handle "dd" "+"-spaced query correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://app.datadoghq.com/logs/livetail",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh > should handle "dd%20apm%20services" "%20"-spaced query correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://app.datadoghq.com/apm/services",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh > should handle "dd%20status:error%20service:paraform" "%20"-spaced query correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://app.datadoghq.com/logs?query=status%3Aerror%20service%3Aparaform",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh > should handle "dd+apm+services" "+"-spaced query correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://app.datadoghq.com/apm/services",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
+exports[`neh > should handle "dd+status:error+service:paraform" "+"-spaced query correctly 1`] = `
+Response {
+  "body": null,
+  "bodyUsed": false,
+  "headers": Headers {
+    "_map": Map {
+      "location" => "https://app.datadoghq.com/logs?query=status%3Aerror%20service%3Aparaform",
+    },
+  },
+  "method": "GET",
+  "ok": false,
+  "redirected": false,
+  "status": 302,
+  "statusText": "OK",
+  "type": "basic",
+  "url": "http://example.com/asset",
+}
+`;
+
 exports[`neh > should handle "drive" "%20"-spaced query correctly 1`] = `
 Response {
   "body": null,
