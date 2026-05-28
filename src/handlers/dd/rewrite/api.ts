@@ -11,8 +11,8 @@ function unescapeDdValue(value: string): string {
  * `@api:/api/<value>` attribute facet, unescaping the value and prepending the
  * `/api/` prefix that the `api_no_api` tag omits.
  *
- * `<value>` runs to the next whitespace (`\S+`); the `&`-split in the handler
- * already isolates the query from the rest of the URL's params.
+ * Operates on a DECODED query string; `<value>` runs to the next whitespace
+ * (`\S+`).
  */
 function rewriteApiQuery(query: string): string {
   return query.replace(
@@ -24,10 +24,12 @@ function rewriteApiQuery(query: string): string {
 const apiRewriteHandler = new FunctionHandler(
   'rewrites #api_no_api:<path> to @api:/api/<path> in a Datadog logs URL',
   (tokens) => {
-    // neh decodes the whole query and splits on spaces, so a pasted Datadog URL
-    // arrives shattered and fully decoded. Rejoin it, then operate on the raw
-    // string: `new URL()` can't be used because a literal `#` (from the
-    // `#api_no_api` tag) is treated as the URL fragment delimiter.
+    // A pasted Datadog URL survives neh's browser-encode -> decode round trip in
+    // its original form: the whole URL arrives as a single token whose `query=`
+    // param is still percent-encoded (e.g. `%23api_no_api%3A...`). So we split on
+    // the raw `&`/`=` boundaries, then decode just the query value before
+    // rewriting and re-encode it exactly once. Other params are left
+    // byte-identical so we never double-encode them.
     const raw = tokens.join(' ').trim();
 
     const queryStart = raw.indexOf('?');
@@ -45,12 +47,18 @@ const apiRewriteHandler = new FunctionHandler(
       .split('&')
       .map((pair) => {
         const eq = pair.indexOf('=');
-        const key = eq === -1 ? pair : pair.slice(0, eq);
-        let value = eq === -1 ? '' : pair.slice(eq + 1);
-        if (key === 'query') {
-          value = rewriteApiQuery(value);
+        if (eq === -1 || pair.slice(0, eq) !== 'query') {
+          // Leave every non-query param exactly as received.
+          return pair;
         }
-        return `${key}=${encodeURIComponent(value)}`;
+        const rawValue = pair.slice(eq + 1);
+        let decoded: string;
+        try {
+          decoded = decodeURIComponent(rawValue);
+        } catch {
+          decoded = rawValue;
+        }
+        return `query=${encodeURIComponent(rewriteApiQuery(decoded))}`;
       })
       .join('&');
 
