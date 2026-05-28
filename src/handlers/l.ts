@@ -25,8 +25,14 @@ function isUrlOrPath(token: Token): boolean {
 }
 
 // Ensures a bare host ends in a valid TLD, appending ".com" if it doesn't.
+// A single label is always treated as a name (e.g. `fedex` => `fedex.com`),
+// even when it happens to be a valid TLD, since a bare TLD isn't a usable host.
 function normalizeHost(host: string): string {
-  const lastLabel = host.slice(host.lastIndexOf('.') + 1).toLowerCase();
+  const dotIndex = host.lastIndexOf('.');
+  if (dotIndex === -1) {
+    return `${host}.com`;
+  }
+  const lastLabel = host.slice(dotIndex + 1).toLowerCase();
   return tldSet.has(lastLabel) ? host : `${host}.com`;
 }
 

@@ -71,6 +71,11 @@ describe('l handler', () => {
       expect(await location('eliangtan')).toBe('https://eliangtan.com');
     });
 
+    test('appends .com to a single label that is itself a valid TLD', async () => {
+      // `fedex` is a real brand gTLD, but a bare TLD isn't a usable host.
+      expect(await location('fedex', 'http://localhost')).toBe('https://fedex.com');
+    });
+
     test('ignores `s` and port tokens in real host mode', async () => {
       expect(await location('s', '80', 'eliangtan', '/abc')).toBe('https://eliangtan.com/abc');
     });
