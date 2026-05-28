@@ -43,4 +43,8 @@ describe('l handler', () => {
   test('handles a bare host with no path', async () => {
     expect(await location('https://whatever.com')).toBe('http://localhost:3000');
   });
+
+  test('handles a bare path with no host', async () => {
+    expect(await location('/abc')).toBe('http://localhost:3000/abc');
+  });
 });
