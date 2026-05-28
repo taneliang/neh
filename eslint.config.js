@@ -13,6 +13,7 @@ module.exports = [
       'worker/**',
       'src/**/*.generated.js',
       'src/resources/generated-css.ts',
+      'src/resources/tlds.ts',
       'scripts/**/*.js',
     ],
   },

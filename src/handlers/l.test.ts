@@ -47,4 +47,32 @@ describe('l handler', () => {
   test('handles a bare path with no host', async () => {
     expect(await location('/abc')).toBe('http://localhost:3000/abc');
   });
+
+  describe('real host mode', () => {
+    test('rewrites a localhost URL to a host over https, appending .com', async () => {
+      expect(await location('eliangtan', 'http://localhost:23423/abc')).toBe(
+        'https://eliangtan.com/abc',
+      );
+    });
+
+    test('appends .com to a subdomain host with no TLD', async () => {
+      expect(await location('www.eliangtan', 'https://localhost:22/abc')).toBe(
+        'https://www.eliangtan.com/abc',
+      );
+    });
+
+    test('leaves a host that already has a valid TLD alone', async () => {
+      expect(await location('eliang.science', 'https://localhost/abc')).toBe(
+        'https://eliang.science/abc',
+      );
+    });
+
+    test('navigates to a bare host with no path', async () => {
+      expect(await location('eliangtan')).toBe('https://eliangtan.com');
+    });
+
+    test('ignores `s` and port tokens in real host mode', async () => {
+      expect(await location('s', '80', 'eliangtan', '/abc')).toBe('https://eliangtan.com/abc');
+    });
+  });
 });
