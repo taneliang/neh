@@ -27,6 +27,9 @@ describe('neh', () => {
   // Some test input
   const testCases = [
     '1 + 1',
+    'dd',
+    'dd status:error service:paraform',
+    'dd apm services',
     'drive 2',
     'drive',
     'ip',

@@ -9,6 +9,7 @@ import { redirect } from '../util';
 
 import aiHandler from './ai';
 import customPromptHandler from './custom';
+import ddHandler from './dd';
 import dictHandler from './dict';
 import docsHandler from './docs';
 import ghHandler from './gh';
@@ -28,6 +29,7 @@ const neh = new CommandHandler();
 
 // Handlers with their own files
 neh.addHandler('ai', aiHandler);
+neh.addHandler('dd', ddHandler);
 neh.addHandler('dict', dictHandler);
 neh.addHandler('docs', docsHandler);
 neh.addHandler('gh', ghHandler);
