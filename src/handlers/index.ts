@@ -53,6 +53,8 @@ neh.addHandler(
   ),
 );
 
+neh.addHandler('cc', new RedirectHandler('navigates to Claude Code', 'https://claude.ai/code'));
+
 neh.addHandler('cf', new RedirectHandler('navigates to Cloudflare', 'https://dash.cloudflare.com'));
 
 const dHandler = new SearchEngineHandler(
