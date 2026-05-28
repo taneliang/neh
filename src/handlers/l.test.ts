@@ -79,5 +79,25 @@ describe('l handler', () => {
     test('ignores `s` and port tokens in real host mode', async () => {
       expect(await location('s', '80', 'eliangtan', '/abc')).toBe('https://eliangtan.com/abc');
     });
+
+    test('accepts a schemeless source URL copied from the address bar', async () => {
+      expect(await location('eliangtan.com', 'localhost:3000/abc')).toBe(
+        'https://eliangtan.com/abc',
+      );
+    });
+
+    test('accepts a schemeless source URL with a port but no path', async () => {
+      expect(await location('eliangtan.com', 'localhost:3000')).toBe('https://eliangtan.com');
+    });
+  });
+
+  describe('schemeless source URLs', () => {
+    test('treats a schemeless localhost URL as the path source in localhost mode', async () => {
+      expect(await location('localhost:3000/abc')).toBe('http://localhost:3000/abc');
+    });
+
+    test('treats a schemeless host/path as the path source', async () => {
+      expect(await location('whatever.com/abc')).toBe('http://localhost:3000/abc');
+    });
   });
 });

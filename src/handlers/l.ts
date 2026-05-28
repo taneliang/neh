@@ -18,10 +18,12 @@ function extractPath(token: Token): string {
   return pathStart === -1 ? '' : rest.slice(pathStart);
 }
 
-// A token is a URL/path (rather than a bare host) if it has a scheme or is an
-// absolute path.
+// A token is a URL/path (rather than a bare target host) if it contains a path
+// or a port. This includes schemeless forms copied from the address bar, where
+// the browser hides the scheme, e.g. `localhost:3000/abc` or `localhost:3000`.
+// A bare host like `eliangtan.com` has neither a "/" nor a ":port".
 function isUrlOrPath(token: Token): boolean {
-  return /^[a-z][a-z0-9+\-.]*:\/\//i.test(token) || token.startsWith('/');
+  return token.includes('/') || /:\d/.test(token);
 }
 
 // Ensures a bare host ends in a valid TLD, appending ".com" if it doesn't.
@@ -55,6 +57,8 @@ function normalizeHost(host: string): string {
 // - `l eliangtan http://localhost:23423/abc`     => https://eliangtan.com/abc
 // - `l www.eliangtan https://localhost:22/abc`   => https://www.eliangtan.com/abc
 // - `l eliang.science https://localhost/abc`     => https://eliang.science/abc
+// - `l eliangtan.com localhost:3000/abc`         => https://eliangtan.com/abc
+//   (the source URL may be schemeless, as copied from the address bar)
 const lHandler = new FunctionHandler(
   'rewrites a URL host; defaults to localhost (e.g. `l https://whatever.com/abc` => http://localhost:3000/abc, `l s 80` => https://localhost:80, `l 5243` => http://localhost:5243), or to a given host over https with `.com` appended if no TLD is present (e.g. `l eliangtan http://localhost:23423/abc` => https://eliangtan.com/abc)',
   (tokens) => {
