@@ -56,4 +56,10 @@ describe('dd rw api handler', () => {
     expect(response.status).toBe(400);
     expect(await response.text()).toContain('expects a full Datadog logs URL');
   });
+
+  test('returns an error for a URL without a query string', async () => {
+    const response = await apiRewriteHandler.handle(['https://app.datadoghq.com/logs']);
+    expect(response.status).toBe(400);
+    expect(await response.text()).toContain('expects a full Datadog logs URL');
+  });
 });
