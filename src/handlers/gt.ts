@@ -3,7 +3,7 @@ import { redirect } from '../util';
 
 const graphiteHomeUrl = 'https://app.graphite.com/';
 
-const gp = new FunctionHandler(
+const gt = new FunctionHandler(
   'navigates to Graphite, or converts a GitHub PR URL to a Graphite PR URL',
   (tokens) => {
     if (tokens && tokens.length > 0) {
@@ -19,4 +19,4 @@ const gp = new FunctionHandler(
   },
 );
 
-export default gp;
+export default gt;
