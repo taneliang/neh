@@ -18,7 +18,15 @@ describe('linearIssueHandler', () => {
     );
   });
 
-  test('should uppercase ENG- identifiers', async () => {
+  test('should redirect to issue if provided token is a non-ENG prefix identifier', async () => {
+    const response = await linearIssueHandler.handle(['FN-99']);
+    expect(response.status).toBe(302);
+    expect(response.headers.get('location')).toMatchInlineSnapshot(
+      `"https://linear.app/paraform/issue/FN-99"`,
+    );
+  });
+
+  test('should uppercase ticket identifiers', async () => {
     const response = await linearIssueHandler.handle(['eng-42']);
     expect(response.status).toBe(302);
     expect(response.headers.get('location')).toMatchInlineSnapshot(
@@ -26,7 +34,7 @@ describe('linearIssueHandler', () => {
     );
   });
 
-  test('should redirect to Linear home if token is not a number or ENG- identifier', async () => {
+  test('should redirect to Linear home if token is not a number or ticket identifier', async () => {
     const response = await linearIssueHandler.handle(['somequery']);
     expect(response.status).toBe(302);
     expect(response.headers.get('location')).toMatchInlineSnapshot(`"https://linear.app/paraform"`);
