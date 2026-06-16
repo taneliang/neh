@@ -13,7 +13,7 @@ export const linearIssueHandler = new FunctionHandler('navigates to a Linear iss
   if (!isNaN(ticketNumber)) {
     return redirect(`${linearHomeUrl}/issue/ENG-${ticketNumber}`);
   }
-  if (ticket.toUpperCase().startsWith('ENG-')) {
+  if (/^[A-Z]+-\d+$/i.test(ticket)) {
     return redirect(`${linearHomeUrl}/issue/${ticket.toUpperCase()}`);
   }
   return redirect(linearHomeUrl);
